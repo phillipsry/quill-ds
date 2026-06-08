@@ -3,12 +3,13 @@
 **Project:** Quill Design System (`quill-ds`)
 **Date:** 2026-06-07
 **Status:** Approved
+**Storybook version:** 10.4.0
 
 ---
 
 ## 1. Goal
 
-Set up Storybook 8 as a published-quality, Quill-branded documentation site for all 55 ShadCN components. Every component gets Level C stories: full prop controls, all variants, interactive states, design token documentation, and an AllVariants gallery. Four MDX pages document the core design tokens (colors, typography, spacing, elevation). The Storybook manager UI is fully branded with the Quill visual identity.
+Set up Storybook 10 as a published-quality, Quill-branded documentation site for all 55 ShadCN components. Every component gets Level C stories: full prop controls, all variants, interactive states, design token documentation, and an AllVariants gallery. Four MDX pages document the core design tokens (colors, typography, spacing, elevation). The Storybook manager UI is fully branded with the Quill visual identity.
 
 ---
 
@@ -93,7 +94,7 @@ src/stories/
 
 ### `.storybook/main.ts`
 
-- Framework: `@storybook/nextjs`
+- Framework: `@storybook/nextjs-vite` (Storybook 10 auto-detected Vite; replaces `@storybook/nextjs` from v8)
 - Story glob: `src/stories/**/*.stories.@(ts|tsx)` and `src/stories/docs/**/*.mdx`
 - Addons:
   - `@storybook/addon-docs` — autodocs, MDX support
@@ -109,7 +110,7 @@ src/stories/
 
 ### `.storybook/quill-theme.ts`
 
-Built with `create` from `@storybook/theming`:
+Built with `create` from `storybook/theming` (in Storybook 10, theming moved into the core `storybook` package — `@storybook/theming` is no longer a separate install):
 
 | Property | Value |
 |---|---|
@@ -339,12 +340,18 @@ No additional CI config needed — Vercel's GitHub integration triggers a rebuil
 
 ## 9. Dependencies to install
 
+**Node requirement:** 20.19+, 22.19+, or 24+ (Storybook 10 is ESM-only)
+
 ```bash
-npx storybook@latest init --yes
+npm create storybook@latest
 npm install --save-dev @storybook/addon-a11y @storybook/theming
 ```
 
 `@storybook/addon-docs` and `@storybook/addon-viewport` are included in the default Storybook init for Next.js.
+
+`@storybook/nextjs` v10 supports Next.js 16 natively. The framework package name is unchanged from v8.
+
+Story files use CSF 3 (`Meta`/`StoryObj` from `@storybook/react`) — no changes required from what worked in v8.
 
 ---
 
