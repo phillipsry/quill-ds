@@ -1,0 +1,93 @@
+import type { Meta, StoryObj } from '@storybook/react'
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
+
+const meta = {
+  title: 'UI / Avatar',
+  component: Avatar,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+    docs: {
+      description: {
+        component: `
+### Design tokens
+\`--paper-deep\` · \`--ink-muted\` · \`--line-soft\`
+
+### Rules
+Always provide an \`AvatarFallback\` — it renders when the image fails or hasn't loaded.
+Fallback text should be initials (1–2 chars). Size variants: \`sm\` (24px), \`default\` (32px), \`lg\` (40px).
+        `,
+      },
+    },
+  },
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['sm', 'default', 'lg'],
+      description: 'Avatar diameter',
+      table: { defaultValue: { summary: 'default' } },
+    },
+    className: { table: { disable: true } },
+  },
+} satisfies Meta<typeof Avatar>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  args: { size: 'default' },
+  render: (args) => (
+    <Avatar {...args}>
+      <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
+  ),
+}
+
+export const Fallback: Story = {
+  args: { size: 'default' },
+  render: (args) => (
+    <Avatar {...args}>
+      <AvatarImage src="/no-image.jpg" alt="User" />
+      <AvatarFallback>RP</AvatarFallback>
+    </Avatar>
+  ),
+}
+
+export const AllVariants: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div className="flex items-center gap-4">
+      {(['sm', 'default', 'lg'] as const).map((size) => (
+        <div key={size} className="flex flex-col items-center gap-2">
+          <Avatar size={size}>
+            <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+          <span className="text-xs text-ink-muted">{size}</span>
+        </div>
+      ))}
+      <div className="flex flex-col items-center gap-2">
+        <Avatar>
+          <AvatarFallback>RP</AvatarFallback>
+        </Avatar>
+        <span className="text-xs text-ink-muted">fallback</span>
+      </div>
+    </div>
+  ),
+}
+
+export const Dark: Story = {
+  parameters: { globals: { theme: 'dark' } },
+  render: () => (
+    <div className="flex gap-3">
+      <Avatar>
+        <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+        <AvatarFallback>CN</AvatarFallback>
+      </Avatar>
+      <Avatar>
+        <AvatarFallback>RP</AvatarFallback>
+      </Avatar>
+    </div>
+  ),
+}

@@ -1,0 +1,93 @@
+import type { Meta, StoryObj } from '@storybook/react'
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
+import { InfoIcon, AlertTriangleIcon } from 'lucide-react'
+
+const meta = {
+  title: 'UI / Alert',
+  component: Alert,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+    docs: {
+      description: {
+        component: `
+### Design tokens
+\`--card\` · \`--ink\` · \`--destructive\` · \`--radius-lg\`
+
+### Rules
+Use \`variant="default"\` for informational and success alerts.
+Use \`variant="destructive"\` only for errors. Include an icon when possible — it improves scannability.
+        `,
+      },
+    },
+  },
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['default', 'destructive'],
+      description: 'Visual emphasis level',
+      table: { defaultValue: { summary: 'default' } },
+    },
+    className: { table: { disable: true } },
+  },
+  decorators: [
+    (Story) => (
+      <div className="w-96">
+        <Story />
+      </div>
+    ),
+  ],
+} satisfies Meta<typeof Alert>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  args: { variant: 'default' },
+  render: (args) => (
+    <Alert {...args}>
+      <InfoIcon />
+      <AlertTitle>Note</AlertTitle>
+      <AlertDescription>Your profile changes have been saved.</AlertDescription>
+    </Alert>
+  ),
+}
+
+export const Destructive: Story = {
+  args: { variant: 'destructive' },
+  render: (args) => (
+    <Alert {...args}>
+      <AlertTriangleIcon />
+      <AlertTitle>Error</AlertTitle>
+      <AlertDescription>Unable to save changes. Please try again.</AlertDescription>
+    </Alert>
+  ),
+}
+
+export const NoIcon: Story = {
+  args: { variant: 'default' },
+  render: (args) => (
+    <Alert {...args}>
+      <AlertTitle>Heads up</AlertTitle>
+      <AlertDescription>You can also use alerts without an icon when the message is self-explanatory.</AlertDescription>
+    </Alert>
+  ),
+}
+
+export const AllVariants: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div className="flex flex-col gap-3 w-96">
+      <Alert variant="default">
+        <InfoIcon />
+        <AlertTitle>Informational</AlertTitle>
+        <AlertDescription>This is a default alert with an icon.</AlertDescription>
+      </Alert>
+      <Alert variant="destructive">
+        <AlertTriangleIcon />
+        <AlertTitle>Destructive</AlertTitle>
+        <AlertDescription>Something went wrong with your request.</AlertDescription>
+      </Alert>
+    </div>
+  ),
+}
