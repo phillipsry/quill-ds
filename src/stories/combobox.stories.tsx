@@ -56,7 +56,7 @@ export const Default: Story = {
         <ComboboxValue placeholder="Select framework…" />
       </ComboboxTrigger>
       <ComboboxContent>
-        <ComboboxInput placeholder="Search…" />
+        <ComboboxInput placeholder="Search…" showTrigger={false} />
         <ComboboxList>
           <ComboboxEmpty>No results found.</ComboboxEmpty>
           <ComboboxCollection>
