@@ -36,26 +36,61 @@ export const WithIcon: Story = {
   render: () => <Kbd><CommandIcon /></Kbd>,
 }
 
+/** Shows Kbd used inline within a prose hint — the primary real-world usage pattern. */
+export const InContext: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div className="flex flex-col gap-4 text-sm text-muted-foreground">
+      <p>
+        Press <KbdGroup><Kbd>⌘</Kbd><Kbd>K</Kbd></KbdGroup> to open the command palette.
+      </p>
+      <p>
+        Hit <Kbd>Enter</Kbd> to confirm or <Kbd>Esc</Kbd> to cancel.
+      </p>
+      <p>
+        Use <Kbd>Tab</Kbd> to move between fields and <Kbd>Space</Kbd> to toggle a checkbox.
+      </p>
+      <p>
+        <KbdGroup><Kbd>⇧</Kbd><Kbd>⌘</Kbd><Kbd>P</Kbd></KbdGroup> opens the command palette from anywhere.
+      </p>
+    </div>
+  ),
+}
+
 export const AllVariants: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
-    <div className="flex flex-wrap gap-3 items-center">
-      <Kbd>⌘</Kbd>
-      <Kbd>K</Kbd>
-      <KbdGroup>
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-wrap gap-3 items-center">
         <Kbd>⌘</Kbd>
         <Kbd>K</Kbd>
-      </KbdGroup>
-      <KbdGroup>
-        <Kbd>⇧</Kbd>
-        <Kbd>⌘</Kbd>
-        <Kbd>P</Kbd>
-      </KbdGroup>
-      <KbdGroup>
-        <Kbd>Ctrl</Kbd>
-        <Kbd>Alt</Kbd>
-        <Kbd>Del</Kbd>
-      </KbdGroup>
+        <Kbd>Enter</Kbd>
+        <Kbd>Esc</Kbd>
+        <Kbd>Tab</Kbd>
+        <Kbd>Space</Kbd>
+        <Kbd>↑</Kbd>
+        <Kbd>↓</Kbd>
+      </div>
+      <div className="flex flex-wrap gap-3 items-center">
+        <KbdGroup>
+          <Kbd>⌘</Kbd>
+          <Kbd>K</Kbd>
+        </KbdGroup>
+        <KbdGroup>
+          <Kbd>⇧</Kbd>
+          <Kbd>⌘</Kbd>
+          <Kbd>P</Kbd>
+        </KbdGroup>
+        <KbdGroup>
+          <Kbd>Ctrl</Kbd>
+          <Kbd>Alt</Kbd>
+          <Kbd>Del</Kbd>
+        </KbdGroup>
+        <KbdGroup>
+          <Kbd><CommandIcon /></Kbd>
+          <Kbd>K</Kbd>
+        </KbdGroup>
+      </div>
     </div>
   ),
 }

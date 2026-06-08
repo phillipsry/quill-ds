@@ -21,7 +21,6 @@ The \`ratio\` prop accepts a number (width/height), e.g. \`16/9\` = 1.77.
     ratio: {
       control: 'number',
       description: 'Width ÷ height (e.g. 16/9)',
-      table: { defaultValue: { summary: '1' } },
     },
   },
   decorators: [
@@ -35,6 +34,19 @@ The \`ratio\` prop accepts a number (width/height), e.g. \`16/9\` = 1.77.
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+export const WithImage: Story = {
+  args: { ratio: 16 / 9 },
+  render: (args) => (
+    <AspectRatio {...args} className="rounded-lg overflow-hidden">
+      <img
+        src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+        alt="A mountain landscape at golden hour"
+        className="object-cover w-full h-full"
+      />
+    </AspectRatio>
+  ),
+}
 
 export const SixteenByNine: Story = {
   args: { ratio: 16 / 9 },
@@ -55,6 +67,7 @@ export const Square: Story = {
 }
 
 export const AllVariants: Story = {
+  args: { ratio: 16 / 9 },
   parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex gap-4 items-start">

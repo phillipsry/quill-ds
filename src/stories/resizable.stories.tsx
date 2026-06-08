@@ -17,18 +17,18 @@ const meta = {
 ### Rules
 Resizable panels let users drag to resize. \`ResizablePanelGroup\` sets the direction.
 Each \`ResizablePanel\` takes a \`defaultSize\` (percentage). \`ResizableHandle\` renders the drag handle.
+Pass \`withHandle\` to \`ResizableHandle\` to show a visible grip indicator on the separator.
         `,
       },
     },
   },
   argTypes: {
-    direction: {
+    orientation: {
       control: 'select',
       options: ['horizontal', 'vertical'],
       description: 'Split direction',
       table: { defaultValue: { summary: 'horizontal' } },
     },
-    className: { table: { disable: true } },
   },
 } satisfies Meta<typeof ResizablePanelGroup>
 
@@ -37,7 +37,7 @@ type Story = StoryObj<typeof meta>
 
 export const Horizontal: Story = {
   render: () => (
-    <ResizablePanelGroup direction="horizontal" className="h-48 max-w-md rounded-lg border border-border">
+    <ResizablePanelGroup orientation="horizontal" className="h-48 max-w-md rounded-lg border border-border">
       <ResizablePanel defaultSize={50}>
         <div className="flex h-full items-center justify-center p-4 text-sm text-ink-muted">Panel A</div>
       </ResizablePanel>
@@ -51,13 +51,45 @@ export const Horizontal: Story = {
 
 export const Vertical: Story = {
   render: () => (
-    <ResizablePanelGroup direction="vertical" className="h-64 max-w-sm rounded-lg border border-border">
+    <ResizablePanelGroup orientation="vertical" className="h-64 max-w-sm rounded-lg border border-border">
       <ResizablePanel defaultSize={60}>
         <div className="flex h-full items-center justify-center p-4 text-sm text-ink-muted">Top panel</div>
       </ResizablePanel>
       <ResizableHandle />
       <ResizablePanel defaultSize={40}>
         <div className="flex h-full items-center justify-center p-4 text-sm text-ink-muted">Bottom panel</div>
+      </ResizablePanel>
+    </ResizablePanelGroup>
+  ),
+}
+
+export const WithHandle: Story = {
+  render: () => (
+    <ResizablePanelGroup orientation="horizontal" className="h-48 max-w-md rounded-lg border border-border">
+      <ResizablePanel defaultSize={50}>
+        <div className="flex h-full items-center justify-center p-4 text-sm text-ink-muted">Sidebar</div>
+      </ResizablePanel>
+      <ResizableHandle withHandle />
+      <ResizablePanel defaultSize={50}>
+        <div className="flex h-full items-center justify-center p-4 text-sm text-ink-muted">Main content</div>
+      </ResizablePanel>
+    </ResizablePanelGroup>
+  ),
+}
+
+export const ThreePanel: Story = {
+  render: () => (
+    <ResizablePanelGroup orientation="horizontal" className="h-48 max-w-2xl rounded-lg border border-border">
+      <ResizablePanel defaultSize={25}>
+        <div className="flex h-full items-center justify-center p-4 text-sm text-ink-muted">File tree</div>
+      </ResizablePanel>
+      <ResizableHandle withHandle />
+      <ResizablePanel defaultSize={50}>
+        <div className="flex h-full items-center justify-center p-4 text-sm text-ink-muted">Editor</div>
+      </ResizablePanel>
+      <ResizableHandle withHandle />
+      <ResizablePanel defaultSize={25}>
+        <div className="flex h-full items-center justify-center p-4 text-sm text-ink-muted">Preview</div>
       </ResizablePanel>
     </ResizablePanelGroup>
   ),

@@ -18,12 +18,12 @@ const meta = {
 ### Rules
 Wrap your tree with \`TooltipProvider\` (usually at app root).
 Tooltip appears on hover/focus — not on click. Use \`side\` on \`TooltipContent\` to control placement.
-Use \`asChild\` on \`TooltipTrigger\` to forward to a custom element.
+Use the \`render\` prop on \`TooltipTrigger\` to forward to a custom element (Base UI pattern).
         `,
       },
     },
   },
-  argTypes: { className: { table: { disable: true } } },
+  argTypes: {},
   decorators: [
     (Story) => (
       <TooltipProvider>
@@ -39,9 +39,7 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   render: () => (
     <Tooltip>
-      <TooltipTrigger asChild>
-        <Button variant="outline">Hover me</Button>
-      </TooltipTrigger>
+      <TooltipTrigger render={<Button variant="outline">Hover me</Button>} />
       <TooltipContent>Save your progress</TooltipContent>
     </Tooltip>
   ),
@@ -50,11 +48,13 @@ export const Default: Story = {
 export const IconTrigger: Story = {
   render: () => (
     <Tooltip>
-      <TooltipTrigger asChild>
-        <button className="rounded-full p-1 text-ink-muted hover:text-ink" aria-label="More information">
-          <InfoIcon className="size-4" />
-        </button>
-      </TooltipTrigger>
+      <TooltipTrigger
+        render={
+          <button className="rounded-full p-1 text-ink-muted hover:text-ink" aria-label="More information">
+            <InfoIcon className="size-4" />
+          </button>
+        }
+      />
       <TooltipContent>This course is recommended for beginners.</TooltipContent>
     </Tooltip>
   ),
@@ -66,9 +66,7 @@ export const AllVariants: Story = {
     <div className="flex items-center gap-4">
       {(['top', 'right', 'bottom', 'left'] as const).map((side) => (
         <Tooltip key={side}>
-          <TooltipTrigger asChild>
-            <Button variant="outline" size="sm">{side}</Button>
-          </TooltipTrigger>
+          <TooltipTrigger render={<Button variant="outline" size="sm">{side}</Button>} />
           <TooltipContent side={side}>Tooltip on {side}</TooltipContent>
         </Tooltip>
       ))}

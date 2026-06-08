@@ -35,7 +35,6 @@ Pass \`showCloseButton={false}\` to \`DialogContent\` only if the close action i
   },
   argTypes: {
     open: { control: 'boolean', description: 'Controlled open state' },
-    className: { table: { disable: true } },
   },
 } satisfies Meta<typeof Dialog>
 
@@ -45,9 +44,7 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   render: () => (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">Edit profile</Button>
-      </DialogTrigger>
+      <DialogTrigger render={<Button variant="outline">Edit profile</Button>} />
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
@@ -64,8 +61,37 @@ export const Default: Story = {
           </div>
         </div>
         <DialogFooter>
-          <DialogClose asChild><Button variant="outline">Cancel</Button></DialogClose>
-          <Button>Save changes</Button>
+          <DialogClose render={<Button variant="outline" className="w-full sm:w-auto" />}>Cancel</DialogClose>
+          <Button className="w-full sm:w-auto">Save changes</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  ),
+}
+
+export const WithFooterClose: Story = {
+  render: () => (
+    <Dialog>
+      <DialogTrigger render={<Button variant="outline">Change plan</Button>} />
+      <DialogContent showCloseButton={false}>
+        <DialogHeader>
+          <DialogTitle>Change your plan</DialogTitle>
+          <DialogDescription>
+            Review your new plan details below. You can switch plans at any time from your billing settings.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="flex flex-col gap-4 py-2">
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="plan-name">Plan name</Label>
+            <Input id="plan-name" defaultValue="Quill Pro" readOnly />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="billing-cycle">Billing cycle</Label>
+            <Input id="billing-cycle" defaultValue="Annual — $99 / year" readOnly />
+          </div>
+        </div>
+        <DialogFooter showCloseButton>
+          <Button className="w-full sm:w-auto">Confirm change</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

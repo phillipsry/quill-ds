@@ -22,11 +22,11 @@ export const globalTypes = {
 const withTheme: Decorator = (Story, context) => {
   const theme = context.globals['theme'] ?? 'light'
   return (
-    <ThemeProvider attribute="class" defaultTheme={theme} forcedTheme={theme}>
+    <ThemeProvider attribute="data-theme" defaultTheme={theme} forcedTheme={theme}>
       <div
-        className={theme === 'dark' ? 'dark' : ''}
+        data-theme={theme}
         style={{
-          background: theme === 'dark' ? '#1a1714' : '#F5EDDD',
+          background: theme === 'dark' ? '#20180E' : '#F5EDDD',
           padding: 24,
           minHeight: '100vh',
         }}

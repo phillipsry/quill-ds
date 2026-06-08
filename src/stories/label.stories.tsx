@@ -33,9 +33,13 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  render: () => (
+  args: {
+    children: 'Email address',
+    htmlFor: 'email',
+  },
+  render: (args) => (
     <div className="flex flex-col gap-1.5 w-64">
-      <Label htmlFor="email">Email address</Label>
+      <Label {...args} />
       <Input id="email" type="email" placeholder="you@example.com" />
     </div>
   ),
@@ -52,9 +56,11 @@ export const WithCheckbox: Story = {
 
 export const DisabledState: Story = {
   render: () => (
-    <div className="flex flex-col gap-1.5 w-64">
+    // Input must precede Label in DOM order for peer-disabled CSS to apply to the label.
+    // flex-col-reverse keeps the visual order as label → input.
+    <div className="flex flex-col-reverse gap-1.5 w-64">
+      <Input id="disabled-input" className="peer" disabled defaultValue="read-only" />
       <Label htmlFor="disabled-input">Locked field</Label>
-      <Input id="disabled-input" disabled defaultValue="read-only" />
     </div>
   ),
 }

@@ -94,7 +94,7 @@ export const LineVariant: Story = {
 export const Vertical: Story = {
   render: () => (
     <Tabs defaultValue="account" orientation="vertical" className="flex gap-4">
-      <TabsList className="flex-col h-auto">
+      <TabsList>
         <TabsTrigger value="account">Account</TabsTrigger>
         <TabsTrigger value="billing">Billing</TabsTrigger>
         <TabsTrigger value="notifications">Notifications</TabsTrigger>
@@ -117,7 +117,7 @@ export const Vertical: Story = {
 export const AllVariants: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
-    <div className="flex flex-col gap-8 w-80">
+    <div className="flex flex-col gap-8">
       <div>
         <p className="text-xs text-ink-muted mb-3">Default (segment)</p>
         <Tabs defaultValue="a">
@@ -126,6 +126,15 @@ export const AllVariants: Story = {
             <TabsTrigger value="b">Two</TabsTrigger>
             <TabsTrigger value="c">Three</TabsTrigger>
           </TabsList>
+          <TabsContent value="a">
+            <p className="pt-2 text-sm text-ink-soft">Content for One</p>
+          </TabsContent>
+          <TabsContent value="b">
+            <p className="pt-2 text-sm text-ink-soft">Content for Two</p>
+          </TabsContent>
+          <TabsContent value="c">
+            <p className="pt-2 text-sm text-ink-soft">Content for Three</p>
+          </TabsContent>
         </Tabs>
       </div>
       <div>
@@ -136,6 +145,15 @@ export const AllVariants: Story = {
             <TabsTrigger value="b">Two</TabsTrigger>
             <TabsTrigger value="c">Three</TabsTrigger>
           </TabsList>
+          <TabsContent value="a">
+            <p className="pt-2 text-sm text-ink-soft">Content for One</p>
+          </TabsContent>
+          <TabsContent value="b">
+            <p className="pt-2 text-sm text-ink-soft">Content for Two</p>
+          </TabsContent>
+          <TabsContent value="c">
+            <p className="pt-2 text-sm text-ink-soft">Content for Three</p>
+          </TabsContent>
         </Tabs>
       </div>
       <div>
@@ -146,6 +164,33 @@ export const AllVariants: Story = {
             <TabsTrigger value="b" disabled>Two (disabled)</TabsTrigger>
             <TabsTrigger value="c">Three</TabsTrigger>
           </TabsList>
+          <TabsContent value="a">
+            <p className="pt-2 text-sm text-ink-soft">Content for One</p>
+          </TabsContent>
+          <TabsContent value="c">
+            <p className="pt-2 text-sm text-ink-soft">Content for Three</p>
+          </TabsContent>
+        </Tabs>
+      </div>
+      <div>
+        <p className="text-xs text-ink-muted mb-3">Vertical orientation</p>
+        <Tabs defaultValue="a" orientation="vertical" className="flex gap-4">
+          <TabsList>
+            <TabsTrigger value="a">One</TabsTrigger>
+            <TabsTrigger value="b">Two</TabsTrigger>
+            <TabsTrigger value="c">Three</TabsTrigger>
+          </TabsList>
+          <div className="flex-1">
+            <TabsContent value="a">
+              <p className="text-sm text-ink-soft">Content for One</p>
+            </TabsContent>
+            <TabsContent value="b">
+              <p className="text-sm text-ink-soft">Content for Two</p>
+            </TabsContent>
+            <TabsContent value="c">
+              <p className="text-sm text-ink-soft">Content for Three</p>
+            </TabsContent>
+          </div>
         </Tabs>
       </div>
     </div>

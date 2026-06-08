@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
@@ -63,5 +64,109 @@ export const Disabled: Story = {
         </div>
       ))}
     </RadioGroup>
+  ),
+}
+
+export const WithError: Story = {
+  args: { defaultValue: undefined },
+  render: (args) => (
+    <div className="flex flex-col gap-2">
+      <RadioGroup {...args}>
+        {[
+          { value: 'monthly', label: 'Monthly billing' },
+          { value: 'annual', label: 'Annual billing' },
+        ].map(({ value, label }) => (
+          <div key={value} className="flex items-center gap-2">
+            <RadioGroupItem
+              value={value}
+              id={`radio-err-${value}`}
+              aria-invalid
+            />
+            <Label htmlFor={`radio-err-${value}`}>{label}</Label>
+          </div>
+        ))}
+      </RadioGroup>
+      <p className="text-sm text-destructive">Please select a billing plan to continue.</p>
+    </div>
+  ),
+}
+
+export const Controlled: Story = {
+  args: {},
+  render: () => {
+    const [plan, setPlan] = useState('standard')
+    return (
+      <div className="flex flex-col gap-3">
+        <RadioGroup value={plan} onValueChange={setPlan}>
+          {[
+            { value: 'starter', label: 'Starter — Free' },
+            { value: 'standard', label: 'Standard — $12/mo' },
+            { value: 'pro', label: 'Pro — $29/mo' },
+          ].map(({ value, label }) => (
+            <div key={value} className="flex items-center gap-2">
+              <RadioGroupItem value={value} id={`radio-c-${value}`} />
+              <Label htmlFor={`radio-c-${value}`}>{label}</Label>
+            </div>
+          ))}
+        </RadioGroup>
+        <p className="text-sm text-muted-foreground">Selected plan: <strong>{plan}</strong></p>
+      </div>
+    )
+  },
+}
+
+export const AllVariants: Story = {
+  args: {},
+  render: () => (
+    <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-1.5">
+        <p className="text-sm font-medium text-muted-foreground">Default</p>
+        <RadioGroup defaultValue="beginner">
+          {[
+            { value: 'beginner', label: 'Beginner' },
+            { value: 'intermediate', label: 'Intermediate' },
+            { value: 'advanced', label: 'Advanced' },
+          ].map(({ value, label }) => (
+            <div key={value} className="flex items-center gap-2">
+              <RadioGroupItem value={value} id={`radio-av-${value}`} />
+              <Label htmlFor={`radio-av-${value}`}>{label}</Label>
+            </div>
+          ))}
+        </RadioGroup>
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <p className="text-sm font-medium text-muted-foreground">Disabled</p>
+        <RadioGroup defaultValue="beginner" disabled>
+          {[
+            { value: 'beginner', label: 'Beginner' },
+            { value: 'intermediate', label: 'Intermediate' },
+          ].map(({ value, label }) => (
+            <div key={value} className="flex items-center gap-2">
+              <RadioGroupItem value={value} id={`radio-av-dis-${value}`} />
+              <Label htmlFor={`radio-av-dis-${value}`}>{label}</Label>
+            </div>
+          ))}
+        </RadioGroup>
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <p className="text-sm font-medium text-muted-foreground">Error / Invalid</p>
+        <div className="flex flex-col gap-2">
+          <RadioGroup defaultValue={undefined}>
+            {[
+              { value: 'monthly', label: 'Monthly billing' },
+              { value: 'annual', label: 'Annual billing' },
+            ].map(({ value, label }) => (
+              <div key={value} className="flex items-center gap-2">
+                <RadioGroupItem value={value} id={`radio-av-err-${value}`} aria-invalid />
+                <Label htmlFor={`radio-av-err-${value}`}>{label}</Label>
+              </div>
+            ))}
+          </RadioGroup>
+          <p className="text-sm text-destructive">Please select a billing plan to continue.</p>
+        </div>
+      </div>
+    </div>
   ),
 }

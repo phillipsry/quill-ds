@@ -71,7 +71,7 @@ export const Disabled: Story = {
 export const Invalid: Story = {
   render: () => (
     <div className="flex items-center gap-2">
-      <Checkbox id="invalid" aria-invalid="true" />
+      <Checkbox id="invalid" aria-invalid={true} />
       <Label htmlFor="invalid">Required field</Label>
     </div>
   ),
@@ -82,13 +82,19 @@ export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-3">
       {[
-        { id: 'av1', label: 'Unchecked', checked: false, disabled: false },
-        { id: 'av2', label: 'Checked', checked: true, disabled: false },
-        { id: 'av3', label: 'Disabled unchecked', checked: false, disabled: true },
-        { id: 'av4', label: 'Disabled checked', checked: true, disabled: true },
-      ].map(({ id, label, checked, disabled }) => (
+        { id: 'av1', label: 'Unchecked', checked: false, disabled: false, invalid: false },
+        { id: 'av2', label: 'Checked', checked: true, disabled: false, invalid: false },
+        { id: 'av3', label: 'Disabled unchecked', checked: false, disabled: true, invalid: false },
+        { id: 'av4', label: 'Disabled checked', checked: true, disabled: true, invalid: false },
+        { id: 'av5', label: 'Invalid', checked: false, disabled: false, invalid: true },
+      ].map(({ id, label, checked, disabled, invalid }) => (
         <div key={id} className="flex items-center gap-2">
-          <Checkbox id={id} defaultChecked={checked} disabled={disabled} />
+          <Checkbox
+            id={id}
+            defaultChecked={checked}
+            disabled={disabled}
+            aria-invalid={invalid || undefined}
+          />
           <Label htmlFor={id}>{label}</Label>
         </div>
       ))}

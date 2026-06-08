@@ -43,28 +43,32 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  render: () => (
-    <Toggle aria-label="Bold">
-      <BoldIcon />
-    </Toggle>
-  ),
+  args: {
+    'aria-label': 'Bold',
+    children: <BoldIcon />,
+  },
 }
 
 export const Outline: Story = {
-  render: () => (
-    <Toggle variant="outline" aria-label="Bold" defaultPressed>
-      <BoldIcon />
-    </Toggle>
-  ),
+  args: {
+    variant: 'outline',
+    'aria-label': 'Bold',
+    defaultPressed: true,
+    children: <BoldIcon />,
+  },
 }
 
 export const WithText: Story = {
-  render: () => (
-    <Toggle defaultPressed>
-      <BoldIcon />
-      Bold
-    </Toggle>
-  ),
+  args: {
+    'aria-label': 'Bold',
+    defaultPressed: true,
+    children: (
+      <>
+        <BoldIcon />
+        Bold
+      </>
+    ),
+  },
 }
 
 export const AllVariants: Story = {

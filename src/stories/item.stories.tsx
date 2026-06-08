@@ -7,9 +7,13 @@ import {
   ItemDescription,
   ItemMedia,
   ItemActions,
+  ItemSeparator,
+  ItemHeader,
+  ItemFooter,
 } from '@/components/ui/item'
-import { BookOpenIcon } from 'lucide-react'
+import { BookOpenIcon, PencilIcon, TrashIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 const meta = {
   title: 'UI / Item',
@@ -52,6 +56,197 @@ export const Default: Story = {
           <ItemDescription>8 lessons · Beginner</ItemDescription>
         </ItemContent>
         <ItemActions><Button variant="ghost" size="sm">Open</Button></ItemActions>
+      </Item>
+    </ItemGroup>
+  ),
+}
+
+export const Outline: Story = {
+  render: () => (
+    <ItemGroup>
+      <Item variant="outline">
+        <ItemMedia><BookOpenIcon className="size-4 text-ink-muted" /></ItemMedia>
+        <ItemContent>
+          <ItemTitle>Watercolor Basics</ItemTitle>
+          <ItemDescription>12 lessons · Beginner</ItemDescription>
+        </ItemContent>
+        <ItemActions><Button variant="ghost" size="sm">Open</Button></ItemActions>
+      </Item>
+      <Item variant="outline">
+        <ItemMedia><BookOpenIcon className="size-4 text-ink-muted" /></ItemMedia>
+        <ItemContent>
+          <ItemTitle>Calligraphy for Beginners</ItemTitle>
+          <ItemDescription>8 lessons · Beginner</ItemDescription>
+        </ItemContent>
+        <ItemActions><Button variant="ghost" size="sm">Open</Button></ItemActions>
+      </Item>
+    </ItemGroup>
+  ),
+}
+
+export const Muted: Story = {
+  render: () => (
+    <ItemGroup>
+      <Item variant="muted">
+        <ItemMedia><BookOpenIcon className="size-4 text-ink-muted" /></ItemMedia>
+        <ItemContent>
+          <ItemTitle>Watercolor Basics</ItemTitle>
+          <ItemDescription>12 lessons · Beginner</ItemDescription>
+        </ItemContent>
+        <ItemActions><Button variant="ghost" size="sm">Open</Button></ItemActions>
+      </Item>
+      <Item variant="muted">
+        <ItemMedia><BookOpenIcon className="size-4 text-ink-muted" /></ItemMedia>
+        <ItemContent>
+          <ItemTitle>Calligraphy for Beginners</ItemTitle>
+          <ItemDescription>8 lessons · Beginner</ItemDescription>
+        </ItemContent>
+        <ItemActions><Button variant="ghost" size="sm">Open</Button></ItemActions>
+      </Item>
+    </ItemGroup>
+  ),
+}
+
+export const SmallSize: Story = {
+  render: () => (
+    <ItemGroup>
+      <Item size="sm">
+        <ItemMedia><BookOpenIcon className="size-4 text-ink-muted" /></ItemMedia>
+        <ItemContent>
+          <ItemTitle>Watercolor Basics</ItemTitle>
+          <ItemDescription>12 lessons · Beginner</ItemDescription>
+        </ItemContent>
+        <ItemActions><Button variant="ghost" size="sm">Open</Button></ItemActions>
+      </Item>
+      <Item size="sm">
+        <ItemMedia><BookOpenIcon className="size-4 text-ink-muted" /></ItemMedia>
+        <ItemContent>
+          <ItemTitle>Calligraphy for Beginners</ItemTitle>
+          <ItemDescription>8 lessons · Beginner</ItemDescription>
+        </ItemContent>
+        <ItemActions><Button variant="ghost" size="sm">Open</Button></ItemActions>
+      </Item>
+    </ItemGroup>
+  ),
+}
+
+export const ExtraSmallSize: Story = {
+  render: () => (
+    <ItemGroup>
+      <Item size="xs">
+        <ItemMedia><BookOpenIcon className="size-3.5 text-ink-muted" /></ItemMedia>
+        <ItemContent>
+          <ItemTitle>Watercolor Basics</ItemTitle>
+        </ItemContent>
+      </Item>
+      <Item size="xs">
+        <ItemMedia><BookOpenIcon className="size-3.5 text-ink-muted" /></ItemMedia>
+        <ItemContent>
+          <ItemTitle>Calligraphy for Beginners</ItemTitle>
+        </ItemContent>
+      </Item>
+      <Item size="xs">
+        <ItemMedia><BookOpenIcon className="size-3.5 text-ink-muted" /></ItemMedia>
+        <ItemContent>
+          <ItemTitle>Oil Painting Fundamentals</ItemTitle>
+        </ItemContent>
+      </Item>
+    </ItemGroup>
+  ),
+}
+
+export const WithSeparator: Story = {
+  render: () => (
+    <ItemGroup>
+      <Item>
+        <ItemMedia><BookOpenIcon className="size-4 text-ink-muted" /></ItemMedia>
+        <ItemContent>
+          <ItemTitle>Watercolor Basics</ItemTitle>
+          <ItemDescription>12 lessons · Beginner</ItemDescription>
+        </ItemContent>
+        <ItemActions><Button variant="ghost" size="sm">Open</Button></ItemActions>
+      </Item>
+      <ItemSeparator />
+      <Item>
+        <ItemMedia><BookOpenIcon className="size-4 text-ink-muted" /></ItemMedia>
+        <ItemContent>
+          <ItemTitle>Calligraphy for Beginners</ItemTitle>
+          <ItemDescription>8 lessons · Beginner</ItemDescription>
+        </ItemContent>
+        <ItemActions><Button variant="ghost" size="sm">Open</Button></ItemActions>
+      </Item>
+      <ItemSeparator />
+      <Item>
+        <ItemMedia><BookOpenIcon className="size-4 text-ink-muted" /></ItemMedia>
+        <ItemContent>
+          <ItemTitle>Oil Painting Fundamentals</ItemTitle>
+          <ItemDescription>20 lessons · Intermediate</ItemDescription>
+        </ItemContent>
+        <ItemActions><Button variant="ghost" size="sm">Open</Button></ItemActions>
+      </Item>
+    </ItemGroup>
+  ),
+}
+
+export const WithHeaderAndFooter: Story = {
+  render: () => (
+    <ItemGroup>
+      <Item className="flex-col items-start">
+        <ItemHeader>
+          <ItemTitle>Watercolor Basics</ItemTitle>
+          <Badge variant="secondary">Beginner</Badge>
+        </ItemHeader>
+        <ItemContent>
+          <ItemDescription>
+            Learn foundational watercolor techniques including wet-on-wet, glazing, and color mixing.
+          </ItemDescription>
+        </ItemContent>
+        <ItemFooter>
+          <span className="text-xs text-muted-foreground">12 lessons · 3h 40m</span>
+          <div className="flex gap-2">
+            <Button variant="ghost" size="sm" aria-label="Edit"><PencilIcon className="size-4" /></Button>
+            <Button variant="ghost" size="sm" aria-label="Delete"><TrashIcon className="size-4" /></Button>
+          </div>
+        </ItemFooter>
+      </Item>
+      <Item className="flex-col items-start">
+        <ItemHeader>
+          <ItemTitle>Calligraphy for Beginners</ItemTitle>
+          <Badge variant="secondary">Beginner</Badge>
+        </ItemHeader>
+        <ItemContent>
+          <ItemDescription>
+            Master brush pen calligraphy with step-by-step drills for letterforms and flourishes.
+          </ItemDescription>
+        </ItemContent>
+        <ItemFooter>
+          <span className="text-xs text-muted-foreground">8 lessons · 2h 15m</span>
+          <div className="flex gap-2">
+            <Button variant="ghost" size="sm" aria-label="Edit"><PencilIcon className="size-4" /></Button>
+            <Button variant="ghost" size="sm" aria-label="Delete"><TrashIcon className="size-4" /></Button>
+          </div>
+        </ItemFooter>
+      </Item>
+    </ItemGroup>
+  ),
+}
+
+export const AsLink: Story = {
+  render: () => (
+    <ItemGroup>
+      <Item render={<a href="#watercolor" />}>
+        <ItemMedia><BookOpenIcon className="size-4 text-ink-muted" /></ItemMedia>
+        <ItemContent>
+          <ItemTitle>Watercolor Basics</ItemTitle>
+          <ItemDescription>12 lessons · Beginner</ItemDescription>
+        </ItemContent>
+      </Item>
+      <Item render={<a href="#calligraphy" />}>
+        <ItemMedia><BookOpenIcon className="size-4 text-ink-muted" /></ItemMedia>
+        <ItemContent>
+          <ItemTitle>Calligraphy for Beginners</ItemTitle>
+          <ItemDescription>8 lessons · Beginner</ItemDescription>
+        </ItemContent>
       </Item>
     </ItemGroup>
   ),

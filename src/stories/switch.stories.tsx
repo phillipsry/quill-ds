@@ -23,6 +23,7 @@ Always pair \`Switch\` with a \`Label\` for accessibility. Use \`defaultChecked\
   argTypes: {
     disabled: { control: 'boolean', description: 'Disable the switch', table: { defaultValue: { summary: 'false' } } },
     defaultChecked: { control: 'boolean', description: 'Default on/off state' },
+    size: { control: 'select', options: ['default', 'sm'], description: 'Size variant', table: { defaultValue: { summary: 'default' } } },
     className: { table: { disable: true } },
   },
 } satisfies Meta<typeof Switch>
@@ -49,6 +50,28 @@ export const Disabled: Story = {
       <div className="flex items-center gap-2">
         <Switch id="on-dis" defaultChecked disabled />
         <Label htmlFor="on-dis" className="text-ink-muted">On (disabled)</Label>
+      </div>
+    </div>
+  ),
+}
+
+export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <div>
+        <p className="mb-2 text-sm text-muted-foreground">Default</p>
+        <div className="flex items-center gap-2">
+          <Switch id="size-default" defaultChecked />
+          <Label htmlFor="size-default">Push notifications</Label>
+        </div>
+      </div>
+      <div>
+        <p className="mb-2 text-sm text-muted-foreground">Small</p>
+        <div className="flex items-center gap-2">
+          <Switch id="size-sm" size="sm" defaultChecked />
+          <Label htmlFor="size-sm">Push notifications</Label>
+        </div>
       </div>
     </div>
   ),

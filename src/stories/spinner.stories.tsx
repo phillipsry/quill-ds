@@ -25,7 +25,12 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  render: () => <Spinner />,
+  render: () => (
+    <div className="flex items-center gap-2 text-sm text-ink-soft">
+      <Spinner className="size-4" />
+      <span>Saving changes…</span>
+    </div>
+  ),
 }
 
 export const AllVariants: Story = {
@@ -47,7 +52,7 @@ export const AllVariants: Story = {
           <Spinner className="text-ink" />
           <Spinner className="text-ink-muted" />
           <Spinner className="text-primary" />
-          <Spinner className="text-[#C4684B]" />
+          <Spinner className="text-destructive" />
         </div>
       </div>
       <div>

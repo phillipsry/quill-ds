@@ -37,20 +37,33 @@ Pair with \`Field\`, \`FieldLabel\`, and \`FieldError\` for form usage. Don't us
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = { args: { placeholder: 'Enter text…' } }
-export const WithValue: Story = { args: { defaultValue: 'Watercolor Basics' } }
-export const Disabled: Story = { args: { disabled: true, defaultValue: 'Disabled input' } }
-export const Invalid: Story = { render: () => <Input aria-invalid="true" defaultValue="bad@value" /> }
-export const Password: Story = { args: { type: 'password', placeholder: 'Enter password…' } }
+export const Default: Story = { args: { placeholder: 'Enter text…', 'aria-label': 'Text input' } }
+export const WithValue: Story = { args: { defaultValue: 'Watercolor Basics', 'aria-label': 'Course title' } }
+export const Disabled: Story = { args: { disabled: true, defaultValue: 'Disabled input', 'aria-label': 'Disabled input' } }
+export const Invalid: Story = { render: () => <Input aria-invalid="true" defaultValue="bad@value" aria-label="Invalid input" /> }
+export const Password: Story = { args: { type: 'password', placeholder: 'Enter password…', 'aria-label': 'Password' } }
+
+export const WithLabel: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div className="flex flex-col gap-1.5">
+      <label htmlFor="email" className="text-sm font-medium leading-none">
+        Email address
+      </label>
+      <Input id="email" type="email" placeholder="you@example.com" />
+    </div>
+  ),
+}
 
 export const AllVariants: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
-    <div className="flex flex-col gap-3 w-72">
-      <Input placeholder="Default" />
-      <Input defaultValue="With value" />
-      <Input disabled defaultValue="Disabled" />
-      <Input aria-invalid="true" defaultValue="Invalid" />
+    <div className="flex flex-col gap-3">
+      <Input placeholder="Default" aria-label="Default input" />
+      <Input defaultValue="With value" aria-label="Input with value" />
+      <Input disabled defaultValue="Disabled" aria-label="Disabled input" />
+      <Input aria-invalid="true" defaultValue="Invalid" aria-label="Invalid input" />
+      <Input type="password" placeholder="Enter password…" aria-label="Password" />
     </div>
   ),
 }

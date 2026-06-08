@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
+import { Avatar, AvatarImage, AvatarFallback, AvatarBadge, AvatarGroup, AvatarGroupCount } from '@/components/ui/avatar'
 
 const meta = {
   title: 'UI / Avatar',
@@ -51,6 +51,51 @@ export const Fallback: Story = {
       <AvatarImage src="/no-image.jpg" alt="User" />
       <AvatarFallback>RP</AvatarFallback>
     </Avatar>
+  ),
+}
+
+export const WithBadge: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div className="flex items-center gap-6">
+      {(['sm', 'default', 'lg'] as const).map((size) => (
+        <div key={size} className="flex flex-col items-center gap-2">
+          <Avatar size={size}>
+            <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+            <AvatarFallback>CN</AvatarFallback>
+            <AvatarBadge />
+          </Avatar>
+          <span className="text-xs text-ink-muted">{size}</span>
+        </div>
+      ))}
+    </div>
+  ),
+}
+
+export const Group: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div className="flex flex-col items-center gap-6">
+      {(['sm', 'default', 'lg'] as const).map((size) => (
+        <div key={size} className="flex flex-col items-center gap-2">
+          <AvatarGroup>
+            <Avatar size={size}>
+              <AvatarImage src="https://github.com/shadcn.png" alt="Alice" />
+              <AvatarFallback>AL</AvatarFallback>
+            </Avatar>
+            <Avatar size={size}>
+              <AvatarImage src="https://avatars.githubusercontent.com/u/1?v=4" alt="Bob" />
+              <AvatarFallback>BO</AvatarFallback>
+            </Avatar>
+            <Avatar size={size}>
+              <AvatarFallback>RP</AvatarFallback>
+            </Avatar>
+            <AvatarGroupCount>+4</AvatarGroupCount>
+          </AvatarGroup>
+          <span className="text-xs text-ink-muted">{size}</span>
+        </div>
+      ))}
+    </div>
   ),
 }
 

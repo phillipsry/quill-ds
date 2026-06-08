@@ -26,13 +26,29 @@ For horizontal scroll add \`<ScrollBar orientation="horizontal" />\`.
 export default meta
 type Story = StoryObj<typeof meta>
 
+export const Default: Story = {
+  render: () => (
+    <ScrollArea className="h-64 w-56 rounded-lg border border-border">
+      <div className="p-3">
+        <p className="text-xs font-medium text-ink-muted uppercase tracking-wider mb-2">Courses</p>
+        {courses.map((course, i) => (
+          <div key={course}>
+            <div className="py-2 text-sm text-ink-soft">{course}</div>
+            {i < courses.length - 1 && <Separator />}
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
+  ),
+}
+
 export const Vertical: Story = {
   render: () => (
     <ScrollArea className="h-64 w-56 rounded-lg border border-border">
       <div className="p-3">
         <p className="text-xs font-medium text-ink-muted uppercase tracking-wider mb-2">Courses</p>
         {courses.map((course, i) => (
-          <div key={i}>
+          <div key={course}>
             <div className="py-2 text-sm text-ink-soft">{course}</div>
             {i < courses.length - 1 && <Separator />}
           </div>
@@ -44,10 +60,10 @@ export const Vertical: Story = {
 
 export const Horizontal: Story = {
   render: () => (
-    <ScrollArea className="w-72 whitespace-nowrap rounded-lg border border-border">
-      <div className="flex gap-3 p-3">
-        {courses.map((course, i) => (
-          <div key={i} className="shrink-0 rounded-lg bg-paper-deep px-3 py-2 text-sm text-ink-soft">{course}</div>
+    <ScrollArea className="h-20 w-72 rounded-lg border border-border">
+      <div className="flex gap-3 p-3 whitespace-nowrap">
+        {courses.map((course) => (
+          <div key={course} className="shrink-0 rounded-lg bg-paper-deep px-3 py-2 text-sm text-ink-soft">{course}</div>
         ))}
       </div>
       <ScrollBar orientation="horizontal" />

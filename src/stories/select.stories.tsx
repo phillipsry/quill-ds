@@ -32,7 +32,6 @@ Always provide a placeholder via \`<SelectValue placeholder="…" />\`.
   },
   argTypes: {
     disabled: { control: 'boolean', description: 'Disable the select', table: { defaultValue: { summary: 'false' } } },
-    className: { table: { disable: true } },
   },
   decorators: [(Story) => <div className="w-64"><Story /></div>],
 } satisfies Meta<typeof Select>
@@ -43,7 +42,84 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   render: () => (
     <Select>
-      <SelectTrigger className="w-full">
+      <SelectTrigger className="w-full" aria-label="Select category">
+        <SelectValue placeholder="Select category…" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Art & Craft</SelectLabel>
+          <SelectItem value="watercolor">Watercolor</SelectItem>
+          <SelectItem value="calligraphy">Calligraphy</SelectItem>
+          <SelectItem value="pottery">Pottery</SelectItem>
+        </SelectGroup>
+        <SelectSeparator />
+        <SelectGroup>
+          <SelectLabel>Writing</SelectLabel>
+          <SelectItem value="journaling">Journaling</SelectItem>
+          <SelectItem value="poetry">Poetry</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  ),
+}
+
+export const WithValue: Story = {
+  render: () => (
+    <Select defaultValue="calligraphy">
+      <SelectTrigger className="w-full" aria-label="Select category">
+        <SelectValue placeholder="Select category…" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Art & Craft</SelectLabel>
+          <SelectItem value="watercolor">Watercolor</SelectItem>
+          <SelectItem value="calligraphy">Calligraphy</SelectItem>
+          <SelectItem value="pottery">Pottery</SelectItem>
+        </SelectGroup>
+        <SelectSeparator />
+        <SelectGroup>
+          <SelectLabel>Writing</SelectLabel>
+          <SelectItem value="journaling">Journaling</SelectItem>
+          <SelectItem value="poetry">Poetry</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  ),
+}
+
+export const WithLabel: Story = {
+  render: () => (
+    <div className="flex flex-col gap-1.5">
+      <label htmlFor="category" className="text-sm font-medium leading-none">
+        Category
+      </label>
+      <Select>
+        <SelectTrigger id="category" className="w-full">
+          <SelectValue placeholder="Select category…" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Art & Craft</SelectLabel>
+            <SelectItem value="watercolor">Watercolor</SelectItem>
+            <SelectItem value="calligraphy">Calligraphy</SelectItem>
+            <SelectItem value="pottery">Pottery</SelectItem>
+          </SelectGroup>
+          <SelectSeparator />
+          <SelectGroup>
+            <SelectLabel>Writing</SelectLabel>
+            <SelectItem value="journaling">Journaling</SelectItem>
+            <SelectItem value="poetry">Poetry</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
+  ),
+}
+
+export const Small: Story = {
+  render: () => (
+    <Select>
+      <SelectTrigger size="sm" className="w-full" aria-label="Select category">
         <SelectValue placeholder="Select category…" />
       </SelectTrigger>
       <SelectContent>
@@ -67,11 +143,11 @@ export const Default: Story = {
 export const Disabled: Story = {
   render: () => (
     <Select disabled>
-      <SelectTrigger className="w-full">
+      <SelectTrigger className="w-full" aria-label="Select category">
         <SelectValue placeholder="Not available" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="x">Option</SelectItem>
+        <SelectItem value="watercolor">Watercolor</SelectItem>
       </SelectContent>
     </Select>
   ),

@@ -66,20 +66,20 @@ export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-4 w-80">
       <div className="flex flex-col gap-2">
-        <Label>Default</Label>
-        <Textarea placeholder="Enter text…" rows={3} />
+        <Label htmlFor="av-default">Default</Label>
+        <Textarea id="av-default" placeholder="Enter text…" rows={3} />
       </div>
       <div className="flex flex-col gap-2">
-        <Label>Filled</Label>
-        <Textarea defaultValue="This course covers the basics of watercolor painting, from washes to wet-on-wet techniques." rows={3} />
+        <Label htmlFor="av-filled">Filled</Label>
+        <Textarea id="av-filled" defaultValue="This course covers the basics of watercolor painting, from washes to wet-on-wet techniques." rows={3} />
       </div>
       <div className="flex flex-col gap-2">
-        <Label>Error</Label>
-        <Textarea aria-invalid defaultValue="Too short." rows={2} />
+        <Label htmlFor="av-error">Error</Label>
+        <Textarea id="av-error" aria-invalid defaultValue="Too short." rows={2} />
       </div>
       <div className="flex flex-col gap-2">
-        <Label className="text-ink-muted">Disabled</Label>
-        <Textarea defaultValue="Not editable." rows={2} disabled />
+        <Label htmlFor="av-disabled" className="text-ink-muted">Disabled</Label>
+        <Textarea id="av-disabled" defaultValue="Not editable." rows={2} disabled />
       </div>
     </div>
   ),

@@ -89,8 +89,32 @@ export const Compact: Story = {
   ),
 }
 
+export const WithImage: Story = {
+  render: () => (
+    <Card>
+      <img
+        src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=320&h=160&fit=crop"
+        alt="Watercolor paints on a palette"
+        className="w-full object-cover"
+        style={{ height: '160px' }}
+      />
+      <CardHeader>
+        <CardTitle>Watercolor Techniques</CardTitle>
+        <CardDescription>Wet-on-wet, glazing, and dry brush methods.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm text-ink-soft">8 lessons · 2h 10m · Intermediate</p>
+      </CardContent>
+      <CardFooter>
+        <Button className="w-full">Explore course</Button>
+      </CardFooter>
+    </Card>
+  ),
+}
+
 export const AllVariants: Story = {
   parameters: { controls: { disable: true } },
+  decorators: [],
   render: () => (
     <div className="flex flex-col gap-4 w-80">
       <Card>
@@ -119,7 +143,7 @@ export const Dark: Story = {
         <CardDescription>Tokens adapt to dark context automatically.</CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-muted-foreground">Card body content in dark mode.</p>
+        <p className="text-sm text-ink-soft">Card body content in dark mode.</p>
       </CardContent>
     </Card>
   ),

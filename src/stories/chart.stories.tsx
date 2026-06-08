@@ -1,6 +1,12 @@
 'use client'
 import type { Meta, StoryObj } from '@storybook/react'
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart'
+import {
+  ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
+  ChartTooltip,
+  ChartTooltipContent,
+} from '@/components/ui/chart'
 import { Bar, BarChart, Line, LineChart, XAxis, YAxis } from 'recharts'
 
 const chartData = [
@@ -14,6 +20,20 @@ const chartData = [
 
 const chartConfig = {
   lessons: { label: 'Lessons', color: 'var(--terracotta)' },
+}
+
+const multiSeriesData = [
+  { month: 'Jan', lessons: 18, completions: 12 },
+  { month: 'Feb', lessons: 24, completions: 19 },
+  { month: 'Mar', lessons: 32, completions: 25 },
+  { month: 'Apr', lessons: 28, completions: 21 },
+  { month: 'May', lessons: 41, completions: 34 },
+  { month: 'Jun', lessons: 38, completions: 30 },
+]
+
+const multiSeriesConfig = {
+  lessons: { label: 'Lessons', color: 'var(--terracotta)' },
+  completions: { label: 'Completions', color: 'var(--moss)' },
 }
 
 const meta = {
@@ -38,12 +58,12 @@ Always include \`ChartTooltip\` for accessibility.
   argTypes: {
     className: { table: { disable: true } },
   },
-} satisfies Meta<typeof ChartContainer>
+} as Meta<typeof ChartContainer>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const BarChartStory: Story = {
+export const Default: Story = {
   name: 'Bar Chart',
   render: () => (
     <ChartContainer config={chartConfig} className="h-64 w-full">
@@ -67,6 +87,22 @@ export const LineChartStory: Story = {
         <ChartTooltip content={<ChartTooltipContent />} />
         <Line dataKey="lessons" stroke="var(--color-lessons)" strokeWidth={2} dot={{ r: 4 }} />
       </LineChart>
+    </ChartContainer>
+  ),
+}
+
+export const WithLegend: Story = {
+  name: 'Multi-Series with Legend',
+  render: () => (
+    <ChartContainer config={multiSeriesConfig} className="h-64 w-full">
+      <BarChart data={multiSeriesData}>
+        <XAxis dataKey="month" />
+        <YAxis />
+        <ChartTooltip content={<ChartTooltipContent />} />
+        <Bar dataKey="lessons" fill="var(--color-lessons)" radius={4} />
+        <Bar dataKey="completions" fill="var(--color-completions)" radius={4} />
+        <ChartLegend content={<ChartLegendContent />} />
+      </BarChart>
     </ChartContainer>
   ),
 }

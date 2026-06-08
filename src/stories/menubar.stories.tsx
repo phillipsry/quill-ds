@@ -1,15 +1,20 @@
+import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import {
   Menubar,
+  MenubarCheckboxItem,
   MenubarContent,
   MenubarItem,
+  MenubarLabel,
   MenubarMenu,
+  MenubarRadioGroup,
+  MenubarRadioItem,
   MenubarSeparator,
   MenubarShortcut,
-  MenubarTrigger,
   MenubarSub,
   MenubarSubContent,
   MenubarSubTrigger,
+  MenubarTrigger,
 } from '@/components/ui/menubar'
 
 const meta = {
@@ -71,4 +76,38 @@ export const Default: Story = {
       </MenubarMenu>
     </Menubar>
   ),
+}
+
+function WithCheckboxAndRadioStory() {
+  const [spellcheck, setSpellcheck] = useState(true)
+  const [autoSave, setAutoSave] = useState(false)
+  const [theme, setTheme] = useState('system')
+
+  return (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>Editor</MenubarTrigger>
+        <MenubarContent>
+          <MenubarLabel>Proofreading</MenubarLabel>
+          <MenubarCheckboxItem checked={spellcheck} onCheckedChange={setSpellcheck}>
+            Spell check
+          </MenubarCheckboxItem>
+          <MenubarCheckboxItem checked={autoSave} onCheckedChange={setAutoSave}>
+            Auto-save
+          </MenubarCheckboxItem>
+          <MenubarSeparator />
+          <MenubarLabel>Theme</MenubarLabel>
+          <MenubarRadioGroup value={theme} onValueChange={setTheme}>
+            <MenubarRadioItem value="light">Light</MenubarRadioItem>
+            <MenubarRadioItem value="dark">Dark</MenubarRadioItem>
+            <MenubarRadioItem value="system">System</MenubarRadioItem>
+          </MenubarRadioGroup>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  )
+}
+
+export const WithCheckboxAndRadio: Story = {
+  render: () => <WithCheckboxAndRadioStory />,
 }

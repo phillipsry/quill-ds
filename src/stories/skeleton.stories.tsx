@@ -54,7 +54,7 @@ export const CardSkeleton: Story = {
 export const AllVariants: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
-    <div className="flex flex-col gap-6 w-72">
+    <div className="flex flex-col gap-6">
       <div>
         <p className="text-xs text-ink-muted mb-2">Text lines</p>
         <div className="flex flex-col gap-2">

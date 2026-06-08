@@ -42,12 +42,30 @@ export const Secondary: Story = { args: { variant: 'secondary', children: 'Beta'
 export const Destructive: Story = { args: { variant: 'destructive', children: 'Error' } }
 export const Outline: Story = { args: { variant: 'outline', children: 'Draft' } }
 export const Ghost: Story = { args: { variant: 'ghost', children: 'Archive' } }
+export const Link: Story = { args: { variant: 'link', children: 'View details' } }
+
+export const AsLink: Story = {
+  name: 'As anchor (interactive)',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Pass the `render` prop to swap the underlying element. Use this pattern when the badge must be keyboard-navigable or open a URL.',
+      },
+    },
+  },
+  render: () => (
+    <Badge variant="outline" render={<a href="#" />}>
+      Release notes
+    </Badge>
+  ),
+}
 
 export const AllVariants: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-wrap gap-2 items-center">
-      {(['default', 'secondary', 'destructive', 'outline', 'ghost'] as const).map((v) => (
+      {(['default', 'secondary', 'destructive', 'outline', 'ghost', 'link'] as const).map((v) => (
         <Badge key={v} variant={v}>{v}</Badge>
       ))}
     </div>

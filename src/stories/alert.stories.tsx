@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
-import { InfoIcon, AlertTriangleIcon } from 'lucide-react'
+import { Alert, AlertTitle, AlertDescription, AlertAction } from '@/components/ui/alert'
+import { InfoIcon, AlertTriangleIcon, XIcon } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 const meta = {
   title: 'UI / Alert',
@@ -74,10 +75,26 @@ export const NoIcon: Story = {
   ),
 }
 
+export const WithAction: Story = {
+  args: { variant: 'default' },
+  render: (args) => (
+    <Alert {...args}>
+      <InfoIcon />
+      <AlertTitle>New version available</AlertTitle>
+      <AlertDescription>Refresh the page to get the latest features and bug fixes.</AlertDescription>
+      <AlertAction>
+        <Button variant="ghost" size="icon" aria-label="Dismiss">
+          <XIcon />
+        </Button>
+      </AlertAction>
+    </Alert>
+  ),
+}
+
 export const AllVariants: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
-    <div className="flex flex-col gap-3 w-96">
+    <div className="flex flex-col gap-3">
       <Alert variant="default">
         <InfoIcon />
         <AlertTitle>Informational</AlertTitle>
@@ -87,6 +104,20 @@ export const AllVariants: Story = {
         <AlertTriangleIcon />
         <AlertTitle>Destructive</AlertTitle>
         <AlertDescription>Something went wrong with your request.</AlertDescription>
+      </Alert>
+      <Alert variant="default">
+        <AlertTitle>No icon</AlertTitle>
+        <AlertDescription>Alerts can omit the icon when the message is self-explanatory.</AlertDescription>
+      </Alert>
+      <Alert variant="default">
+        <InfoIcon />
+        <AlertTitle>With action</AlertTitle>
+        <AlertDescription>Alerts can include an inline dismiss or action button.</AlertDescription>
+        <AlertAction>
+          <Button variant="ghost" size="icon" aria-label="Dismiss">
+            <XIcon />
+          </Button>
+        </AlertAction>
       </Alert>
     </div>
   ),

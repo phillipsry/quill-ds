@@ -84,9 +84,43 @@ export const Default: Story = {
   ),
 }
 
+export const WithSelectedRow: Story = {
+  render: () => (
+    <Table>
+      <TableCaption>Course catalogue — Calligraphy row selected</TableCaption>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Course</TableHead>
+          <TableHead>Instructor</TableHead>
+          <TableHead className="text-right">Enrolled</TableHead>
+          <TableHead>Status</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {courses.map((course) => (
+          <TableRow
+            key={course.name}
+            data-state={course.name === 'Calligraphy' ? 'selected' : undefined}
+          >
+            <TableCell className="font-medium">{course.name}</TableCell>
+            <TableCell>{course.instructor}</TableCell>
+            <TableCell className="text-right">{course.enrolled}</TableCell>
+            <TableCell>
+              <Badge variant={course.status === 'Active' ? 'default' : 'outline'}>
+                {course.status}
+              </Badge>
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  ),
+}
+
 export const Simple: Story = {
   render: () => (
     <Table>
+      <TableCaption>Design token colour values</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead>Name</TableHead>

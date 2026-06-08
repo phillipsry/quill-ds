@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Progress } from '@/components/ui/progress'
+import {
+  Progress,
+  ProgressLabel,
+  ProgressValue,
+} from '@/components/ui/progress'
 
 const meta = {
   title: 'UI / Progress',
@@ -16,6 +20,7 @@ const meta = {
 ### Rules
 Progress shows determinate completion. Pass \`value\` (0–100). For indeterminate loading, use \`Spinner\`.
 Label the value for screen readers via \`aria-label\` or \`aria-valuenow\`.
+Use \`ProgressLabel\` and \`ProgressValue\` to render a visible label and numeric readout above the track.
         `,
       },
     },
@@ -30,19 +35,52 @@ Label the value for screen readers via \`aria-label\` or \`aria-valuenow\`.
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = { args: { value: 60 } }
-export const Empty: Story = { args: { value: 0 } }
-export const Complete: Story = { args: { value: 100 } }
+export const Default: Story = {
+  args: { value: 0 },
+  render: () => (
+    <Progress value={60} aria-label="File upload progress">
+      <ProgressLabel>Uploading document.pdf</ProgressLabel>
+      <ProgressValue />
+    </Progress>
+  ),
+}
+
+export const Empty: Story = {
+  args: { value: 0 },
+  render: () => (
+    <Progress value={0} aria-label="Task progress">
+      <ProgressLabel>Preparing…</ProgressLabel>
+      <ProgressValue />
+    </Progress>
+  ),
+}
+
+export const Complete: Story = {
+  args: { value: 0 },
+  render: () => (
+    <Progress value={100} aria-label="Task complete">
+      <ProgressLabel>Upload complete</ProgressLabel>
+      <ProgressValue />
+    </Progress>
+  ),
+}
 
 export const AllVariants: Story = {
+  args: { value: 0 },
   parameters: { controls: { disable: true } },
   render: () => (
     <div className="flex flex-col gap-4 w-72">
-      {[0, 25, 60, 80, 100].map((v) => (
-        <div key={v} className="flex flex-col gap-1">
-          <span className="text-xs text-ink-muted">{v}%</span>
-          <Progress value={v} />
-        </div>
+      {[
+        { value: 0, label: 'Queued' },
+        { value: 25, label: 'Analyzing' },
+        { value: 60, label: 'Uploading' },
+        { value: 80, label: 'Processing' },
+        { value: 100, label: 'Complete' },
+      ].map(({ value, label }) => (
+        <Progress key={value} value={value} aria-label={`${label} — ${value}%`}>
+          <ProgressLabel>{label}</ProgressLabel>
+          <ProgressValue />
+        </Progress>
       ))}
     </div>
   ),

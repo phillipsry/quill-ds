@@ -15,7 +15,6 @@ const meta = {
 
 ### Rules
 Separator is a thin decorative divider. Use \`orientation="horizontal"\` (default) between stacked content and \`orientation="vertical"\` between inline items.
-Add \`decorative\` when the separator is purely visual (no semantic meaning for screen readers).
         `,
       },
     },
@@ -27,11 +26,6 @@ Add \`decorative\` when the separator is purely visual (no semantic meaning for 
       description: 'Divider direction',
       table: { defaultValue: { summary: 'horizontal' } },
     },
-    decorative: {
-      control: 'boolean',
-      description: 'Hide from accessibility tree',
-      table: { defaultValue: { summary: 'true' } },
-    },
     className: { table: { disable: true } },
   },
   decorators: [(Story) => <div className="w-64"><Story /></div>],
@@ -39,6 +33,16 @@ Add \`decorative\` when the separator is purely visual (no semantic meaning for 
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3">
+      <p className="text-sm font-medium text-ink">Watercolor</p>
+      <Separator />
+      <p className="text-sm font-medium text-ink">Calligraphy</p>
+    </div>
+  ),
+}
 
 export const Horizontal: Story = {
   render: () => (

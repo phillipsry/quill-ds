@@ -41,7 +41,6 @@ Focus ring is \`--ring\` (ink), never terracotta.
       table: { defaultValue: { summary: 'false' } },
     },
     children: { control: 'text' },
-    asChild: { table: { disable: true } },
     className: { table: { disable: true } },
   },
 } satisfies Meta<typeof Button>
@@ -61,7 +60,7 @@ export const WithIcon: Story = {
   args: { children: 'Add lesson' },
   render: (args) => (
     <Button {...args}>
-      <PlusIcon />
+      <PlusIcon data-icon="inline-start" />
       {args.children}
     </Button>
   ),
@@ -90,10 +89,19 @@ export const AllVariants: Story = {
 export const AllSizes: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
-    <div className="flex flex-wrap gap-2 items-center">
-      {(['xs', 'sm', 'default', 'lg'] as const).map((s) => (
-        <Button key={s} size={s}>Size {s}</Button>
-      ))}
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-wrap gap-2 items-center">
+        {(['xs', 'sm', 'default', 'lg'] as const).map((s) => (
+          <Button key={s} size={s}>Size {s}</Button>
+        ))}
+      </div>
+      <div className="flex flex-wrap gap-2 items-center">
+        {(['icon-xs', 'icon-sm', 'icon', 'icon-lg'] as const).map((s) => (
+          <Button key={s} size={s} aria-label={`Icon ${s}`}>
+            <ArrowRightIcon />
+          </Button>
+        ))}
+      </div>
     </div>
   ),
 }

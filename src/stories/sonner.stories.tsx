@@ -8,6 +8,14 @@ const meta = {
   title: 'UI / Sonner',
   component: Toaster,
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <>
+        <Story />
+        <Toaster />
+      </>
+    ),
+  ],
   parameters: {
     layout: 'centered',
     docs: {

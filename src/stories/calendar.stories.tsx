@@ -2,6 +2,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Calendar } from '@/components/ui/calendar'
 import { useState } from 'react'
+import type { DateRange } from 'react-day-picker'
 
 const meta = {
   title: 'UI / Calendar',
@@ -45,7 +46,56 @@ export const Default: Story = {
 
 export const Range: Story = {
   render: () => {
-    const [range, setRange] = useState<{ from: Date | undefined; to?: Date } | undefined>()
+    const today = new Date()
+    const inFiveDays = new Date(today)
+    inFiveDays.setDate(today.getDate() + 5)
+    const [range, setRange] = useState<DateRange | undefined>({
+      from: today,
+      to: inFiveDays,
+    })
     return <Calendar mode="range" selected={range} onSelect={setRange} numberOfMonths={2} />
+  },
+}
+
+export const Multiple: Story = {
+  render: () => {
+    const today = new Date()
+    const in2Days = new Date(today)
+    in2Days.setDate(today.getDate() + 2)
+    const in5Days = new Date(today)
+    in5Days.setDate(today.getDate() + 5)
+    const [dates, setDates] = useState<Date[] | undefined>([today, in2Days, in5Days])
+    return <Calendar mode="multiple" selected={dates} onSelect={setDates} />
+  },
+}
+
+export const WithDropdownCaption: Story = {
+  render: () => {
+    const [date, setDate] = useState<Date | undefined>(new Date())
+    return (
+      <Calendar
+        mode="single"
+        selected={date}
+        onSelect={setDate}
+        captionLayout="dropdown"
+        startMonth={new Date(2020, 0)}
+        endMonth={new Date(2030, 11)}
+      />
+    )
+  },
+}
+
+export const WithDisabledDates: Story = {
+  render: () => {
+    const [date, setDate] = useState<Date | undefined>()
+    const today = new Date()
+    return (
+      <Calendar
+        mode="single"
+        selected={date}
+        onSelect={setDate}
+        disabled={{ before: today }}
+      />
+    )
   },
 }

@@ -8,7 +8,7 @@ import {
   EmptyContent,
 } from '@/components/ui/empty'
 import { Button } from '@/components/ui/button'
-import { BookOpenIcon } from 'lucide-react'
+import { BookOpenIcon, FolderOpenIcon } from 'lucide-react'
 
 const meta = {
   title: 'UI / Empty',
@@ -44,8 +44,24 @@ export const Default: Story = {
         <EmptyDescription>You haven't created any courses. Start building your first skill deck.</EmptyDescription>
       </EmptyHeader>
       <EmptyContent>
-        <Button>Create course</Button>
-        <Button variant="outline">Browse templates</Button>
+        <Button className="w-full">Create course</Button>
+        <Button variant="outline" className="w-full">Browse templates</Button>
+      </EmptyContent>
+    </Empty>
+  ),
+}
+
+export const IconVariant: Story = {
+  render: () => (
+    <Empty>
+      <EmptyHeader>
+        <EmptyMedia variant="icon"><FolderOpenIcon /></EmptyMedia>
+        <EmptyTitle>No files uploaded</EmptyTitle>
+        <EmptyDescription>Upload your first file to get started. Supported formats include PDF, DOCX, and MP4.</EmptyDescription>
+      </EmptyHeader>
+      <EmptyContent>
+        <Button className="w-full">Upload file</Button>
+        <Button variant="outline" className="w-full">Learn more</Button>
       </EmptyContent>
     </Empty>
   ),

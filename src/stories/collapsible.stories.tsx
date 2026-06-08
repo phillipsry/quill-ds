@@ -43,10 +43,29 @@ export const Default: Story = {
       <Collapsible open={open} onOpenChange={setOpen}>
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium text-ink">Repositories (3)</span>
-          <CollapsibleTrigger asChild>
-            <Button variant="ghost" size="icon-sm" aria-label="Toggle">
-              <ChevronDownIcon className={`transition-transform ${open ? 'rotate-180' : ''}`} />
-            </Button>
+          <CollapsibleTrigger render={<Button variant="ghost" size="icon-sm" aria-label="Toggle repositories" />}>
+            <ChevronDownIcon className={`transition-transform ${open ? 'rotate-180' : ''}`} />
+          </CollapsibleTrigger>
+        </div>
+        <CollapsibleContent className="mt-2 space-y-1">
+          <div className="text-sm text-ink-soft px-2 py-1.5 rounded-md bg-paper-deep">quill-ds</div>
+          <div className="text-sm text-ink-soft px-2 py-1.5 rounded-md bg-paper-deep">quill-docs</div>
+          <div className="text-sm text-ink-soft px-2 py-1.5 rounded-md bg-paper-deep">quill-api</div>
+        </CollapsibleContent>
+      </Collapsible>
+    )
+  },
+}
+
+export const DefaultOpen: Story = {
+  render: () => {
+    const [open, setOpen] = useState(true)
+    return (
+      <Collapsible open={open} onOpenChange={setOpen}>
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-medium text-ink">Repositories (3)</span>
+          <CollapsibleTrigger render={<Button variant="ghost" size="icon-sm" aria-label="Toggle repositories" />}>
+            <ChevronDownIcon className={`transition-transform ${open ? 'rotate-180' : ''}`} />
           </CollapsibleTrigger>
         </div>
         <CollapsibleContent className="mt-2 space-y-1">

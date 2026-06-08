@@ -1,4 +1,5 @@
 'use client'
+import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect, userEvent, within, screen } from 'storybook/test'
 import {
@@ -195,9 +196,13 @@ export const WithGroups: Story = {
 
 function MultiSelectDemo() {
   const anchor = useComboboxAnchor()
+  const [value, setValue] = React.useState<string[]>([])
   return (
-    <Combobox items={frameworks} multiple>
+    <Combobox items={frameworks} multiple value={value} onValueChange={setValue}>
       <ComboboxChips ref={anchor} className="w-72">
+        {value.map((v) => (
+          <ComboboxChip key={v}>{v}</ComboboxChip>
+        ))}
         <ComboboxChipsInput placeholder="Select frameworks…" aria-label="Select frameworks" />
       </ComboboxChips>
       <ComboboxContent anchor={anchor} className="min-w-(--anchor-width)">

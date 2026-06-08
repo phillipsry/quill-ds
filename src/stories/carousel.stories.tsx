@@ -35,7 +35,7 @@ Prev/Next buttons position outside the carousel track by default.
     className: { table: { disable: true } },
   },
   decorators: [
-    (Story) => <div className="w-80"><Story /></div>,
+    (Story) => <div className="w-80 px-16"><Story /></div>,
   ],
 } satisfies Meta<typeof Carousel>
 
@@ -80,4 +80,27 @@ export const MultipleItems: Story = {
       <CarouselNext />
     </Carousel>
   ),
+}
+
+export const Vertical: Story = {
+  render: () => (
+    <Carousel orientation="vertical" className="w-full max-w-xs">
+      <CarouselContent className="h-64">
+        {Array.from({ length: 5 }, (_, i) => (
+          <CarouselItem key={i}>
+            <Card>
+              <CardContent className="flex items-center justify-center p-6">
+                <span className="text-4xl font-semibold text-ink">{i + 1}</span>
+              </CardContent>
+            </Card>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  ),
+  decorators: [
+    (Story) => <div className="w-80 px-16 pt-16 pb-16"><Story /></div>,
+  ],
 }

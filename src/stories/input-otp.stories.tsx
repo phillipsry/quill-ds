@@ -28,35 +28,98 @@ Set \`maxLength\` to the total number of characters.
     disabled: { control: 'boolean', description: 'Disable all slots' },
     className: { table: { disable: true } },
   },
-} satisfies Meta<typeof InputOTP>
+} as Meta<typeof InputOTP>
 
 export default meta
-type Story = StoryObj<typeof meta>
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Story = StoryObj<any>
 
 export const Default: Story = {
   render: () => (
-    <InputOTP maxLength={6}>
-      <InputOTPGroup>
-        <InputOTPSlot index={0} />
-        <InputOTPSlot index={1} />
-        <InputOTPSlot index={2} />
-      </InputOTPGroup>
-      <InputOTPSeparator />
-      <InputOTPGroup>
-        <InputOTPSlot index={3} />
-        <InputOTPSlot index={4} />
-        <InputOTPSlot index={5} />
-      </InputOTPGroup>
-    </InputOTP>
+    <div className="flex flex-col gap-2">
+      <label htmlFor="otp" className="text-sm font-medium">
+        Verification code
+      </label>
+      <InputOTP id="otp" maxLength={6}>
+        <InputOTPGroup>
+          <InputOTPSlot index={0} />
+          <InputOTPSlot index={1} />
+          <InputOTPSlot index={2} />
+        </InputOTPGroup>
+        <InputOTPSeparator />
+        <InputOTPGroup>
+          <InputOTPSlot index={3} />
+          <InputOTPSlot index={4} />
+          <InputOTPSlot index={5} />
+        </InputOTPGroup>
+      </InputOTP>
+      <p className="text-xs text-muted-foreground">
+        Enter the 6-digit code sent to your email.
+      </p>
+    </div>
   ),
 }
 
-export const FourDigit: Story = {
+export const PinEntry: Story = {
   render: () => (
-    <InputOTP maxLength={4}>
-      <InputOTPGroup>
-        {Array.from({ length: 4 }, (_, i) => <InputOTPSlot key={i} index={i} />)}
-      </InputOTPGroup>
-    </InputOTP>
+    <div className="flex flex-col gap-2">
+      <label htmlFor="pin" className="text-sm font-medium">
+        Enter PIN
+      </label>
+      <InputOTP id="pin" maxLength={4}>
+        <InputOTPGroup>
+          {Array.from({ length: 4 }, (_, i) => <InputOTPSlot key={i} index={i} />)}
+        </InputOTPGroup>
+      </InputOTP>
+    </div>
+  ),
+}
+
+export const Disabled: Story = {
+  render: () => (
+    <div className="flex flex-col gap-2">
+      <label htmlFor="otp-disabled" className="text-sm font-medium">
+        Verification code
+      </label>
+      <InputOTP id="otp-disabled" maxLength={6} disabled>
+        <InputOTPGroup>
+          <InputOTPSlot index={0} />
+          <InputOTPSlot index={1} />
+          <InputOTPSlot index={2} />
+        </InputOTPGroup>
+        <InputOTPSeparator />
+        <InputOTPGroup>
+          <InputOTPSlot index={3} />
+          <InputOTPSlot index={4} />
+          <InputOTPSlot index={5} />
+        </InputOTPGroup>
+      </InputOTP>
+    </div>
+  ),
+}
+
+export const Invalid: Story = {
+  render: () => (
+    <div className="flex flex-col gap-2">
+      <label htmlFor="otp-invalid" className="text-sm font-medium">
+        Verification code
+      </label>
+      <InputOTP id="otp-invalid" maxLength={6}>
+        <InputOTPGroup aria-invalid>
+          <InputOTPSlot index={0} />
+          <InputOTPSlot index={1} />
+          <InputOTPSlot index={2} />
+        </InputOTPGroup>
+        <InputOTPSeparator />
+        <InputOTPGroup aria-invalid>
+          <InputOTPSlot index={3} />
+          <InputOTPSlot index={4} />
+          <InputOTPSlot index={5} />
+        </InputOTPGroup>
+      </InputOTP>
+      <p className="text-xs text-destructive">
+        Invalid code. Please check and try again.
+      </p>
+    </div>
   ),
 }

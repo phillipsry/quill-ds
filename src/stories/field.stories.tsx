@@ -36,8 +36,8 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   render: () => (
     <Field>
-      <FieldLabel>Course title</FieldLabel>
-      <Input placeholder="e.g. Watercolor Basics" />
+      <FieldLabel htmlFor="course-title">Course title</FieldLabel>
+      <Input id="course-title" placeholder="e.g. Watercolor Basics" />
       <FieldDescription>Use a clear, specific title that describes what students will learn.</FieldDescription>
     </Field>
   ),
@@ -46,8 +46,8 @@ export const Default: Story = {
 export const WithError: Story = {
   render: () => (
     <Field>
-      <FieldLabel>Email address</FieldLabel>
-      <Input aria-invalid="true" defaultValue="not-an-email" />
+      <FieldLabel htmlFor="email-address">Email address</FieldLabel>
+      <Input id="email-address" aria-invalid="true" defaultValue="not-an-email" />
       <FieldError>Please enter a valid email address.</FieldError>
     </Field>
   ),
@@ -56,9 +56,18 @@ export const WithError: Story = {
 export const Disabled: Story = {
   render: () => (
     <Field>
-      <FieldLabel>Username</FieldLabel>
-      <Input disabled defaultValue="ryanphillips" />
+      <FieldLabel htmlFor="username">Username</FieldLabel>
+      <Input id="username" disabled defaultValue="ryanphillips" />
       <FieldDescription>Your username cannot be changed.</FieldDescription>
+    </Field>
+  ),
+}
+
+export const HorizontalOrientation: Story = {
+  render: () => (
+    <Field orientation="horizontal">
+      <FieldLabel htmlFor="notifications-email">Email notifications</FieldLabel>
+      <Input id="notifications-email" placeholder="e.g. hello@example.com" />
     </Field>
   ),
 }
@@ -68,14 +77,19 @@ export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-5 w-72">
       <Field>
-        <FieldLabel>Default</FieldLabel>
-        <Input placeholder="Placeholder text" />
-        <FieldDescription>Helper text below the input.</FieldDescription>
+        <FieldLabel htmlFor="all-default">Default</FieldLabel>
+        <Input id="all-default" placeholder="e.g. Introduction to Watercolor" />
+        <FieldDescription>Helper text appears below the input.</FieldDescription>
       </Field>
       <Field>
-        <FieldLabel>With error</FieldLabel>
-        <Input aria-invalid="true" defaultValue="bad value" />
+        <FieldLabel htmlFor="all-error">With error</FieldLabel>
+        <Input id="all-error" aria-invalid="true" defaultValue="bad value" />
         <FieldError>This field has an error.</FieldError>
+      </Field>
+      <Field>
+        <FieldLabel htmlFor="all-disabled">Disabled</FieldLabel>
+        <Input id="all-disabled" disabled defaultValue="ryanphillips" />
+        <FieldDescription>This field cannot be edited.</FieldDescription>
       </Field>
     </div>
   ),
