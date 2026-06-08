@@ -4,7 +4,7 @@ export default create({
   base: 'light',
 
   brandTitle: 'Quill Design System',
-  brandImage: '/quill-logo.svg',
+  brandImage: '/quill_lockup.svg',
   brandUrl: '/',
   brandTarget: '_self',
 
@@ -31,7 +31,7 @@ export default create({
 
   // Text
   textColor: '#2A2622',
-  textMutedColor: '#8A7F72',
+  textMutedColor: '#675F58',
   textInverseColor: '#F5EDDD',
 
   // Form
