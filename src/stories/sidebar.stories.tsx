@@ -141,7 +141,7 @@ export const Default: Story = {
           <SidebarRail />
         </Sidebar>
         <div className="flex flex-col flex-1">
-          <header className="flex h-12 items-center border-b border-border px-4 gap-2">
+          <header className="flex items-center border-b border-border px-4 py-3 gap-2">
             <SidebarTrigger />
             <span className="text-sm font-medium text-ink">Dashboard</span>
           </header>
@@ -211,7 +211,7 @@ export const CollapsedIconMode: Story = {
           <SidebarRail />
         </Sidebar>
         <div className="flex flex-col flex-1">
-          <header className="flex h-12 items-center border-b border-border px-4 gap-2">
+          <header className="flex items-center border-b border-border px-4 py-3 gap-2">
             <SidebarTrigger />
             <span className="text-sm font-medium text-ink">Dashboard</span>
           </header>
@@ -272,7 +272,7 @@ export const LoadingState: Story = {
           </SidebarFooter>
         </Sidebar>
         <div className="flex flex-col flex-1">
-          <header className="flex h-12 items-center border-b border-border px-4 gap-2">
+          <header className="flex items-center border-b border-border px-4 py-3 gap-2">
             <SidebarTrigger />
             <span className="text-sm font-medium text-ink">Loading…</span>
           </header>
@@ -342,7 +342,7 @@ export const WithNotifications: Story = {
           <SidebarRail />
         </Sidebar>
         <div className="flex flex-col flex-1">
-          <header className="flex h-12 items-center border-b border-border px-4 gap-2">
+          <header className="flex items-center border-b border-border px-4 py-3 gap-2">
             <SidebarTrigger />
             <span className="text-sm font-medium text-ink">Dashboard</span>
           </header>
