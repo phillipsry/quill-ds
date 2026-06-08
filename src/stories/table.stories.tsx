@@ -1,0 +1,106 @@
+import type { Meta, StoryObj } from '@storybook/react'
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+} from '@/components/ui/table'
+import { Badge } from '@/components/ui/badge'
+
+const courses = [
+  { name: 'Watercolor Basics', instructor: 'Ana Rivera', enrolled: 42, status: 'Active' },
+  { name: 'Calligraphy', instructor: 'James Lee', enrolled: 18, status: 'Active' },
+  { name: 'Lino Printing', instructor: 'Sofia Park', enrolled: 7, status: 'Draft' },
+  { name: 'Bookbinding', instructor: 'Marcus Chen', enrolled: 31, status: 'Active' },
+]
+
+const meta = {
+  title: 'UI / Table',
+  component: Table,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        component: `
+### Design tokens
+\`--border\` · \`--muted\`
+
+### Rules
+Use \`TableHead\` inside \`TableHeader > TableRow\` for column headings.
+Use \`TableCell\` inside \`TableBody > TableRow\` for data cells.
+\`TableFooter\` is optional — use for totals or summary rows.
+\`TableCaption\` provides an accessible description above the table.
+        `,
+      },
+    },
+  },
+  argTypes: { className: { table: { disable: true } } },
+} satisfies Meta<typeof Table>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  render: () => (
+    <Table>
+      <TableCaption>Course catalogue</TableCaption>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Course</TableHead>
+          <TableHead>Instructor</TableHead>
+          <TableHead className="text-right">Enrolled</TableHead>
+          <TableHead>Status</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {courses.map((course) => (
+          <TableRow key={course.name}>
+            <TableCell className="font-medium">{course.name}</TableCell>
+            <TableCell>{course.instructor}</TableCell>
+            <TableCell className="text-right">{course.enrolled}</TableCell>
+            <TableCell>
+              <Badge variant={course.status === 'Active' ? 'default' : 'outline'}>
+                {course.status}
+              </Badge>
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+      <TableFooter>
+        <TableRow>
+          <TableCell colSpan={2}>Total students</TableCell>
+          <TableCell className="text-right">
+            {courses.reduce((sum, c) => sum + c.enrolled, 0)}
+          </TableCell>
+          <TableCell />
+        </TableRow>
+      </TableFooter>
+    </Table>
+  ),
+}
+
+export const Simple: Story = {
+  render: () => (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Name</TableHead>
+          <TableHead>Value</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {[['Primary', '#C4684B'], ['Paper', '#F5EDDD'], ['Ink', '#2A2622']].map(([name, value]) => (
+          <TableRow key={name}>
+            <TableCell>{name}</TableCell>
+            <TableCell className="font-mono text-xs">{value}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  ),
+}

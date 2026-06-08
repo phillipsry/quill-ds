@@ -1,0 +1,74 @@
+import type { Meta, StoryObj } from '@storybook/react'
+import { Switch } from '@/components/ui/switch'
+import { Label } from '@/components/ui/label'
+
+const meta = {
+  title: 'UI / Switch',
+  component: Switch,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+    docs: {
+      description: {
+        component: `
+### Design tokens
+\`--primary\` · \`--input\` · \`--ring\`
+
+### Rules
+Always pair \`Switch\` with a \`Label\` for accessibility. Use \`defaultChecked\` for uncontrolled state, \`checked\` + \`onCheckedChange\` for controlled.
+        `,
+      },
+    },
+  },
+  argTypes: {
+    disabled: { control: 'boolean', description: 'Disable the switch', table: { defaultValue: { summary: 'false' } } },
+    defaultChecked: { control: 'boolean', description: 'Default on/off state' },
+    className: { table: { disable: true } },
+  },
+} satisfies Meta<typeof Switch>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  render: () => (
+    <div className="flex items-center gap-2">
+      <Switch id="notifications" defaultChecked />
+      <Label htmlFor="notifications">Email notifications</Label>
+    </div>
+  ),
+}
+
+export const Disabled: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3">
+      <div className="flex items-center gap-2">
+        <Switch id="off-dis" disabled />
+        <Label htmlFor="off-dis" className="text-ink-muted">Off (disabled)</Label>
+      </div>
+      <div className="flex items-center gap-2">
+        <Switch id="on-dis" defaultChecked disabled />
+        <Label htmlFor="on-dis" className="text-ink-muted">On (disabled)</Label>
+      </div>
+    </div>
+  ),
+}
+
+export const AllVariants: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div className="flex flex-col gap-3">
+      {[
+        { id: 'sw-1', label: 'Email notifications', checked: true, disabled: false },
+        { id: 'sw-2', label: 'Push notifications', checked: false, disabled: false },
+        { id: 'sw-3', label: 'Dark mode', checked: true, disabled: true },
+        { id: 'sw-4', label: 'Beta features', checked: false, disabled: true },
+      ].map(({ id, label, checked, disabled }) => (
+        <div key={id} className="flex items-center gap-2">
+          <Switch id={id} defaultChecked={checked} disabled={disabled} />
+          <Label htmlFor={id} className={disabled ? 'text-ink-muted' : ''}>{label}</Label>
+        </div>
+      ))}
+    </div>
+  ),
+}
