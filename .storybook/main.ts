@@ -16,6 +16,16 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
+  viteFinal: async (config) => ({
+    ...config,
+    resolve: {
+      ...config.resolve,
+      alias: {
+        ...config.resolve?.alias,
+        '@storybook/blocks': '@storybook/addon-docs/blocks',
+      },
+    },
+  }),
 }
 
 export default config
