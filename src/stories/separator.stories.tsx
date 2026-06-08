@@ -1,0 +1,91 @@
+import type { Meta, StoryObj } from '@storybook/react'
+import { Separator } from '@/components/ui/separator'
+
+const meta = {
+  title: 'UI / Separator',
+  component: Separator,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+    docs: {
+      description: {
+        component: `
+### Design tokens
+\`--border\`
+
+### Rules
+Separator is a thin decorative divider. Use \`orientation="horizontal"\` (default) between stacked content and \`orientation="vertical"\` between inline items.
+Add \`decorative\` when the separator is purely visual (no semantic meaning for screen readers).
+        `,
+      },
+    },
+  },
+  argTypes: {
+    orientation: {
+      control: 'select',
+      options: ['horizontal', 'vertical'],
+      description: 'Divider direction',
+      table: { defaultValue: { summary: 'horizontal' } },
+    },
+    decorative: {
+      control: 'boolean',
+      description: 'Hide from accessibility tree',
+      table: { defaultValue: { summary: 'true' } },
+    },
+    className: { table: { disable: true } },
+  },
+  decorators: [(Story) => <div className="w-64"><Story /></div>],
+} satisfies Meta<typeof Separator>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Horizontal: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3">
+      <p className="text-sm font-medium text-ink">Watercolor</p>
+      <Separator />
+      <p className="text-sm font-medium text-ink">Calligraphy</p>
+      <Separator />
+      <p className="text-sm font-medium text-ink">Pottery</p>
+    </div>
+  ),
+}
+
+export const Vertical: Story = {
+  render: () => (
+    <div className="flex items-center gap-3 text-sm text-ink-soft">
+      <span>Edit</span>
+      <Separator orientation="vertical" className="h-4" />
+      <span>Preview</span>
+      <Separator orientation="vertical" className="h-4" />
+      <span>Share</span>
+    </div>
+  ),
+}
+
+export const AllVariants: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div className="flex flex-col gap-6 w-64">
+      <div>
+        <p className="text-xs text-ink-muted mb-3">Horizontal</p>
+        <div className="flex flex-col gap-2">
+          <span className="text-sm text-ink-soft">Above</span>
+          <Separator />
+          <span className="text-sm text-ink-soft">Below</span>
+        </div>
+      </div>
+      <div>
+        <p className="text-xs text-ink-muted mb-3">Vertical (in toolbar)</p>
+        <div className="flex items-center gap-2 text-sm text-ink-soft">
+          <span>Cut</span>
+          <Separator orientation="vertical" className="h-4" />
+          <span>Copy</span>
+          <Separator orientation="vertical" className="h-4" />
+          <span>Paste</span>
+        </div>
+      </div>
+    </div>
+  ),
+}
