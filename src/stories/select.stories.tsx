@@ -1,0 +1,78 @@
+'use client'
+import type { Meta, StoryObj } from '@storybook/react'
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+  SelectGroup,
+  SelectLabel,
+  SelectSeparator,
+} from '@/components/ui/select'
+
+const meta = {
+  title: 'UI / Select',
+  component: Select,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+    docs: {
+      description: {
+        component: `
+### Design tokens
+\`--input\` · \`--popover\` · \`--radius-lg\`
+
+### Rules
+Use \`Select\` for ≤20 options without search. For longer or searchable lists use \`Combobox\`.
+Always provide a placeholder via \`<SelectValue placeholder="…" />\`.
+        `,
+      },
+    },
+  },
+  argTypes: {
+    disabled: { control: 'boolean', description: 'Disable the select', table: { defaultValue: { summary: 'false' } } },
+    className: { table: { disable: true } },
+  },
+  decorators: [(Story) => <div className="w-64"><Story /></div>],
+} satisfies Meta<typeof Select>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  render: () => (
+    <Select>
+      <SelectTrigger className="w-full">
+        <SelectValue placeholder="Select category…" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Art & Craft</SelectLabel>
+          <SelectItem value="watercolor">Watercolor</SelectItem>
+          <SelectItem value="calligraphy">Calligraphy</SelectItem>
+          <SelectItem value="pottery">Pottery</SelectItem>
+        </SelectGroup>
+        <SelectSeparator />
+        <SelectGroup>
+          <SelectLabel>Writing</SelectLabel>
+          <SelectItem value="journaling">Journaling</SelectItem>
+          <SelectItem value="poetry">Poetry</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  ),
+}
+
+export const Disabled: Story = {
+  render: () => (
+    <Select disabled>
+      <SelectTrigger className="w-full">
+        <SelectValue placeholder="Not available" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="x">Option</SelectItem>
+      </SelectContent>
+    </Select>
+  ),
+}
