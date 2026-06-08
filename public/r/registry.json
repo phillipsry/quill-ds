@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "quill-ds",
+  "homepage": "https://quill-ds.vercel.app",
+  "items": [
+    {
+      "name": "quill",
+      "type": "registry:base",
+      "title": "Quill Design System",
+      "description": "Warm parchment surfaces, terracotta accents, Fraunces display type, and rich ink tones. A handcrafted theme for editorial and creative applications.",
+      "author": "Ryan Phillips <ryanwesphillips@gmail.com> (https://quill-ds.vercel.app)",
+      "files": [
+        {
+          "path": "registry/themes/quill.css",
+          "type": "registry:base",
+          "target": "app/quill-theme.css"
+        }
+      ]
+    }
+  ]
+}
