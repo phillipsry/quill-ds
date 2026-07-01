@@ -116,10 +116,30 @@ const shadow = (mv) => ({
   $extensions: { 'com.figma': { modes: { Light: mv.light, Dark: mv.dark } } },
 })
 const other = (v) => ({ $type: 'other', $value: v, $description: 'CSS-only — not a Figma variable' })
-// var(--x) → DTCG alias {color.x}
-const alias = (ref) => ({ $value: `{color.${ref.replace(/^var\(--|\)$/g, '')}}` })
-
 export function renderDtcg(t) {
+  // Build lookup: CSS var name (e.g. '--terracotta-deep') → full DTCG dot-path
+  // (e.g. 'Primitives.color.pigment.terracotta.deep') while walking the color tree.
+  const varToDtcg = {}
+  const buildMap = (obj, path) => {
+    for (const [k, v] of Object.entries(obj)) {
+      const nextPath = [...path, k]
+      if (v && typeof v === 'object' && 'light' in v && 'dark' in v) {
+        varToDtcg[cssVarName(nextPath)] = 'Primitives.color.' + nextPath.join('.')
+      } else if (v && typeof v === 'object') {
+        buildMap(v, nextPath)
+      }
+    }
+  }
+  buildMap(t.color, [])
+
+  // var(--x) → DTCG alias using the real primitive path from the lookup map.
+  const alias = (ref) => {
+    const varName = ref.replace(/^var\(|\)$/g, '') // strip var( and ) → '--terracotta-deep'
+    const fullPath = varToDtcg[varName]
+    if (!fullPath) throw new Error(`DTCG alias not resolved: '${ref}' — '${varName}' not in primitive map`)
+    return { $value: `{${fullPath}}` }
+  }
+
   const primColor = {}
   const emit = (obj, prefix, sink) => {
     for (const [k, v] of Object.entries(obj)) {

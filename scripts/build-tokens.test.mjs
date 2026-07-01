@@ -58,6 +58,28 @@ test('DTCG export types + modes + Figma-friendly grouping', () => {
   assert.equal(d.Primitives.elevation.pop.$type, 'shadow')
   // motion is explicitly non-variable
   assert.equal(d.Primitives.motion.dur.$type, 'other')
-  // semantic aliases reference primitives
-  assert.match(d.Theme.text['text-accent-color'].$value, /\{color\./)
+  // semantic aliases must resolve to real $type-bearing leaves in the document
+  const resolveAlias = (val) => {
+    const match = val.match(/^\{(.+)\}$/)
+    assert.ok(match, `$value '${val}' is not a DTCG alias reference`)
+    return match[1].split('.').reduce((node, seg) => {
+      assert.ok(node && typeof node === 'object', `path segment '${seg}' not found in document`)
+      return node[seg]
+    }, d)
+  }
+  // spot-check: text-accent-color must resolve to Primitives.color.pigment.terracotta.deep
+  const accentAlias = d.Theme.text['text-accent-color']
+  assert.equal(accentAlias.$value, '{Primitives.color.pigment.terracotta.deep}')
+  const accentLeaf = resolveAlias(accentAlias.$value)
+  assert.equal(accentLeaf.$type, 'color', `text-accent-color alias did not resolve to a color leaf`)
+  // iterate every Theme.*.*  alias and assert it resolves to a leaf with $type
+  for (const [bucket, entries] of Object.entries(d.Theme)) {
+    for (const [tokenName, tokenObj] of Object.entries(entries)) {
+      const leaf = resolveAlias(tokenObj.$value)
+      assert.ok(
+        leaf && typeof leaf.$type === 'string',
+        `Theme.${bucket}['${tokenName}'] alias '${tokenObj.$value}' does not resolve to a leaf with $type`,
+      )
+    }
+  }
 })

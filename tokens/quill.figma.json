@@ -436,153 +436,153 @@
   "Theme": {
     "text": {
       "text-strong": {
-        "$value": "{color.ink}"
+        "$value": "{Primitives.color.ink.base}"
       },
       "text-body": {
-        "$value": "{color.ink-soft}"
+        "$value": "{Primitives.color.ink.soft}"
       },
       "text-muted-color": {
-        "$value": "{color.ink-muted}"
+        "$value": "{Primitives.color.ink.muted}"
       },
       "text-on-ink": {
-        "$value": "{color.paper}"
+        "$value": "{Primitives.color.paper.base}"
       },
       "text-accent-color": {
-        "$value": "{color.terracotta-deep}"
+        "$value": "{Primitives.color.pigment.terracotta.deep}"
       }
     },
     "surface": {
       "surface-page": {
-        "$value": "{color.paper}"
+        "$value": "{Primitives.color.paper.base}"
       },
       "surface-card": {
-        "$value": "{color.paper-warm}"
+        "$value": "{Primitives.color.paper.warm}"
       },
       "surface-well": {
-        "$value": "{color.paper-deep}"
+        "$value": "{Primitives.color.paper.deep}"
       }
     },
     "border": {
       "border-card": {
-        "$value": "{color.line-soft}"
+        "$value": "{Primitives.color.line.soft}"
       },
       "border-field": {
-        "$value": "{color.line}"
+        "$value": "{Primitives.color.line.base}"
       },
       "border-divider": {
-        "$value": "{color.line-faint}"
+        "$value": "{Primitives.color.line.faint}"
       }
     },
     "status": {
       "link": {
-        "$value": "{color.indigo}"
+        "$value": "{Primitives.color.pigment.indigo.base}"
       },
       "success": {
-        "$value": "{color.moss-deep}"
+        "$value": "{Primitives.color.pigment.moss.deep}"
       },
       "warning": {
-        "$value": "{color.gold-deep}"
+        "$value": "{Primitives.color.pigment.gold.deep}"
       },
       "danger": {
-        "$value": "{color.terracotta-deep}"
+        "$value": "{Primitives.color.pigment.terracotta.deep}"
       },
       "info": {
-        "$value": "{color.indigo}"
+        "$value": "{Primitives.color.pigment.indigo.base}"
       }
     },
     "shadcn": {
       "background": {
-        "$value": "{color.paper}"
+        "$value": "{Primitives.color.paper.base}"
       },
       "foreground": {
-        "$value": "{color.ink}"
+        "$value": "{Primitives.color.ink.base}"
       },
       "card": {
-        "$value": "{color.paper-warm}"
+        "$value": "{Primitives.color.paper.warm}"
       },
       "card-foreground": {
-        "$value": "{color.ink}"
+        "$value": "{Primitives.color.ink.base}"
       },
       "popover": {
-        "$value": "{color.paper-warm}"
+        "$value": "{Primitives.color.paper.warm}"
       },
       "popover-foreground": {
-        "$value": "{color.ink}"
+        "$value": "{Primitives.color.ink.base}"
       },
       "primary": {
-        "$value": "{color.ink}"
+        "$value": "{Primitives.color.ink.base}"
       },
       "primary-foreground": {
-        "$value": "{color.paper}"
+        "$value": "{Primitives.color.paper.base}"
       },
       "secondary": {
-        "$value": "{color.paper-deep}"
+        "$value": "{Primitives.color.paper.deep}"
       },
       "secondary-foreground": {
-        "$value": "{color.ink}"
+        "$value": "{Primitives.color.ink.base}"
       },
       "muted": {
-        "$value": "{color.paper-deep}"
+        "$value": "{Primitives.color.paper.deep}"
       },
       "muted-foreground": {
-        "$value": "{color.ink-muted}"
+        "$value": "{Primitives.color.ink.muted}"
       },
       "accent": {
-        "$value": "{color.paper-deep}"
+        "$value": "{Primitives.color.paper.deep}"
       },
       "accent-foreground": {
-        "$value": "{color.ink}"
+        "$value": "{Primitives.color.ink.base}"
       },
       "destructive": {
-        "$value": "{color.terracotta-deep}"
+        "$value": "{Primitives.color.pigment.terracotta.deep}"
       },
       "border": {
-        "$value": "{color.line-soft}"
+        "$value": "{Primitives.color.line.soft}"
       },
       "input": {
-        "$value": "{color.line}"
+        "$value": "{Primitives.color.line.base}"
       },
       "ring": {
-        "$value": "{color.ink}"
+        "$value": "{Primitives.color.ink.base}"
       },
       "chart-1": {
-        "$value": "{color.terracotta}"
+        "$value": "{Primitives.color.pigment.terracotta.base}"
       },
       "chart-2": {
-        "$value": "{color.moss}"
+        "$value": "{Primitives.color.pigment.moss.base}"
       },
       "chart-3": {
-        "$value": "{color.indigo}"
+        "$value": "{Primitives.color.pigment.indigo.base}"
       },
       "chart-4": {
-        "$value": "{color.gold}"
+        "$value": "{Primitives.color.pigment.gold.base}"
       },
       "chart-5": {
-        "$value": "{color.ink-soft}"
+        "$value": "{Primitives.color.ink.soft}"
       },
       "sidebar": {
-        "$value": "{color.paper-warm}"
+        "$value": "{Primitives.color.paper.warm}"
       },
       "sidebar-foreground": {
-        "$value": "{color.ink}"
+        "$value": "{Primitives.color.ink.base}"
       },
       "sidebar-primary": {
-        "$value": "{color.ink}"
+        "$value": "{Primitives.color.ink.base}"
       },
       "sidebar-primary-foreground": {
-        "$value": "{color.paper}"
+        "$value": "{Primitives.color.paper.base}"
       },
       "sidebar-accent": {
-        "$value": "{color.paper-deep}"
+        "$value": "{Primitives.color.paper.deep}"
       },
       "sidebar-accent-foreground": {
-        "$value": "{color.ink}"
+        "$value": "{Primitives.color.ink.base}"
       },
       "sidebar-border": {
-        "$value": "{color.line-faint}"
+        "$value": "{Primitives.color.line.faint}"
       },
       "sidebar-ring": {
-        "$value": "{color.ink}"
+        "$value": "{Primitives.color.ink.base}"
       }
     }
   }
