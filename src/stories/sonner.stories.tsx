@@ -1,5 +1,5 @@
 'use client'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { Toaster } from '@/components/ui/sonner'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
@@ -8,14 +8,8 @@ const meta = {
   title: 'UI / Sonner',
   component: Toaster,
   tags: ['autodocs'],
-  decorators: [
-    (Story) => (
-      <>
-        <Story />
-        <Toaster />
-      </>
-    ),
-  ],
+  // No local <Toaster/> here — the global preview decorator already mounts one.
+  // A second toast region trips axe's landmark-unique rule (duplicate landmarks).
   parameters: {
     layout: 'centered',
     docs: {

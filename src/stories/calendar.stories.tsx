@@ -1,5 +1,5 @@
 'use client'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { Calendar } from '@/components/ui/calendar'
 import { useState } from 'react'
 import type { DateRange } from 'react-day-picker'

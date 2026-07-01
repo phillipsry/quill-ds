@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { Kbd, KbdGroup } from '@/components/ui/kbd'
 import { CommandIcon } from 'lucide-react'
 

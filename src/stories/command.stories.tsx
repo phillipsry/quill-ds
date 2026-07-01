@@ -1,5 +1,5 @@
 'use client'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import {
   Command,
   CommandDialog,
@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/command'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
-import { FileIcon, SearchIcon, SettingsIcon } from 'lucide-react'
+import { FileIcon, SearchIcon, SettingsIcon, StarIcon } from 'lucide-react'
 
 const meta = {
   title: 'UI / Command',
@@ -46,37 +46,80 @@ export const Inline: Story = {
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Files">
-          <CommandItem><FileIcon />Open file<CommandShortcut>⌘O</CommandShortcut></CommandItem>
-          <CommandItem><SearchIcon />Find in files<CommandShortcut>⇧⌘F</CommandShortcut></CommandItem>
+          <CommandItem>
+            <FileIcon aria-hidden="true" />
+            Open file
+            <CommandShortcut>⌘O</CommandShortcut>
+          </CommandItem>
+          <CommandItem>
+            <SearchIcon aria-hidden="true" />
+            Find in files
+            <CommandShortcut>⇧⌘F</CommandShortcut>
+          </CommandItem>
         </CommandGroup>
         <CommandSeparator />
         <CommandGroup heading="Settings">
-          <CommandItem><SettingsIcon />Preferences<CommandShortcut>⌘,</CommandShortcut></CommandItem>
+          <CommandItem>
+            <SettingsIcon aria-hidden="true" />
+            Preferences
+            <CommandShortcut>⌘,</CommandShortcut>
+          </CommandItem>
         </CommandGroup>
       </CommandList>
     </Command>
   ),
 }
 
+function AsDialogStory() {
+  const [open, setOpen] = useState(false)
+  return (
+    <>
+      <Button variant="outline" onClick={() => setOpen(true)}>
+        Open palette <kbd className="ml-2 text-xs bg-muted px-1 rounded">⌘K</kbd>
+      </Button>
+      <CommandDialog open={open} onOpenChange={setOpen}>
+        <CommandInput placeholder="Type a command or search…" />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandGroup heading="Suggestions">
+            <CommandItem onSelect={() => setOpen(false)}>
+              <FileIcon aria-hidden="true" />
+              New course
+            </CommandItem>
+            <CommandItem onSelect={() => setOpen(false)}>
+              <SearchIcon aria-hidden="true" />
+              Search lessons
+            </CommandItem>
+          </CommandGroup>
+        </CommandList>
+      </CommandDialog>
+    </>
+  )
+}
+
 export const AsDialog: Story = {
-  render: () => {
-    const [open, setOpen] = useState(false)
-    return (
-      <>
-        <Button variant="outline" onClick={() => setOpen(true)}>
-          Open palette <kbd className="ml-2 text-xs bg-muted px-1 rounded">⌘K</kbd>
-        </Button>
-        <CommandDialog open={open} onOpenChange={setOpen}>
-          <CommandInput placeholder="Type a command or search…" />
-          <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup heading="Suggestions">
-              <CommandItem onSelect={() => setOpen(false)}><FileIcon />New course</CommandItem>
-              <CommandItem onSelect={() => setOpen(false)}><SearchIcon />Search lessons</CommandItem>
-            </CommandGroup>
-          </CommandList>
-        </CommandDialog>
-      </>
-    )
-  },
+  render: () => <AsDialogStory />,
+}
+
+export const WithCheckedItem: Story = {
+  render: () => (
+    <Command className="rounded-lg border border-border w-72">
+      <CommandInput placeholder="Search commands…" />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Favorites">
+          <CommandItem data-checked="true">
+            <StarIcon aria-hidden="true" />
+            Starred lessons
+            <CommandShortcut>⌘★</CommandShortcut>
+          </CommandItem>
+          <CommandItem>
+            <FileIcon aria-hidden="true" />
+            All files
+            <CommandShortcut>⌘A</CommandShortcut>
+          </CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  ),
 }

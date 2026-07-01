@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import {
   Empty,
   EmptyHeader,
@@ -41,7 +41,7 @@ export const Default: Story = {
       <EmptyHeader>
         <EmptyMedia><BookOpenIcon className="size-8 text-ink-muted" /></EmptyMedia>
         <EmptyTitle>No courses yet</EmptyTitle>
-        <EmptyDescription>You haven't created any courses. Start building your first skill deck.</EmptyDescription>
+        <EmptyDescription>You haven’t created any courses. Start building your first skill deck.</EmptyDescription>
       </EmptyHeader>
       <EmptyContent>
         <Button className="w-full">Create course</Button>
