@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { renderCss, injectMarkers, cssVarName, registryBlock, renderManager } from './build-tokens.mjs'
+import { renderCss, injectMarkers, cssVarName, registryBlock, renderManager, renderDtcg } from './build-tokens.mjs'
 import { tokens } from '../src/tokens/quill.tokens.mjs'
 
 test('cssVarName drops a trailing base leaf', () => {
@@ -46,4 +46,18 @@ test('manager theme resolves literals incl. readable input border', () => {
   assert.equal(m.appBg, '#F5EDDD')         // paper light
   assert.equal(m.barSelectedColor, '#C4684B') // terracotta light
   assert.equal(m.textColor, '#2A2622')     // ink light
+})
+
+test('DTCG export types + modes + Figma-friendly grouping', () => {
+  const d = renderDtcg(tokens)
+  const paper = d.Primitives.color.paper.base
+  assert.equal(paper.$type, 'color')
+  assert.equal(paper.$extensions['com.figma'].modes.Light, '#F5EDDD')
+  assert.equal(paper.$extensions['com.figma'].modes.Dark, '#20180E')
+  assert.equal(d.Primitives.radius.lg.$type, 'dimension')
+  assert.equal(d.Primitives.elevation.pop.$type, 'shadow')
+  // motion is explicitly non-variable
+  assert.equal(d.Primitives.motion.dur.$type, 'other')
+  // semantic aliases reference primitives
+  assert.match(d.Theme.text['text-accent-color'].$value, /\{color\./)
 })
