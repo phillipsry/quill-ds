@@ -235,6 +235,24 @@
         }
       }
     },
+    "font": {
+      "sans": {
+        "$type": "fontFamily",
+        "$value": "\"Inter\", -apple-system, BlinkMacSystemFont, sans-serif"
+      },
+      "display": {
+        "$type": "fontFamily",
+        "$value": "\"Fraunces\", Georgia, serif"
+      },
+      "heading": {
+        "$type": "fontFamily",
+        "$value": "\"Fraunces\", Georgia, serif"
+      },
+      "mono": {
+        "$type": "fontFamily",
+        "$value": "ui-monospace, \"SF Mono\", Menlo, monospace"
+      }
+    },
     "radius": {
       "xs": {
         "$type": "dimension",

@@ -15,7 +15,7 @@ export const managerTheme = {
   "barTextColor": "#5C524A",
   "barHoverColor": "#2A2622",
   "textInverseColor": "#F5EDDD",
-  "appBorderColor": "rgba(42,38,34,0.12)",
+  "appBorderColor": "rgba(42, 38, 34, 0.12)",
   "appBorderRadius": 8,
   "inputBorderRadius": 6
 }

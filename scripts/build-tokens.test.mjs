@@ -48,6 +48,16 @@ test('manager theme resolves literals incl. readable input border', () => {
   assert.equal(m.textColor, '#2A2622')     // ink light
 })
 
+test('DTCG Primitives.font entries have fontFamily type and correct value', () => {
+  const d = renderDtcg(tokens)
+  assert.equal(d.Primitives.font.sans.$type, 'fontFamily')
+  assert.equal(d.Primitives.font.sans.$value, tokens.font.sans)
+  assert.equal(d.Primitives.font.display.$type, 'fontFamily')
+  assert.equal(d.Primitives.font.display.$value, tokens.font.display)
+  assert.equal(d.Primitives.font.heading.$type, 'fontFamily')
+  assert.equal(d.Primitives.font.mono.$type, 'fontFamily')
+})
+
 test('DTCG export types + modes + Figma-friendly grouping', () => {
   const d = renderDtcg(tokens)
   const paper = d.Primitives.color.paper.base

@@ -10,7 +10,7 @@ const END = '/* @quill-tokens:end */'
 // 'pigment' is a grouping namespace, not part of the CSS var name.
 // Trailing 'base' is the default leaf — also dropped.
 export function cssVarName(path) {
-  let parts = path.filter(p => p !== 'pigment')
+  let parts = path.filter(p => p !== 'pigment') // grouping-only namespace stripped from var names; add future grouping-only namespaces here
   if (parts[parts.length - 1] === 'base') parts = parts.slice(0, -1)
   return '--' + parts.join('-')
 }
@@ -101,7 +101,7 @@ export function renderManager(t) {
     textColor: L(t.color.ink.base), inputTextColor: L(t.color.ink.base),
     textMutedColor: L(t.color.ink.muted), barTextColor: L(t.color.ink.soft),
     barHoverColor: L(t.color.ink.base), textInverseColor: L(t.color.paper.base),
-    appBorderColor: 'rgba(42,38,34,0.12)', appBorderRadius: 8, inputBorderRadius: 6,
+    appBorderColor: L(t.color.line.soft), appBorderRadius: 8, inputBorderRadius: 6,
   }
 }
 
@@ -148,6 +148,7 @@ export function renderDtcg(t) {
     }
   }
   emit(t.color, [], primColor)
+  const font = Object.fromEntries(Object.entries(t.font).map(([k, v]) => [k, { $type: 'fontFamily', $value: v }]))
   const radius = Object.fromEntries(Object.entries(t.radius).map(([k, v]) => [k, dim(v)]))
   const type = Object.fromEntries(Object.entries(t.text).map(([k, v]) => [k, dim(v)]))
   const elevation = Object.fromEntries(Object.entries(t.shadow).map(([k, v]) => [k, shadow(v)]))
@@ -164,7 +165,7 @@ export function renderDtcg(t) {
 
   return {
     $description: 'Quill Design System tokens (DTCG). Colors/dimensions → Figma variables; shadows → effect styles; motion/fraunces are CSS-only.',
-    Primitives: { color: primColor, radius, type, elevation, motion, fraunces },
+    Primitives: { color: primColor, font, radius, type, elevation, motion, fraunces },
     Theme,
   }
 }

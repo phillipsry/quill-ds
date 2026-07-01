@@ -72,7 +72,7 @@ export const colorRows = (obj, prefix = []) => Object.entries(obj).flatMap(([k, 
 
 <div>{Object.entries(tokens.semantic).map(([name, alias]) => (
   <Row key={name}
-    swatch={<span style={{ width: 22, height: 22, borderRadius: 5, background: 'var(--' + name + ')', border: '1px solid rgba(42,38,34,0.15)', display: 'inline-block' }} />}
+    swatch={<span style={{ width: 22, height: 22, borderRadius: 5, background: 'var(--' + name + ')', border: '1px solid rgba(42,38,34,0.15)' }} />}
     name={'--' + name}
     value={alias} />
 ))}</div>
@@ -81,7 +81,7 @@ export const colorRows = (obj, prefix = []) => Object.entries(obj).flatMap(([k, 
 
 <div>{Object.entries(tokens.shadcn).map(([name, alias]) => (
   <Row key={name}
-    swatch={<span style={{ width: 22, height: 22, borderRadius: 5, background: 'var(--' + name + ')', border: '1px solid rgba(42,38,34,0.15)', display: 'inline-block' }} />}
+    swatch={<span style={{ width: 22, height: 22, borderRadius: 5, background: 'var(--' + name + ')', border: '1px solid rgba(42,38,34,0.15)' }} />}
     name={'--' + name}
     value={alias} />
 ))}</div>
