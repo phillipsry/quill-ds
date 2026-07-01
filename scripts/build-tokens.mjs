@@ -86,6 +86,10 @@ export function injectMarkers(source, block) {
   return source.slice(0, s + START.length) + '\n' + block + '\n' + source.slice(e)
 }
 
+export function registryBlock(css) {
+  return `:root {\n${css.root}\n}\n\n[data-theme="dark"] {\n  color-scheme: dark;\n\n${css.dark}\n}`
+}
+
 // --- main (not exercised by unit tests) ---
 function globalsBlock(css) {
   return `@theme inline {\n${css.theme}\n}\n\n:root {\n${css.root}\n}\n\n[data-theme="dark"] {\n  color-scheme: dark;\n\n${css.dark}\n}`
@@ -95,7 +99,8 @@ export function main() {
   const css = renderCss(tokens)
   const globalsPath = join(root, 'src/app/globals.css')
   writeFileSync(globalsPath, injectMarkers(readFileSync(globalsPath, 'utf8'), globalsBlock(css)))
-  // registry + manager + dtcg wired in later tasks
+  const regPath = join(root, 'registry/themes/quill.css')
+  writeFileSync(regPath, injectMarkers(readFileSync(regPath, 'utf8'), registryBlock(css)))
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) main()

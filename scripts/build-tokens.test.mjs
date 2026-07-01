@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { renderCss, injectMarkers, cssVarName } from './build-tokens.mjs'
+import { renderCss, injectMarkers, cssVarName, registryBlock } from './build-tokens.mjs'
 import { tokens } from '../src/tokens/quill.tokens.mjs'
 
 test('cssVarName drops a trailing base leaf', () => {
@@ -21,6 +21,15 @@ test('renderCss reproduces primitive + dk + remap declarations', () => {
   assert.match(theme, /--color-terracotta:\s*var\(--terracotta\);/)
   assert.match(theme, /--radius-lg:\s*0\.5rem;/)
   assert.match(theme, /--text-xl:\s*1\.5rem;/)
+})
+
+test('registryBlock emits :root + dark, no @theme', () => {
+  const css = renderCss(tokens)
+  const block = registryBlock(css)
+  assert.match(block, /:root \{/)
+  assert.match(block, /\[data-theme="dark"\] \{/)
+  assert.equal(/@theme/.test(block), false)
+  assert.match(block, /--terracotta-deep: #944A33;/)
 })
 
 test('injectMarkers replaces only between markers and is idempotent', () => {
