@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { renderCss, injectMarkers, cssVarName, registryBlock } from './build-tokens.mjs'
+import { renderCss, injectMarkers, cssVarName, registryBlock, renderManager } from './build-tokens.mjs'
 import { tokens } from '../src/tokens/quill.tokens.mjs'
 
 test('cssVarName drops a trailing base leaf', () => {
@@ -37,4 +37,13 @@ test('injectMarkers replaces only between markers and is idempotent', () => {
   const out1 = injectMarkers(src, 'NEW')
   assert.equal(out1, 'A\n/* @quill-tokens:start */\nNEW\n/* @quill-tokens:end */\nB\n')
   assert.equal(injectMarkers(out1, 'NEW'), out1)
+})
+
+test('manager theme resolves literals incl. readable input border', () => {
+  const m = renderManager(tokens)
+  assert.equal(m.inputBorder, 'rgba(42,38,34,0.32)')
+  assert.equal(m.inputBg, '#EFE4CE')       // paper-warm light
+  assert.equal(m.appBg, '#F5EDDD')         // paper light
+  assert.equal(m.barSelectedColor, '#C4684B') // terracotta light
+  assert.equal(m.textColor, '#2A2622')     // ink light
 })
