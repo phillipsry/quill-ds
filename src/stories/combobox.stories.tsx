@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { expect, userEvent, within, screen } from 'storybook/test'
 import {
   Combobox,
@@ -63,10 +63,10 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   render: () => (
     <Combobox items={frameworks}>
-      <ComboboxTrigger render={<Button variant="outline" className="w-52 justify-between" />}>
+      <ComboboxTrigger aria-label="Select framework" render={<Button variant="outline" className="w-52 justify-between" />}>
         <ComboboxValue placeholder="Select framework…" />
       </ComboboxTrigger>
-      <ComboboxContent className="min-w-(--anchor-width)">
+      <ComboboxContent aria-label="Framework suggestions" className="min-w-(--anchor-width)">
         <ComboboxInput placeholder="Search…" showTrigger={false} />
         <ComboboxList>
           <ComboboxEmpty>No results found.</ComboboxEmpty>
@@ -103,7 +103,7 @@ export const Default: Story = {
 export const Inline: Story = {
   render: () => (
     <Combobox items={frameworks}>
-      <ComboboxInput placeholder="Search framework…" className="w-52" aria-label="Search framework" />
+      <ComboboxInput placeholder="Search framework…" className="w-52" aria-label="Search framework" showTrigger={false} />
       <ComboboxContent className="min-w-(--anchor-width)">
         <ComboboxList>
           <ComboboxEmpty>No results found.</ComboboxEmpty>
@@ -159,13 +159,12 @@ export const WithClear: Story = {
 }
 
 export const WithGroups: Story = {
-  name: 'With Groups',
   render: () => (
     <Combobox items={frameworks}>
-      <ComboboxTrigger render={<Button variant="outline" className="w-52 justify-between" />}>
+      <ComboboxTrigger aria-label="Select framework" render={<Button variant="outline" className="w-52 justify-between" />}>
         <ComboboxValue placeholder="Select framework…" />
       </ComboboxTrigger>
-      <ComboboxContent className="min-w-(--anchor-width)">
+      <ComboboxContent aria-label="Framework suggestions" className="min-w-(--anchor-width)">
         <ComboboxInput placeholder="Search…" showTrigger={false} />
         <ComboboxList>
           <ComboboxEmpty>No results found.</ComboboxEmpty>
