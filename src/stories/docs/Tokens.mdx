@@ -1,0 +1,94 @@
+{/* src/stories/docs/Tokens.mdx */}
+import { Meta } from '@storybook/blocks'
+import { tokens } from '../../tokens/quill.tokens.mjs'
+
+<Meta title="Docs / Tokens" />
+
+# Tokens
+
+Every Quill token, rendered live from the single source
+(`src/tokens/quill.tokens.mjs`). Editing that file and running
+`npm run build:tokens` regenerates the CSS, the shipped registry theme, the
+Storybook manager theme, and the Figma (DTCG) export — this page updates
+automatically because it imports the source directly.
+
+export const Row = ({ name, value, figma, swatch }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '8px 0', borderBottom: '1px solid rgba(42,38,34,0.08)', fontSize: 12 }}>
+    {swatch}
+    <code style={{ width: 200 }}>{name}</code>
+    <span style={{ color: '#675F58', flex: 1 }}>{value}</span>
+    {figma && <code style={{ color: '#944A33' }}>{figma}</code>}
+  </div>
+)
+
+export const ColorSwatch = ({ v }) => (
+  <span style={{ display: 'inline-flex', gap: 4 }}>
+    <span style={{ width: 22, height: 22, borderRadius: 5, background: v.light, border: '1px solid rgba(42,38,34,0.15)' }} title={`light ${v.light}`} />
+    <span style={{ width: 22, height: 22, borderRadius: 5, background: v.dark, border: '1px solid rgba(42,38,34,0.15)' }} title={`dark ${v.dark}`} />
+  </span>
+)
+
+## Colors
+
+export const colorRows = (obj, prefix = []) => Object.entries(obj).flatMap(([k, v]) =>
+  ('light' in v && 'dark' in v)
+    ? [<Row key={[...prefix, k].join('-')} swatch={<ColorSwatch v={v} />}
+        name={'--' + [...prefix, k].filter(p => p !== 'base').join('-')}
+        value={`${v.light} / ${v.dark}`} figma={`color/${[...prefix, k].join('/')}`} />]
+    : colorRows(v, [...prefix, k])
+)
+
+<div>{colorRows(tokens.color)}</div>
+
+## Type scale
+
+<div>{Object.entries(tokens.text).map(([k, v]) => (
+  <Row key={k} name={`--text-${k}`} value={v} figma={`type/${k}`}
+    swatch={<span style={{ fontSize: v, lineHeight: 1, width: 40 }}>Aa</span>} />
+))}</div>
+
+## Radii
+
+<div>{Object.entries(tokens.radius).map(([k, v]) => (
+  <Row key={k} name={`--radius-${k}`} value={v} figma={`radius/${k}`}
+    swatch={<span style={{ width: 22, height: 22, background: '#E8DCC0', borderRadius: v }} />} />
+))}</div>
+
+## Elevation
+
+<div>{Object.entries(tokens.shadow).map(([k, v]) => (
+  <Row key={k} name={k === 'base' ? '--shadow' : `--shadow-${k}`} value="light / dark" figma={`elevation/${k}`}
+    swatch={<span style={{ width: 22, height: 22, borderRadius: 5, background: '#F5EDDD', boxShadow: v.light }} />} />
+))}</div>
+
+## Fonts
+
+<div>{Object.entries(tokens.font).map(([k, v]) => (
+  <Row key={k} name={`--font-${k}`} value={v} figma={`font/${k}`}
+    swatch={<span style={{ fontFamily: v, width: 40 }}>Aa</span>} />
+))}</div>
+
+## Semantic aliases
+
+<div>{Object.entries(tokens.semantic).map(([name, alias]) => (
+  <Row key={name}
+    swatch={<span style={{ width: 22, height: 22, borderRadius: 5, background: 'var(--' + name + ')', border: '1px solid rgba(42,38,34,0.15)' }} />}
+    name={'--' + name}
+    value={alias} />
+))}</div>
+
+## ShadCN contract
+
+<div>{Object.entries(tokens.shadcn).map(([name, alias]) => (
+  <Row key={name}
+    swatch={<span style={{ width: 22, height: 22, borderRadius: 5, background: 'var(--' + name + ')', border: '1px solid rgba(42,38,34,0.15)' }} />}
+    name={'--' + name}
+    value={alias} />
+))}</div>
+
+## Fraunces presets · Motion — CSS-only
+
+These have no Figma variable type; they live in CSS and are documented here, not exported as variables.
+
+<div>{Object.entries(tokens.fraunces).map(([k, v]) => <Row key={k} name={`--fraunces-${k}`} value={v} />)}</div>
+<div>{Object.entries(tokens.motion).map(([k, v]) => <Row key={k} name={`--${k.replace(/([A-Z])/g, '-$1').toLowerCase()}`} value={v} />)}</div>
