@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
 
 const meta = {
-  title: 'UI / Sonner',
+  title: 'Components / Sonner',
   component: Toaster,
   tags: ['autodocs'],
   // No local <Toaster/> here — the global preview decorator already mounts one.

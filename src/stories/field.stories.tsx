@@ -8,7 +8,7 @@ import {
 import { Input } from '@/components/ui/input'
 
 const meta = {
-  title: 'UI / Field',
+  title: 'Components / Field',
   component: Field,
   tags: ['autodocs'],
   parameters: {

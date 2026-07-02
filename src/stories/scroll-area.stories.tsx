@@ -5,7 +5,7 @@ import { Separator } from '@/components/ui/separator'
 const courses = ['Watercolor Basics', 'Calligraphy for Beginners', 'Lino Printing', 'Natural Dyeing', 'Pottery Fundamentals', 'Bookbinding', 'Screen Printing', 'Macramé', 'Weaving Basics', 'Leather Tooling']
 
 const meta = {
-  title: 'UI / ScrollArea',
+  title: 'Components / ScrollArea',
   component: ScrollArea,
   tags: ['autodocs'],
   parameters: {

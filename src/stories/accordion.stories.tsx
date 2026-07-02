@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/accordion'
 
 const meta = {
-  title: 'UI / Accordion',
+  title: 'Components / Accordion',
   component: Accordion,
   tags: ['autodocs'],
   parameters: {

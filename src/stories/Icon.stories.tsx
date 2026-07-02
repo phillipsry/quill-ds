@@ -3,7 +3,7 @@ import { expect } from 'storybook/test'
 import { Icon } from '@/components/ui/icon'
 import { icons } from '@/components/ui/icons.generated.mjs'
 
-const meta = { title: 'UI / Icon', component: Icon, tags: ['autodocs'] } satisfies Meta<typeof Icon>
+const meta = { title: 'Foundations / Icons', component: Icon, tags: ['autodocs'] } satisfies Meta<typeof Icon>
 export default meta
 type Story = StoryObj<typeof meta>
 

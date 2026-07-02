@@ -4,7 +4,7 @@ import { Icon } from '@/components/ui/icon'
 import { Button } from '@/components/ui/button'
 
 const meta = {
-  title: 'UI / Alert',
+  title: 'Components / Alert',
   component: Alert,
   tags: ['autodocs'],
   parameters: {

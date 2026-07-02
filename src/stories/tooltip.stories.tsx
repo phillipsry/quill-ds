@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Icon } from '@/components/ui/icon'
 
 const meta = {
-  title: 'UI / Tooltip',
+  title: 'Components / Tooltip',
   component: Tooltip,
   tags: ['autodocs'],
   parameters: {

@@ -16,7 +16,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 
 const meta = {
-  title: 'UI / Item',
+  title: 'Components / Item',
   component: Item,
   tags: ['autodocs'],
   parameters: {

@@ -3,7 +3,7 @@ import { Kbd, KbdGroup } from '@/components/ui/kbd'
 import { Icon } from '@/components/ui/icon'
 
 const meta = {
-  title: 'UI / Kbd',
+  title: 'Components / Kbd',
   component: Kbd,
   tags: ['autodocs'],
   parameters: {

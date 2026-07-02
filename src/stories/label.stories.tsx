@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 
 const meta = {
-  title: 'UI / Label',
+  title: 'Components / Label',
   component: Label,
   tags: ['autodocs'],
   parameters: {

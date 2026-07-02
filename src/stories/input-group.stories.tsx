@@ -10,7 +10,7 @@ import {
 import { Icon } from '@/components/ui/icon'
 
 const meta = {
-  title: 'UI / InputGroup',
+  title: 'Components / InputGroup',
   component: InputGroup,
   tags: ['autodocs'],
   parameters: {

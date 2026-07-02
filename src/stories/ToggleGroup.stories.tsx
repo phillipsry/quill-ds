@@ -3,7 +3,7 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { Icon } from '@/components/ui/icon'
 
 const meta = {
-  title: 'UI / ToggleGroup',
+  title: 'Components / ToggleGroup',
   component: ToggleGroup,
   tags: ['autodocs'],
   parameters: {
