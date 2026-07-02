@@ -46,3 +46,24 @@ export const Lazy: Story = {
     })
   },
 }
+
+// A tail icon: NOT in the top-2000 per-icon set, so the per-icon dynamic import
+// rejects. The <Icon> component then falls back to icons.tail.mjs (the grouped-tail
+// module) and looks the name up there. The play asserts it resolves to real paths.
+export const TailIcon: Story = {
+  args: { name: 'acupuncture', size: 32 },
+  parameters: { controls: { disable: true } },
+  play: async ({ canvasElement }) => {
+    const svg = canvasElement.querySelector('svg[data-slot="icon"]')
+    expect(svg).toBeTruthy()
+    // Placeholder reserves the box immediately (no layout shift).
+    expect(svg?.getAttribute('width')).toBe('32')
+    // After the tail fallback resolves, the real geometry appears.
+    await waitFor(
+      () => {
+        expect(svg?.querySelectorAll('path').length).toBeGreaterThan(0)
+      },
+      { timeout: 5000 }
+    )
+  },
+}

@@ -19,7 +19,9 @@
     "test:tokens": "node --test src/tokens/*.test.mjs scripts/*.test.mjs",
     "pretest-storybook": "npm run build:icons",
     "test-storybook": "vitest --project=storybook run",
+    "pretest-storybook:watch": "npm run build:icons",
     "test-storybook:watch": "vitest --project=storybook",
+    "pretest-storybook:coverage": "npm run build:icons",
     "test-storybook:coverage": "vitest --project=storybook run --coverage"
   },
   "dependencies": {
