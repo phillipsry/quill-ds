@@ -3,6 +3,13 @@ import { cn } from '@/lib/utils'
 import { icons } from './icons.generated.mjs'
 import type { IconName } from './icons.generated.mjs'
 
+// NOTE (bundle): this imports the full generated icon map (~1000 Material Symbols,
+// ~720KB source). A by-name <Icon> API needs the whole map, so it is NOT tree-shakeable
+// — any app rendering one <Icon> pulls all icon paths. This is a deliberate tradeoff:
+// the design system ships a broad, comprehensive icon set by default. If a consumer is
+// bundle-sensitive, the map can later be split into per-icon modules (dynamic import by
+// name) or trimmed via the manifest (scripts/icons.manifest.mjs) + `npm run build:icons`.
+
 function Icon({
   name,
   size = '1em',

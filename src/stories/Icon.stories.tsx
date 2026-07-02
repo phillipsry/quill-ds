@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
-import { within, expect } from 'storybook/test'
+import { expect } from 'storybook/test'
 import { Icon } from '@/components/ui/icon'
 import { icons } from '@/components/ui/icons.generated.mjs'
 

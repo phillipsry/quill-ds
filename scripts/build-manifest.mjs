@@ -6,6 +6,7 @@
 //   curl -s "https://fonts.google.com/metadata/icons?key=material_symbols&incomplete=1" -o /tmp/ms-meta.json
 //   node scripts/build-manifest.mjs /tmp/ms-meta.json
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { execSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 
@@ -17,11 +18,25 @@ const has = (n) => existsSync(join(OUTLINED, `${n}.svg`))
 const raw = readFileSync(metaPath, 'utf8').replace(/^\)\]\}'?\n?/, '')
 const data = JSON.parse(raw)
 
-// icons currently referenced in the codebase (must be preserved)
-const genSrc = readFileSync(join(root, 'scripts/build-icons.mjs'), 'utf8')
-const inUseBlock = (genSrc.match(/export const MANIFEST = \[([\s\S]*?)\]/) || [])[1] || ''
-const inUse = [...inUseBlock.matchAll(/'([a-z0-9_]+)'/g)].map((m) => m[1])
-const missing = inUse.filter((n) => !has(n))
+// icons currently referenced in the codebase (must be preserved across regeneration).
+// Derived from actual usages — `<Icon name="…">` and `icon: '…'` string literals —
+// NOT from a manifest array (which is this script's OUTPUT). Over-capturing is safe
+// (extra valid icons filtered by has()); under-capturing would drop a used icon.
+const srcText = execSync('git grep -h -E "name=\\"[a-z][a-z0-9_]+\\"|icon: ?[\\x27\\x22][a-z][a-z0-9_]+[\\x27\\x22]" -- src', {
+  cwd: root,
+  encoding: 'utf8',
+})
+const inUse = [
+  ...new Set([
+    ...[...srcText.matchAll(/name="([a-z][a-z0-9_]+)"/g)].map((m) => m[1]),
+    ...[...srcText.matchAll(/icon: ?['"]([a-z][a-z0-9_]+)['"]/g)].map((m) => m[1]),
+  ]),
+].filter(has)
+if (inUse.length < 30) {
+  console.error(`in-use extraction suspiciously low (${inUse.length}) — check the grep patterns`)
+  process.exit(1)
+}
+const missing = [] // has()-filtered above; kept for the log line below
 if (missing.length) {
   console.error('IN-USE ICON MISSING FROM PACKAGE:', missing)
   process.exit(1)
