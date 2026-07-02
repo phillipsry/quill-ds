@@ -177,6 +177,9 @@ const TEXT_STYLES = [
   { name: 'Body/Base', family: 'Inter', style: 'Regular', size: 15.2, lh: 170 },
   { name: 'Body/S', family: 'Inter', style: 'Regular', size: 13.6, lh: 160 },
   { name: 'Body/XS', family: 'Inter', style: 'Regular', size: 12, lh: 150 },
+  // Label styles — Inter Medium for form/control labels, badges, chips (text-sm / text-xs + font-medium).
+  { name: 'Label/Default', family: 'Inter', style: 'Medium', size: 13.6, lh: 140 },
+  { name: 'Label/Small', family: 'Inter', style: 'Medium', size: 12, lh: 140 },
   { name: 'Accent', family: 'Fraunces', style: 'Italic', size: 28, lh: 120, ls: -2 },
   { name: 'Eyebrow', family: 'Inter', style: 'Medium', size: 11, lh: 100, ls: 15, textCase: 'UPPER' },
 ]

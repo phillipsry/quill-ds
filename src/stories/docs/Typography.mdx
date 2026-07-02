@@ -25,6 +25,27 @@ Quill uses two typefaces: **Fraunces** for display and editorial moments, **Inte
 <TypeSample token="text-sm" size="13.6px" weight={400}>The quick brown fox jumps over the lazy dog</TypeSample>
 <TypeSample token="text-xs" size="12px" weight={400}>The quick brown fox jumps over the lazy dog, again</TypeSample>
 
+## Text styles
+
+Named styles that map 1:1 to the Figma text styles (the design source of truth). Reach for these to keep hierarchy consistent across code and design.
+
+export const StyleRow = ({ name, font, size, weight, italic, family, note, sample }) => (
+  <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, padding: '10px 0', borderBottom: '1px solid rgba(42,38,34,0.08)' }}>
+    <code style={{ fontSize: 11, color: '#2A2622', width: 130, flexShrink: 0 }}>{name}</code>
+    <span style={{ fontSize: 11, color: '#675F58', width: 150, flexShrink: 0 }}>{font} · {size}</span>
+    <span style={{ fontFamily: family === 'Fraunces' ? 'var(--font-fraunces, Georgia, serif)' : 'var(--font-inter, Inter, sans-serif)', fontSize: Math.min(parseFloat(size), 22), fontWeight: weight, fontStyle: italic ? 'italic' : 'normal', color: '#2A2622' }}>{sample || 'Aa'}</span>
+    <span style={{ fontSize: 11, color: '#675F58', marginLeft: 'auto' }}>{note}</span>
+  </div>
+)
+
+<StyleRow name="Display / XL·L·M" family="Fraunces" font="Fraunces Regular" size="88–48px" weight={400} note="hero / editorial" sample="Made by hand" />
+<StyleRow name="Heading / L·M·S" family="Fraunces" font="Fraunces Regular" size="32–18px" weight={400} note="section headings" sample="Section title" />
+<StyleRow name="Body / L·Base·S·XS" family="Inter" font="Inter Regular" size="18–12px" weight={400} note="running text" sample="Body copy runs here" />
+<StyleRow name="Label / Default" family="Inter" font="Inter Medium" size="13.6px" weight={500} note="form & control labels" sample="Field label" />
+<StyleRow name="Label / Small" family="Inter" font="Inter Medium" size="12px" weight={500} note="badges, chips, small controls" sample="Badge" />
+<StyleRow name="Accent" family="Fraunces" font="Fraunces Italic" size="28px" weight={400} italic note="pull quotes, delight" sample="A moment" />
+<StyleRow name="Eyebrow" family="Inter" font="Inter Medium 11px" size="11px" weight={500} note="uppercase micro-labels" sample="EYEBROW" />
+
 ## Fraunces presets
 
 Fraunces is a variable font with optical-size (`opsz`), softness (`SOFT`), and wonkiness (`WONK`) axes.
