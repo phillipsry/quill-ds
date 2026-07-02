@@ -60,6 +60,24 @@ Code Connect requires a **Dev/Full seat on a Figma Org/Enterprise plan** (blocks
 On upgrade: `npm i -D @figma/code-connect`, add `*.figma.tsx` per component (prop mappings from
 the variant properties above), `npx figma connect publish`.
 
+### Variable code syntax (done — the token-level 1:1, NOT plan-gated)
+
+All 109 Figma variables carry a Web **code syntax** = their CSS token, so Dev Mode shows the real
+code a dev types (Figma names and CSS names are decoupled by design):
+
+| Figma variable | Dev Mode shows |
+|---|---|
+| `color/pigment/terracotta/deep` | `var(--terracotta-deep)` |
+| `shadcn/primary` | `var(--primary)` |
+| `spacing/2_5` | `var(--space-2.5)` |
+| `corner-radius/lg` | `var(--radius-lg)` |
+| `type/base` | `var(--text-base)` |
+| `status/link` | `var(--link)` |
+
+This gives the token layer full design↔code parity without Code Connect. Code Connect remains an
+optional **component-level** enhancement (real `<Button>` code + props in Dev Mode), gated by plan.
+Re-apply after regenerating variables via the mapping in the foundations sync.
+
 ## Remaining for Wave A
 
 - **Code Connect** — blocked by plan (mapping above is ready).
