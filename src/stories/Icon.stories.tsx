@@ -8,10 +8,10 @@ import { iconNames } from '@/components/ui/icon-names.generated.mjs'
 // A single searchable gallery of the whole Material Symbols Outlined library.
 // Type to search all icons; click an icon to see its detail (sizes + usage snippet).
 // (Icons load on demand — see the delivery-optimization spec — so browsing stays fast.)
+// Single page ("Gallery") — no separate autodocs page; this IS the icon home.
 const meta = {
   title: 'Foundations / Icons',
   component: Icon,
-  tags: ['autodocs'],
 } satisfies Meta<typeof Icon>
 export default meta
 type Story = StoryObj<typeof meta>
@@ -103,7 +103,15 @@ function IconGallery() {
 export const Gallery: Story = {
   parameters: { controls: { disable: true }, layout: 'fullscreen' },
   render: () => (
-    <div className="p-6">
+    <div className="p-8 text-ink">
+      <h1 className="mb-1 font-[family-name:var(--font-fraunces,Georgia,serif)] text-3xl text-foreground">
+        Icons
+      </h1>
+      <p className="mb-6 max-w-2xl text-sm text-muted-foreground">
+        Material Symbols (Outlined, weight 200). Search the full library and click any icon to see
+        its name, sizes, and usage snippet. Rendered via <code>&lt;Icon name="…" /&gt;</code> — icons
+        load on demand, so browsing stays fast.
+      </p>
       <IconGallery />
     </div>
   ),
