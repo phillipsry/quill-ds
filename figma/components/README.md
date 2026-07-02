@@ -66,7 +66,21 @@ the variant properties above), `npx figma connect publish`.
 - **Visual QA pass:** review each page in Figma; refine any spacing/rounding nuances.
 - Optional: add `Disabled` boolean + hover/focus states later (variant structure supports it).
 
-## Next waves
+## Wave B (composites) — in progress
 
-- Wave B (composites: Card, Alert, Tabs, Tooltip, Select, Field, groups, Breadcrumb, Pagination, Accordion).
-- Wave C (complex overlays/compounds), then Patterns.
+| Component | Page | Notes |
+|---|---|---|
+| Card | ❖ Card | token-bound container (header/content/footer); footer uses real **Button instances** |
+| Alert | ❖ Alert | Variant: default/destructive; icon + title + description |
+
+Remaining Wave B: Tabs, Tooltip, Select, Field, Input/Button groups, Breadcrumb, Pagination, Accordion.
+
+## Patterns (code-first, Storybook — done separately)
+
+28 pattern stories under `src/stories/patterns/` (Auth/Forms/Data/State/Marketing/Shells/Nav) + a
+`Patterns / Overview` page. These compose the coded components; a subset can be mirrored into Figma
+`❖` Pattern pages once the composite components they use exist in Figma (Card/Alert now do).
+
+## Next
+
+- Finish Wave B, then Wave C (overlays/compounds). Mirror key patterns into Figma.
