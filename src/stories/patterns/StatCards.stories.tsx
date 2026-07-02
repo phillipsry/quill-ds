@@ -19,9 +19,7 @@ const stats = [
   { label: 'Total revenue', value: '$48,120', delta: '+12.4%', tone: 'default' as const },
   { label: 'Active users', value: '3,842', delta: '+4.1%', tone: 'default' as const },
   { label: 'Churn', value: '1.9%', delta: '−0.3%', tone: 'secondary' as const },
-  // Note: the destructive Badge variant dips just under AA contrast (4.45:1) on the darker
-  // card bg at 12px, so use 'outline' here. (Tracked: tighten destructive-on-surface contrast.)
-  { label: 'Open tickets', value: '27', delta: '+6', tone: 'outline' as const },
+  { label: 'Open tickets', value: '27', delta: '+6', tone: 'destructive' as const },
 ]
 
 export const StatCards: Story = {

@@ -21,7 +21,7 @@ export const tokens = {
       muted: { light: '#675F58', dark: '#A89880' },
     },
     pigment: {
-      terracotta: { base: { light: '#C4684B', dark: '#DB8568' }, deep: { light: '#944A33', dark: '#E89A80' } },
+      terracotta: { base: { light: '#C4684B', dark: '#DB8568' }, deep: { light: '#8A4530', dark: '#E89A80' } },
       moss: { base: { light: '#7A8C5C', dark: '#A2B57E' }, deep: { light: '#5E6E43', dark: '#B6C896' } },
       indigo: { base: { light: '#5B6B8A', dark: '#92A2C2' }, deep: { light: '#44516D', dark: '#AAB8D4' } },
       gold: { base: { light: '#B89968', dark: '#D6BA86' }, deep: { light: '#9A7D4E', dark: '#E2CA9E' } },

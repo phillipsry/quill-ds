@@ -94,11 +94,11 @@
           },
           "deep": {
             "$type": "color",
-            "$value": "#944A33",
+            "$value": "#8A4530",
             "$extensions": {
               "com.figma": {
                 "modes": {
-                  "Light": "#944A33",
+                  "Light": "#8A4530",
                   "Dark": "#E89A80"
                 }
               }
