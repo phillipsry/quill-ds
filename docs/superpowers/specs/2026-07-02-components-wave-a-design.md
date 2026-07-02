@@ -53,6 +53,16 @@ The cartesian Button set (6×8 = 48) is large; where a size only differs by padd
 | Icons | instance of `icon/*` |
 | Disabled state | opacity 0.5 (matches `disabled:opacity-50`) |
 
+## Foundation prerequisites (surfaced while scoping Button/Badge)
+
+Building components with **strict token-binding** exposes gaps in the foundation's text styles — these must be added (as new Figma text styles + Storybook token entries) **before** the components that need them, so "no hardcoded type" holds:
+
+- **`Label / Medium`** — Inter Medium ~12px (`text-xs`): needed by Badge, Kbd, small controls. No current style matches (Body/* are Regular).
+- **`Label / Small`** — likely Inter Medium ~11–13px for form labels, chips.
+- Confirm Button/Input/Checkbox/etc. label sizes map to an existing Body/* style or need a `Label / *` style.
+
+Each new text style is a small foundations addition (extend `TEXT_STYLES` in `figma/sync-foundations.figma.js` + document on the Tokens page). **Task 0 of the plan** adds the required label styles; component tasks then bind to them. This keeps the whole system literal-free.
+
 ## Verification
 
 - **Per component:** screenshot the Figma variant set and compare to the Storybook story; confirm variant/size names match the `cva`; confirm (read-back) that fills/radii/spacing resolve to **bound variables**, not literals; flip a frame to Dark mode and confirm it adapts.
