@@ -351,9 +351,12 @@ type, not an icon set.
   Use real Unicode glyphs in the brand fonts — prefer over SVG icons.
 - **Tier initials:** a single italic Fraunces letter (E / F / S / H) in a
   pigment-tinted circle.
-- **No icon font, no SVG sprite, no emoji** in the source.
-- If UI icons are genuinely needed, use a **thin line set** (Lucide ~1.5px is the
-  closest CDN match) and **flag it as a substitution** — the brand ships none.
+- **No icon font, no emoji** in the source.
+- **UI icons: Material Symbols (Outlined, weight 200)** — the actual Google
+  symbols, rendered as inline SVG through the source-owned `<Icon>` component
+  (`src/components/ui/icon.tsx`), generated from the official `@material-symbols/svg-200`
+  package. The thin 200 weight matches the editorial feel; the typographic marks
+  above are still preferred where they read naturally.
 
 ---
 
