@@ -81,11 +81,52 @@ async function syncPrimitiveColors(DTCG) {
   return { collection: col.name, modes: Object.keys(modes), created, updated, total: leaves.length }
 }
 
+// ---- scalar primitives: radius/type (FLOAT, rem→px) + font (STRING, family) ----
+const RADIUS_SCOPES = ['CORNER_RADIUS']
+const SIZE_SCOPES = ['FONT_SIZE']
+const FONT_SCOPES = ['FONT_FAMILY']
+
+const remToPx = (v) => parseFloat(v) * REM
+// full CSS stack → primary Figma family name (first segment, unquoted)
+const primaryFamily = (stack) => stack.split(',')[0].trim().replace(/^["']|["']$/g, '')
+
+function upsertScalar(col, name, value, type, scopes, modeIds, existing) {
+  let v = existing[name]
+  let created = 0
+  if (!v) {
+    v = figma.variables.createVariable(name, col, type)
+    v.scopes = scopes
+    created = 1
+  }
+  for (const id of Object.values(modeIds)) v.setValueForMode(id, value)
+  existing[name] = v
+  return created
+}
+
+async function syncPrimitiveScalars(DTCG) {
+  const col = await upsertCollection('Quill Primitives')
+  const modes = ensureModes(col, ['Light', 'Dark'])
+  const existing = await varsInCollection(col)
+  let created = 0
+  let updated = 0
+  const bump = (c) => (c ? created++ : updated++)
+  for (const [k, t] of Object.entries(DTCG.Primitives.radius)) bump(upsertScalar(col, 'radius/' + k, remToPx(t.$value), 'FLOAT', RADIUS_SCOPES, modes, existing))
+  for (const [k, t] of Object.entries(DTCG.Primitives.type)) bump(upsertScalar(col, 'type/' + k, remToPx(t.$value), 'FLOAT', SIZE_SCOPES, modes, existing))
+  for (const [k, t] of Object.entries(DTCG.Primitives.font)) bump(upsertScalar(col, 'font/' + k, primaryFamily(t.$value), 'STRING', FONT_SCOPES, modes, existing))
+  return {
+    created,
+    updated,
+    radius: Object.keys(DTCG.Primitives.radius).length,
+    type: Object.keys(DTCG.Primitives.type).length,
+    font: Object.keys(DTCG.Primitives.font).length,
+  }
+}
+
 async function syncFoundations(DTCG) {
   const results = {}
   results.colors = await syncPrimitiveColors(DTCG)
+  results.scalars = await syncPrimitiveScalars(DTCG)
   // Wired up across later tasks:
-  //   results.scalars  = await syncPrimitiveScalars(DTCG)
   //   results.semantic = await syncSemanticAliases(DTCG)
   //   results.text     = await syncTextStyles(DTCG)
   //   results.effects  = await syncEffectStyles(DTCG)
