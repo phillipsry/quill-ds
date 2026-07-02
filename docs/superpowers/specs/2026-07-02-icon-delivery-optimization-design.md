@@ -64,8 +64,13 @@ The old single `icons.generated.mjs` (721KB) is removed.
 - Existing `<Icon name="…">` usages are unchanged (same API). Ones referencing icons not in the core still work — they lazy-load (but most component icons will be in the core by construction).
 - The manifest/popularity machinery (`build-manifest.mjs`) is retained only to seed the **core** common list; the full library no longer depends on a 1000-cap.
 
+## Environment verification (done)
+
+- Build/test env is **Vite** (`@storybook/nextjs-vite`); app is **Next 16.2.7**. Both support dynamic-import-with-variable (`import(\`./icons/${name}.mjs\`)` → per-file chunks). So the lazy mechanism is viable in the actual toolchain.
+- **Chunk-count consideration:** a per-icon dynamic-expression import over the full outlined set makes the bundler emit up to ~7.8k potential chunks, which can slow dev/build. **Default:** scope the lazy set to a large useful set (e.g. the top ~1–2k by popularity) as per-icon chunks, with the remaining long tail behind a single grouped lazy module — keeps chunk count sane while keeping the *entire* library reachable by name. Revisit granularity if build time is fine with the full per-icon split.
+
 ## Risks
 
-- **Next dynamic-expression import** support (mitigated by the loaders.mjs fallback + AGENTS.md verification).
-- **~7.8k generated files** — gitignored; ensure the `pre*` hooks and Storybook/Next globs handle the directory. Generation time is a one-off per build (fast — string ops).
+- **Bundler chunk explosion** with full per-icon split — mitigated by the tiered default above (per-icon for the common ~1–2k, grouped chunk for the tail).
+- **~generated files** — gitignored; ensure `pre*` hooks + Storybook/Next globs handle the directory. Generation is fast (string ops).
 - **SSR/first-paint** for lazy icons — placeholder avoids layout shift; core covers above-the-fold component icons.
