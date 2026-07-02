@@ -6,13 +6,19 @@
 
 ## Context
 
-The component library currently uses **lucide-react** (imported in ~35 files; ~13 distinct icons used inside `src/components/ui/*` — checks, chevrons, search, info/warning/error, minus, more-horiz, panel-left — plus a handful more in stories). We're switching to **Material Symbols, Outlined, weight 200** as the single icon system, present identically in code (Storybook) and Figma, so design↔code parity holds when Wave A components use icon slots.
+The component library currently uses **lucide-react**, and the full footprint (audited) is:
+- **44 distinct icons** imported across **35 files** (22 `src/components/ui/*` + 13 `src/stories/*`).
+- `package.json` dependency `lucide-react ^1.17.0`.
+- `components.json` → `"iconLibrary": "lucide"` (shadcn CLI config).
+- `node_modules/lucide-react` (installed).
+
+We're switching to **Material Symbols, Outlined, weight 200** as the single icon system, present identically in code (Storybook) and Figma, so design↔code parity holds when Wave A components use icon slots. **Every** one of those artifacts is removed.
 
 Weight 200 is deliberate: the thinner stroke reads as refined/editorial and suits Quill's warm, restrained aesthetic better than the heavier 400.
 
 ## Goals
 
-- **One icon system:** Material Symbols Outlined @ weight 200. **Lucide fully removed** (`lucide-react` uninstalled, zero remaining imports).
+- **One icon system:** Material Symbols Outlined @ weight 200. **Lucide fully removed** — all 44 icon usages migrated, `lucide-react` uninstalled from `package.json`, `components.json` `iconLibrary` de-Lucided, and `node_modules/lucide-react` gone. A repo-wide `grep -ri lucide` (excluding node_modules + lockfile) must return **nothing**.
 - A **source-owned `<Icon name="…">`** component, generated from the Material Symbols SVGs, so only the icons in use ship and adding an icon is a one-line + regenerate step.
 - The **same icons in Figma** (icon components in the Quill Design System library), generated from the same SVGs, for instance-swap slots in Wave A.
 - Code stays the source of truth; both the code icon map and the Figma icons are **generated + re-runnable** (same philosophy as tokens).
@@ -73,12 +79,12 @@ Weight 200 is deliberate: the thinner stroke reads as refined/editorial and suit
 | `OctagonX` | `dangerous` | judgment call (error/stop) — flag for review |
 | `PanelLeft` | `dock_to_left` | judgment call (sidebar toggle) — flag for review |
 
-The plan will `grep` the full `*Icon`/lucide usage across `src/` (components **and** stories — e.g. Sonner's status icons, Command/Empty story icons) and extend this table so **every** usage maps before `lucide-react` is removed.
+This is the core component set. The **full manifest is 44 icons** (stories add e.g. `AlignLeft/Center/Right`, `Bold/Italic/Underline`, `ArrowRight`, `Bell`, `BookOpen`, `Copy`, `CreditCard`, `DollarSign`, `FolderOpen`, `Globe`, `HelpCircle`, `LayoutDashboard`, `Palette`, `Pencil`, `Plus`, `Star`, `Trash`/`Trash2`, `Users`, `X`, `Command`, `File`, `Settings`, `Loader2` → `progress_activity`/spinner). The plan enumerates and maps **all 44** before `lucide-react` is removed, flagging any without a clean 1:1 for review. `components.json`'s `iconLibrary` is removed/neutralized (Material Symbols isn't a shadcn CLI option, and icons are now custom via `<Icon>`).
 
 ## Verification
 
 - `npm run build:icons` is idempotent (re-run → no diff).
-- No `lucide-react` imports remain (`grep -r lucide-react src` → empty); `lucide-react` gone from `package.json`.
+- **Zero-Lucide gate:** `grep -ri lucide . --exclude-dir=node_modules --exclude-dir=.git` (also excluding the lockfile) returns **empty** — covers source imports, `package.json`, and `components.json`. `node_modules/lucide-react` removed after uninstall.
 - `npm run test-storybook` → **228/228, 0 a11y violations** (icons are `aria-hidden` unless labeled; the enforced a11y suite catches missing labels/roles).
 - Visual check: icons render as weight-200 outlined, correct sizes, in a few representative stories.
 - Figma: the `icon/*` components exist in the library and can be instance-swapped.
@@ -98,8 +104,9 @@ The plan will `grep` the full `*Icon`/lucide usage across `src/` (components **a
 | `src/components/ui/icons.generated.tsx` | new — generated icon map |
 | `src/components/ui/icon.tsx` | new — `<Icon>` component |
 | `figma/sync-icons.figma.js` | new — Figma icon sync |
-| ~35 component + story files | modified — Lucide → `<Icon>` |
+| ~35 component + story files | modified — all 44 Lucide usages → `<Icon>` |
 | `package.json` | modified — `+@material-symbols/svg-200`, `-lucide-react`, `build:icons` script |
+| `components.json` | modified — remove/neutralize `iconLibrary: "lucide"` |
 
 ## Next
 
