@@ -52,8 +52,10 @@ const preview: Preview = {
     options: {
       storySort: {
         order: [
-          'Docs',
-          ['Introduction', 'Colors', 'Typography', 'Spacing', 'Elevation', 'Tokens'],
+          'Foundations',
+          ['Introduction', 'Colors', 'Typography', 'Spacing', 'Elevation', 'Tokens', 'Icons'],
+          'Components',
+          'Patterns',
         ],
       },
     },

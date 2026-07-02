@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/navigation-menu'
 
 const meta = {
-  title: 'UI / NavigationMenu',
+  title: 'Components / NavigationMenu',
   component: NavigationMenu,
   tags: ['autodocs'],
   parameters: {

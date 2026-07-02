@@ -19,7 +19,7 @@ const courses = [
 ]
 
 const meta = {
-  title: 'UI / Table',
+  title: 'Components / Table',
   component: Table,
   tags: ['autodocs'],
   parameters: {

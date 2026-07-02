@@ -16,7 +16,7 @@ import { useState } from 'react'
 import { Icon } from '@/components/ui/icon'
 
 const meta = {
-  title: 'UI / Command',
+  title: 'Components / Command',
   component: Command,
   tags: ['autodocs'],
   parameters: {

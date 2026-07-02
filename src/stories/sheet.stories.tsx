@@ -14,7 +14,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 const meta = {
-  title: 'UI / Sheet',
+  title: 'Components / Sheet',
   component: Sheet,
   tags: ['autodocs'],
   parameters: {

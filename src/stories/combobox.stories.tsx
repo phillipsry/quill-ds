@@ -28,7 +28,7 @@ const jsFrameworks = ['Next.js', 'Remix', 'TanStack Start']
 const otherFrameworks = ['Astro', 'SvelteKit', 'Nuxt']
 
 const meta = {
-  title: 'UI / Combobox',
+  title: 'Components / Combobox',
   component: Combobox,
   tags: ['autodocs'],
   parameters: {

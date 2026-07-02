@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { Spinner } from '@/components/ui/spinner'
 
 const meta = {
-  title: 'UI / Spinner',
+  title: 'Components / Spinner',
   component: Spinner,
   tags: ['autodocs'],
   parameters: {

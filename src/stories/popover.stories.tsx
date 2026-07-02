@@ -5,7 +5,7 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 
 const meta = {
-  title: 'UI / Popover',
+  title: 'Components / Popover',
   component: Popover,
   tags: ['autodocs'],
   parameters: {

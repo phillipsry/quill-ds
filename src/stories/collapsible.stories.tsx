@@ -10,7 +10,7 @@ import { Icon } from '@/components/ui/icon'
 import { useState } from 'react'
 
 const meta = {
-  title: 'UI / Collapsible',
+  title: 'Components / Collapsible',
   component: Collapsible,
   tags: ['autodocs'],
   parameters: {

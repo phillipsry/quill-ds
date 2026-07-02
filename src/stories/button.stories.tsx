@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Icon } from '@/components/ui/icon'
 
 const meta = {
-  title: 'UI / Button',
+  title: 'Components / Button',
   component: Button,
   tags: ['autodocs'],
   parameters: {

@@ -7,7 +7,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 const meta = {
-  title: 'UI / HoverCard',
+  title: 'Components / HoverCard',
   component: HoverCard,
   tags: ['autodocs'],
   parameters: {

@@ -3,7 +3,7 @@ import { Toggle } from '@/components/ui/toggle'
 import { Icon } from '@/components/ui/icon'
 
 const meta = {
-  title: 'UI / Toggle',
+  title: 'Components / Toggle',
   component: Toggle,
   tags: ['autodocs'],
   parameters: {

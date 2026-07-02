@@ -37,7 +37,7 @@ const multiSeriesConfig = {
 }
 
 const meta = {
-  title: 'UI / Chart',
+  title: 'Components / Chart',
   component: ChartContainer,
   tags: ['autodocs'],
   parameters: {

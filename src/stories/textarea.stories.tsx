@@ -3,7 +3,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 
 const meta = {
-  title: 'UI / Textarea',
+  title: 'Components / Textarea',
   component: Textarea,
   tags: ['autodocs'],
   parameters: {

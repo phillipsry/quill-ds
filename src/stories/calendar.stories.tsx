@@ -5,7 +5,7 @@ import { useState } from 'react'
 import type { DateRange } from 'react-day-picker'
 
 const meta = {
-  title: 'UI / Calendar',
+  title: 'Components / Calendar',
   component: Calendar,
   tags: ['autodocs'],
   parameters: {

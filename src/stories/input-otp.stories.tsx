@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/input-otp'
 
 const meta = {
-  title: 'UI / InputOTP',
+  title: 'Components / InputOTP',
   component: InputOTP,
   tags: ['autodocs'],
   parameters: {

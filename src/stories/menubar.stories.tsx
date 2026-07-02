@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/menubar'
 
 const meta = {
-  title: 'UI / Menubar',
+  title: 'Components / Menubar',
   component: Menubar,
   tags: ['autodocs'],
   parameters: {

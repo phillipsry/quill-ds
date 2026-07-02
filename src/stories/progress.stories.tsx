@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/progress'
 
 const meta = {
-  title: 'UI / Progress',
+  title: 'Components / Progress',
   component: Progress,
   tags: ['autodocs'],
   parameters: {
