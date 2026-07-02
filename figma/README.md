@@ -21,3 +21,16 @@
 - Effect styles (`Elevation/xs·sm·base·lg·pop`, light values).
 
 **Not managed here:** dark-mode elevation (Figma effect styles can't hold modes) — deferred to the component phase. Components, Code Connect, and patterns are later phases.
+
+## Built (verified 2026-07-01)
+
+- `Quill Primitives` collection, modes **Light/Dark** — 40 variables (18 color + 8 radius + 10 type + 4 font).
+- `Quill Semantic` collection, single mode — 47 alias variables (text 5, surface 3, border 3, status 5, shadcn 31).
+- 12 text styles (`Display/*`, `Heading/*`, `Body/*`, `Accent`, `Eyebrow`).
+- 5 effect styles (`Elevation/xs·sm·base·lg·pop`, light).
+- `Foundations Specimen` frame (node `10:2`) — swatches, type, and elevation bound to the variables/styles; verified in both Light and Dark.
+- **Idempotency verified:** re-running the full sync reported 0 created / all updated (no duplicates).
+
+## Publish as a library (manual — required)
+
+The Plugin API / MCP cannot publish a team library. In Figma, open the file → **Assets** panel → **Publish** (or the file menu → Publish library) → confirm. Later phases (components, patterns) consume the published library.
