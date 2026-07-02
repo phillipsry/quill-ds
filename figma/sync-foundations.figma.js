@@ -85,8 +85,12 @@ async function syncPrimitiveColors(DTCG) {
 const RADIUS_SCOPES = ['CORNER_RADIUS']
 const SIZE_SCOPES = ['FONT_SIZE']
 const FONT_SCOPES = ['FONT_FAMILY']
+const SPACE_SCOPES = ['GAP', 'WIDTH_HEIGHT']
+const STROKE_SCOPES = ['STROKE_FLOAT']
 
 const remToPx = (v) => parseFloat(v) * REM
+// rem → px (×16); px values pass through unchanged (border widths).
+const dimToPx = (v) => (v.trim().endsWith('rem') ? parseFloat(v) * REM : parseFloat(v))
 // full CSS stack → primary Figma family name (first segment, unquoted)
 const primaryFamily = (stack) => stack.split(',')[0].trim().replace(/^["']|["']$/g, '')
 
@@ -110,13 +114,17 @@ async function syncPrimitiveScalars(DTCG) {
   let created = 0
   let updated = 0
   const bump = (c) => (c ? created++ : updated++)
-  for (const [k, t] of Object.entries(DTCG.Primitives.radius)) bump(upsertScalar(col, 'radius/' + k, remToPx(t.$value), 'FLOAT', RADIUS_SCOPES, modes, existing))
-  for (const [k, t] of Object.entries(DTCG.Primitives.type)) bump(upsertScalar(col, 'type/' + k, remToPx(t.$value), 'FLOAT', SIZE_SCOPES, modes, existing))
+  for (const [k, t] of Object.entries(DTCG.Primitives.spacing)) bump(upsertScalar(col, 'spacing/' + k, dimToPx(t.$value), 'FLOAT', SPACE_SCOPES, modes, existing))
+  for (const [k, t] of Object.entries(DTCG.Primitives.radius)) bump(upsertScalar(col, 'radius/' + k, dimToPx(t.$value), 'FLOAT', RADIUS_SCOPES, modes, existing))
+  for (const [k, t] of Object.entries(DTCG.Primitives.borderWidth)) bump(upsertScalar(col, 'border-width/' + k, dimToPx(t.$value), 'FLOAT', STROKE_SCOPES, modes, existing))
+  for (const [k, t] of Object.entries(DTCG.Primitives.type)) bump(upsertScalar(col, 'type/' + k, dimToPx(t.$value), 'FLOAT', SIZE_SCOPES, modes, existing))
   for (const [k, t] of Object.entries(DTCG.Primitives.font)) bump(upsertScalar(col, 'font/' + k, primaryFamily(t.$value), 'STRING', FONT_SCOPES, modes, existing))
   return {
     created,
     updated,
+    spacing: Object.keys(DTCG.Primitives.spacing).length,
     radius: Object.keys(DTCG.Primitives.radius).length,
+    borderWidth: Object.keys(DTCG.Primitives.borderWidth).length,
     type: Object.keys(DTCG.Primitives.type).length,
     font: Object.keys(DTCG.Primitives.font).length,
   }
