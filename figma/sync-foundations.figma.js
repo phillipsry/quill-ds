@@ -122,12 +122,46 @@ async function syncPrimitiveScalars(DTCG) {
   }
 }
 
+// ---- Semantic collection: aliases → Primitives ----
+// "{Primitives.color.pigment.terracotta.deep}" → "color/pigment/terracotta/deep"
+const dtcgRefToVarName = (ref) => 'color/' + ref.replace(/^\{Primitives\.color\.|\}$/g, '').split('.').join('/')
+
+async function syncSemanticAliases(DTCG) {
+  const primCol = await upsertCollection('Quill Primitives')
+  const primByName = await varsInCollection(primCol)
+  const semCol = await upsertCollection('Quill Semantic')
+  const modeId = semCol.modes[0].modeId // single mode
+  const existing = await varsInCollection(semCol)
+  let created = 0
+  let updated = 0
+  const missing = []
+  const buckets = ['text', 'surface', 'border', 'status', 'shadcn']
+  for (const bucket of buckets) {
+    for (const [key, tok] of Object.entries(DTCG.Theme[bucket])) {
+      const prim = primByName[dtcgRefToVarName(tok.$value)]
+      if (!prim) { missing.push(`${bucket}/${key} → ${tok.$value}`); continue }
+      const leaf = key.startsWith(bucket + '-') ? key.slice(bucket.length + 1) : key
+      const name = bucket + '/' + leaf
+      let v = existing[name]
+      if (!v) {
+        v = figma.variables.createVariable(name, semCol, 'COLOR')
+        v.scopes = COLOR_SCOPES
+        created++
+      } else updated++
+      v.setValueForMode(modeId, { type: 'VARIABLE_ALIAS', id: prim.id })
+      existing[name] = v
+    }
+  }
+  if (missing.length) throw new Error('Unresolved aliases: ' + missing.join(', '))
+  return { collection: semCol.name, created, updated, buckets: buckets.map((b) => `${b}:${Object.keys(DTCG.Theme[b]).length}`) }
+}
+
 async function syncFoundations(DTCG) {
   const results = {}
   results.colors = await syncPrimitiveColors(DTCG)
   results.scalars = await syncPrimitiveScalars(DTCG)
+  results.semantic = await syncSemanticAliases(DTCG)
   // Wired up across later tasks:
-  //   results.semantic = await syncSemanticAliases(DTCG)
   //   results.text     = await syncTextStyles(DTCG)
   //   results.effects  = await syncEffectStyles(DTCG)
   return results
