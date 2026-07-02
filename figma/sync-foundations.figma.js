@@ -195,13 +195,47 @@ async function syncTextStyles() {
   return { created, updated, total: TEXT_STYLES.length }
 }
 
+// ---- Effect styles: elevation drop shadows (light values; Figma effect styles can't hold modes) ----
+// Parse a CSS box-shadow composite ("x y blur spread rgba(...), ...") into Figma DROP_SHADOW effects.
+function parseShadows(css) {
+  const re = /(-?[\d.]+)(?:px)?\s+(-?[\d.]+)(?:px)?\s+(-?[\d.]+)(?:px)?\s+(-?[\d.]+)(?:px)?\s+(rgba?\([^)]*\))/g
+  const out = []
+  let m
+  while ((m = re.exec(css))) {
+    out.push({
+      type: 'DROP_SHADOW',
+      color: toFigmaColor(m[5]),
+      offset: { x: +m[1], y: +m[2] },
+      radius: +m[3],
+      spread: +m[4],
+      visible: true,
+      blendMode: 'NORMAL',
+    })
+  }
+  return out
+}
+
+async function syncEffectStyles(DTCG) {
+  const byName = Object.fromEntries((await figma.getLocalEffectStylesAsync()).map((s) => [s.name, s]))
+  let created = 0
+  let updated = 0
+  for (const [k, tok] of Object.entries(DTCG.Primitives.elevation)) {
+    const name = 'Elevation/' + k
+    let es = byName[name]
+    if (!es) { es = figma.createEffectStyle(); created++ } else updated++
+    es.name = name
+    es.effects = parseShadows(tok.$value)
+    byName[name] = es
+  }
+  return { created, updated, total: Object.keys(DTCG.Primitives.elevation).length }
+}
+
 async function syncFoundations(DTCG) {
   const results = {}
   results.colors = await syncPrimitiveColors(DTCG)
   results.scalars = await syncPrimitiveScalars(DTCG)
   results.semantic = await syncSemanticAliases(DTCG)
   results.text = await syncTextStyles()
-  // Wired up in the next task:
-  //   results.effects  = await syncEffectStyles(DTCG)
+  results.effects = await syncEffectStyles(DTCG)
   return results
 }
