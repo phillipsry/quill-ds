@@ -1,7 +1,20 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
+import { transform } from 'lightningcss'
 import { renderCss, injectMarkers, cssVarName, registryBlock, renderManager, renderDtcg } from './build-tokens.mjs'
 import { tokens } from '../src/tokens/quill.tokens.mjs'
+
+test('generated CSS survives strict minification (LightningCSS) with light primitives intact', () => {
+  // The production build + downstream consumers minify with LightningCSS, which THROWS on
+  // invalid custom-property names (e.g. a dot in `--space-2.5`) and drops the whole :root
+  // block — silently breaking light mode. This guards against any such name regressing.
+  const { root, dark } = renderCss(tokens)
+  const css = `:root{${root}}\n[data-theme="dark"]{${dark}}`
+  const out = transform({ filename: 'quill.css', code: Buffer.from(css), minify: true }).code.toString()
+  assert.match(out, /f5eddd/i, 'light --paper must survive minification')
+  assert.match(out, /8a7f6e/i, 'light --line-control must survive minification')
+  assert.equal(/--space-\d+\.\d+\s*:/.test(root), false, 'no dotted custom-property names')
+})
 
 test('cssVarName drops a trailing base leaf', () => {
   assert.equal(cssVarName(['paper', 'base']), '--paper')

@@ -57,7 +57,10 @@ export function renderCss(t) {
   rootLines.push(`  --radius: ${t.radiusBase};`)
   // Spacing + border-width (documented scales; kept in :root, not @theme, so they
   // don't collide with Tailwind's built-in numeric utilities).
-  for (const [k, v] of Object.entries(t.spacing)) rootLines.push(`  --space-${k}: ${v};`)
+  // Dots are illegal in CSS custom-property names — a half-step key like "2.5"
+  // must emit `--space-2_5`, or a strict minifier (LightningCSS, used by the
+  // production build + downstream consumers) throws and drops the whole :root block.
+  for (const [k, v] of Object.entries(t.spacing)) rootLines.push(`  --space-${String(k).replace(/\./g, '_')}: ${v};`)
   for (const [k, v] of Object.entries(t.borderWidth)) rootLines.push(`  --border-width-${k}: ${v};`)
   for (const [k, v] of Object.entries(t.shadcn)) rootLines.push(`  --${k}: ${v};`)
 
