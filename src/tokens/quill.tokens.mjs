@@ -31,6 +31,10 @@ export const tokens = {
       soft: { light: 'rgba(42, 38, 34, 0.12)', dark: 'rgba(241, 231, 211, 0.11)' },
       base: { light: 'rgba(42, 38, 34, 0.15)', dark: 'rgba(241, 231, 211, 0.15)' },
       strong: { light: 'rgba(42, 38, 34, 0.20)', dark: 'rgba(241, 231, 211, 0.22)' },
+      // Solid boundary for interactive controls (switch/slider tracks, field & checkbox/radio
+      // borders). Alpha lines never reach WCAG 1.4.11 non-text 3:1 on paper; these solids do:
+      // 3.38:1 (light) / 3.34:1 (dark) against the page. Used by the shadcn `input` token.
+      control: { light: '#8A7F6E', dark: '#746B5D' },
     },
   },
   radius: {
@@ -95,7 +99,7 @@ export const tokens = {
     'text-accent-color': 'var(--terracotta-deep)', // fixed: was var(--terracotta) — see spec
     'link': 'var(--indigo)',
     'border-card': 'var(--line-soft)',
-    'border-field': 'var(--line)',
+    'border-field': 'var(--line-control)',
     'border-divider': 'var(--line-faint)',
     'success': 'var(--moss-deep)',
     'warning': 'var(--gold-deep)',
@@ -111,9 +115,9 @@ export const tokens = {
     'muted': 'var(--paper-deep)', 'muted-foreground': 'var(--ink-muted)',
     'accent': 'var(--paper-deep)', 'accent-foreground': 'var(--ink)',
     'destructive': 'var(--terracotta-deep)',
-    'border': 'var(--line-soft)', 'input': 'var(--line)', 'ring': 'var(--ink)',
+    'border': 'var(--line-soft)', 'input': 'var(--line-control)', 'ring': 'var(--ink)',
     'chart-1': 'var(--terracotta)', 'chart-2': 'var(--moss)', 'chart-3': 'var(--indigo)',
-    'chart-4': 'var(--gold)', 'chart-5': 'var(--ink-soft)',
+    'chart-4': 'var(--gold-deep)', 'chart-5': 'var(--ink-soft)',
     'sidebar': 'var(--paper-warm)', 'sidebar-foreground': 'var(--ink)',
     'sidebar-primary': 'var(--ink)', 'sidebar-primary-foreground': 'var(--paper)',
     'sidebar-accent': 'var(--paper-deep)', 'sidebar-accent-foreground': 'var(--ink)',

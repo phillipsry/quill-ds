@@ -26,6 +26,7 @@
   --line-soft: rgba(42, 38, 34, 0.12);
   --line: rgba(42, 38, 34, 0.15);
   --line-strong: rgba(42, 38, 34, 0.20);
+  --line-control: #8A7F6E;
   --shadow-xs: 0 1px 2px -1px rgba(42, 38, 34, 0.12), 0 0 0 1px rgba(42, 38, 34, 0.05);
   --shadow-sm: 0 2px 4px -1px rgba(42, 38, 34, 0.14), 0 1px 2px -1px rgba(42, 38, 34, 0.08);
   --shadow: 0 4px 8px -2px rgba(42, 38, 34, 0.16), 0 2px 4px -2px rgba(42, 38, 34, 0.10);
@@ -52,7 +53,7 @@
   --text-accent-color: var(--terracotta-deep);
   --link: var(--indigo);
   --border-card: var(--line-soft);
-  --border-field: var(--line);
+  --border-field: var(--line-control);
   --border-divider: var(--line-faint);
   --success: var(--moss-deep);
   --warning: var(--gold-deep);
@@ -97,12 +98,12 @@
   --accent-foreground: var(--ink);
   --destructive: var(--terracotta-deep);
   --border: var(--line-soft);
-  --input: var(--line);
+  --input: var(--line-control);
   --ring: var(--ink);
   --chart-1: var(--terracotta);
   --chart-2: var(--moss);
   --chart-3: var(--indigo);
-  --chart-4: var(--gold);
+  --chart-4: var(--gold-deep);
   --chart-5: var(--ink-soft);
   --sidebar: var(--paper-warm);
   --sidebar-foreground: var(--ink);
@@ -130,6 +131,7 @@
   --dk-line-soft: rgba(241, 231, 211, 0.11);
   --dk-line: rgba(241, 231, 211, 0.15);
   --dk-line-strong: rgba(241, 231, 211, 0.22);
+  --dk-line-control: #746B5D;
   --dk-shadow-xs: 0 1px 2px -1px rgba(8, 5, 3, 0.40), 0 0 0 1px rgba(8, 5, 3, 0.18);
   --dk-shadow-sm: 0 2px 4px -1px rgba(8, 5, 3, 0.48), 0 1px 2px -1px rgba(8, 5, 3, 0.30);
   --dk-shadow: 0 4px 8px -2px rgba(8, 5, 3, 0.54), 0 2px 4px -2px rgba(8, 5, 3, 0.36);
@@ -158,6 +160,7 @@
   --line-soft: var(--dk-line-soft);
   --line: var(--dk-line);
   --line-strong: var(--dk-line-strong);
+  --line-control: var(--dk-line-control);
   --shadow-xs: var(--dk-shadow-xs);
   --shadow-sm: var(--dk-shadow-sm);
   --shadow: var(--dk-shadow);

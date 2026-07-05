@@ -7,7 +7,7 @@ test('primitive color values match current globals.css', () => {
   assert.equal(tokens.color.paper.base.dark, '#20180E')
   assert.equal(tokens.color.ink.base.light, '#2A2622')
   assert.equal(tokens.color.pigment.terracotta.base.light, '#C4684B')
-  assert.equal(tokens.color.pigment.terracotta.deep.light, '#944A33')
+  assert.equal(tokens.color.pigment.terracotta.deep.light, '#8A4530')
   assert.equal(tokens.color.line.base.light, 'rgba(42, 38, 34, 0.15)')
 })
 
@@ -25,4 +25,15 @@ test('the accent alias is fixed to terracotta-deep (a11y)', () => {
 
 test('manager control border is the readable value', () => {
   assert.equal(tokens.manager.controlBorder, 'rgba(42,38,34,0.32)')
+})
+
+test('interactive controls use a solid AA boundary, not the faint alpha line (WCAG 1.4.11)', () => {
+  // Solid warm-grey clears non-text 3:1 on paper (3.38:1 light / 3.34:1 dark).
+  assert.equal(tokens.color.line.control.light, '#8A7F6E')
+  assert.equal(tokens.color.line.control.dark, '#746B5D')
+  // shadcn `input` (switch track, checkbox/radio/field borders) + semantic field border route through it.
+  assert.equal(tokens.shadcn.input, 'var(--line-control)')
+  assert.equal(tokens.semantic['border-field'], 'var(--line-control)')
+  // chart-4 gold-base failed 3:1 (2.31); gold-deep clears it (3.33:1).
+  assert.equal(tokens.shadcn['chart-4'], 'var(--gold-deep)')
 })

@@ -232,6 +232,18 @@
               }
             }
           }
+        },
+        "control": {
+          "$type": "color",
+          "$value": "#8A7F6E",
+          "$extensions": {
+            "com.figma": {
+              "modes": {
+                "Light": "#8A7F6E",
+                "Dark": "#746B5D"
+              }
+            }
+          }
         }
       }
     },
@@ -577,7 +589,7 @@
         "$value": "{Primitives.color.line.soft}"
       },
       "border-field": {
-        "$value": "{Primitives.color.line.base}"
+        "$value": "{Primitives.color.line.control}"
       },
       "border-divider": {
         "$value": "{Primitives.color.line.faint}"
@@ -650,7 +662,7 @@
         "$value": "{Primitives.color.line.soft}"
       },
       "input": {
-        "$value": "{Primitives.color.line.base}"
+        "$value": "{Primitives.color.line.control}"
       },
       "ring": {
         "$value": "{Primitives.color.ink.base}"
@@ -665,7 +677,7 @@
         "$value": "{Primitives.color.pigment.indigo.base}"
       },
       "chart-4": {
-        "$value": "{Primitives.color.pigment.gold.base}"
+        "$value": "{Primitives.color.pigment.gold.deep}"
       },
       "chart-5": {
         "$value": "{Primitives.color.ink.soft}"

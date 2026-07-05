@@ -29,7 +29,7 @@ test('registryBlock emits :root + dark, no @theme', () => {
   assert.match(block, /:root \{/)
   assert.match(block, /\[data-theme="dark"\] \{/)
   assert.equal(/@theme/.test(block), false)
-  assert.match(block, /--terracotta-deep: #944A33;/)
+  assert.match(block, /--terracotta-deep: #8A4530;/)
 })
 
 test('injectMarkers replaces only between markers and is idempotent', () => {
