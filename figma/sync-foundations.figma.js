@@ -174,15 +174,15 @@ const TEXT_STYLES = [
   { name: 'Heading/L', family: 'Fraunces', style: 'Regular', size: 32, lh: 120, ls: -2 },
   { name: 'Heading/M', family: 'Fraunces', style: 'Regular', size: 24, lh: 120, ls: -2 },
   { name: 'Heading/S', family: 'Fraunces', style: 'Regular', size: 18, lh: 130, ls: -1 },
-  { name: 'Body/L', family: 'Inter', style: 'Regular', size: 18, lh: 170 },
-  { name: 'Body/Base', family: 'Inter', style: 'Regular', size: 15.2, lh: 170 },
-  { name: 'Body/S', family: 'Inter', style: 'Regular', size: 13.6, lh: 160 },
-  { name: 'Body/XS', family: 'Inter', style: 'Regular', size: 12, lh: 150 },
+  { name: 'Body/L', family: 'Raleway', style: 'Regular', size: 18, lh: 170 },
+  { name: 'Body/Base', family: 'Raleway', style: 'Regular', size: 15.2, lh: 170 },
+  { name: 'Body/S', family: 'Raleway', style: 'Regular', size: 13.6, lh: 160 },
+  { name: 'Body/XS', family: 'Raleway', style: 'Regular', size: 12, lh: 150 },
   // Label styles — Inter Medium for form/control labels, badges, chips (text-sm / text-xs + font-medium).
-  { name: 'Label/Default', family: 'Inter', style: 'Medium', size: 13.6, lh: 140 },
-  { name: 'Label/Small', family: 'Inter', style: 'Medium', size: 12, lh: 140 },
+  { name: 'Label/Default', family: 'Raleway', style: 'Medium', size: 13.6, lh: 140 },
+  { name: 'Label/Small', family: 'Raleway', style: 'Medium', size: 12, lh: 140 },
   { name: 'Accent', family: 'Fraunces', style: 'Italic', size: 28, lh: 120, ls: -2 },
-  { name: 'Eyebrow', family: 'Inter', style: 'Medium', size: 11, lh: 100, ls: 15, textCase: 'UPPER' },
+  { name: 'Eyebrow', family: 'Raleway', style: 'Medium', size: 11, lh: 100, ls: 15, textCase: 'UPPER' },
 ]
 
 async function syncTextStyles() {

@@ -9,7 +9,7 @@ addons.setConfig({
     brandImage: '/quill_lockup.svg',
     brandUrl: '/',
     brandTarget: '_self',
-    fontBase: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+    fontBase: '"Raleway", -apple-system, BlinkMacSystemFont, sans-serif',
     fontCode: 'ui-monospace, "SF Mono", Menlo, monospace',
     ...managerTheme,
   }),
@@ -24,7 +24,7 @@ addons.setConfig({
 const style = document.createElement('style')
 style.textContent = `
   /* Load brand fonts */
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Raleway:wght@400;500;600&display=swap');
 
   /* Sidebar brand logo area */
   #storybook-explorer-menu a[href="/"] {
@@ -47,7 +47,7 @@ style.textContent = `
   [data-nodetype="story"] button,
   [data-nodetype="component"] button,
   [data-nodetype="document"] button {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: "Raleway", -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 13px;
     border-radius: 6px;
   }

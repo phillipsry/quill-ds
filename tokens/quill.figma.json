@@ -250,7 +250,7 @@
     "font": {
       "sans": {
         "$type": "fontFamily",
-        "$value": "\"Inter\", -apple-system, BlinkMacSystemFont, sans-serif"
+        "$value": "\"Raleway\", -apple-system, BlinkMacSystemFont, sans-serif"
       },
       "display": {
         "$type": "fontFamily",

@@ -4,7 +4,7 @@
  */
 export const tokens = {
   font: {
-    sans: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+    sans: '"Raleway", -apple-system, BlinkMacSystemFont, sans-serif',
     display: '"Fraunces", Georgia, serif',
     heading: '"Fraunces", Georgia, serif',
     mono: 'ui-monospace, "SF Mono", Menlo, monospace',

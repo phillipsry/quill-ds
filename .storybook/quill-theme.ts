@@ -7,7 +7,7 @@ export default create({
   brandImage: '/quill_lockup.svg',
   brandUrl: '/',
   brandTarget: '_self',
-  fontBase: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+  fontBase: '"Raleway", -apple-system, BlinkMacSystemFont, sans-serif',
   fontCode: 'ui-monospace, "SF Mono", Menlo, monospace',
   ...managerTheme,
 })

@@ -172,12 +172,12 @@ keep the multiply grain (it disappears).
 
 ## 4. Typography
 
-Two voices. **Fraunces** (variable display serif) is the brand voice; **Inter**
+Two voices. **Fraunces** (variable display serif) is the brand voice; **Raleway**
 handles body and UI.
 
 ### Families
 - `--font-display`: `'Fraunces', Georgia, serif` — headings, wordmark, captions.
-- `--font-body`: `'Inter', -apple-system, sans-serif` — body, UI, labels.
+- `--font-body`: `'Raleway', -apple-system, sans-serif` — body, UI, labels.
 - `--font-mono`: `ui-monospace, 'SF Mono', Menlo, monospace` — token/code specimens.
 
 Loaded from Google Fonts in `tokens/fonts.css`. Weights used: **400 / 500 / 600**.
@@ -213,8 +213,8 @@ Presets: `--fraunces-display` (`SOFT 50, opsz 144, WONK 0`) ·
 ### Rules
 - **Headings** → Fraunces, **light (400)**, tight tracking, large; use `--fraunces-display`.
 - **The one accent word.** Italicize exactly **one** word per headline, color it terracotta, `--fraunces-accent`. Never two.
-- **Body / UI** → Inter 400/500/600, `--leading-relaxed` for reading copy.
-- **Eyebrows / labels** → Inter, **UPPERCASE**, `--text-xs`, `--tracking-wider`, ink-muted; the terracotta variant carries a short leading dash.
+- **Body / UI** → Raleway 400/500/600, `--leading-relaxed` for reading copy.
+- **Eyebrows / labels** → Raleway, **UPPERCASE**, `--text-xs`, `--tracking-wider`, ink-muted; the terracotta variant carries a short leading dash.
 - **Captions** → small **Fraunces italic** in ink-muted.
 - Casing: sentence case in prose & headings; UPPERCASE only for tiny eyebrows.
 
@@ -285,7 +285,7 @@ Variants: `primary` (solid ink → warms to terracotta on hover), `secondary`
 (ink outline, fills ink on hover), `ghost` (text, terracotta on hover), `accent`
 (terracotta, for the one hero CTA), `link` (underlined inline text, no chrome).
 Sizes `sm`/`md`/`lg`. Props: `withArrow` (sliding "→"), `href` (renders as link),
-`disabled`. `rounded-sm`, Inter medium.
+`disabled`. `rounded-sm`, Raleway medium.
 ```jsx
 <Button variant="primary" withArrow>Start your collection</Button>
 <Button variant="accent">Save me a deck</Button>

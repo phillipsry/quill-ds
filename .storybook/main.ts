@@ -14,6 +14,12 @@ const config: StorybookConfig = {
   ],
   framework: '@storybook/nextjs-vite',
   staticDirs: ['../src/stories/assets'],
+  // Brand favicon (the quill feather) in the manager tab, served from staticDirs root.
+  managerHead: (head) => `
+    ${head}
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+  `,
   docs: {
     autodocs: 'tag',
   },

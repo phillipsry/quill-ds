@@ -1,0 +1,10 @@
+<!-- Load brand webfonts into the story preview iframe.
+     next/font (which sets --font-raleway / --font-fraunces) does not run in the
+     Storybook preview, so the story text falls back to the family name — load the
+     real faces here so components render in Raleway / Fraunces, not a system font. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Raleway:wght@400;500;600&display=swap"
+>

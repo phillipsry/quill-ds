@@ -1,10 +1,10 @@
 /* Quill Design System Theme
    Install: npx shadcn add https://quill-ds.vercel.app/r/quill.json
-   Fonts: Fraunces (display/heading) + Inter (body) from Google Fonts
+   Fonts: Fraunces (display/heading) + Raleway (body) from Google Fonts
 */
 
 /* ─── Font imports ──────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Raleway:wght@400;500;600&display=swap');
 
 /* @quill-tokens:start */
 :root {
@@ -175,7 +175,7 @@
    styled CTA's text-color utility was being ignored.) */
 @layer base {
   body {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: "Raleway", -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.7;
     color: var(--ink-soft);
     background-color: var(--paper);
