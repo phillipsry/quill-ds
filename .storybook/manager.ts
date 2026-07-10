@@ -6,7 +6,7 @@ addons.setConfig({
   theme: create({
     base: 'light',
     brandTitle: 'Quill Design System',
-    brandImage: '/quill-lockup-sm-light.svg',
+    brandImage: '/quill-lockup-md-light.svg',
     brandUrl: '/',
     brandTarget: '_self',
     fontBase: '"Raleway", -apple-system, BlinkMacSystemFont, sans-serif',
@@ -29,6 +29,12 @@ style.textContent = `
   /* Sidebar brand logo area */
   #storybook-explorer-menu a[href="/"] {
     padding: 16px;
+  }
+  /* Storybook caps the brand image at 150px !important; match it to win */
+  .sidebar-header a[href="/"] img {
+    width: 100%;
+    max-width: 210px !important;
+    height: auto;
   }
 
   /* Nav root group labels (e.g. "UI", "Docs") */
