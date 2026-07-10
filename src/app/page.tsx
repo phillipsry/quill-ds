@@ -13,6 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Icon } from "@/components/ui/icon";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -141,14 +142,17 @@ export default function Home() {
     "text-sm font-medium text-[var(--text-body)] no-underline transition-colors duration-200 hover:text-terracotta";
 
   return (
-    <div className="min-h-screen w-full bg-[var(--surface-page)] font-sans text-[var(--text-body)] [scroll-behavior:smooth]">
+    <div className="min-h-screen w-full bg-[var(--surface-page)] font-sans text-[var(--text-body)]">
       <div className="paper-grain" />
       <div className="paper-specks" />
 
       {/* ── Nav ─────────────────────────────────────────────────────────── */}
       <nav className="sticky top-0 z-10 border-b border-[var(--border-divider)] bg-[var(--surface-page)]">
-        <div className="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between gap-8 px-12 max-sm:gap-4 max-sm:px-4">
-          <a href="#top" className="flex items-center gap-3 no-underline">
+        {/* Three zones: logo left, links centered, theme toggle right. On mobile
+            the middle zone sits between the other two (true centering and the
+            sun/moon pair don't fit a 390px row). */}
+        <div className="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between gap-4 px-4 sm:grid sm:grid-cols-[1fr_auto_1fr] sm:gap-8 sm:px-12">
+          <a href="#top" className="flex items-center gap-3 no-underline sm:justify-self-start">
             <Logo />
             {/* On mobile only the feather + Quill wordmark stays. */}
             <span className="inline-block h-[18px] w-px bg-[var(--line)] max-sm:hidden" />
@@ -156,11 +160,23 @@ export default function Home() {
               Design system
             </span>
           </a>
-          <div className="flex items-center gap-7 max-sm:gap-3">
+          <div className="flex items-center gap-7 max-sm:gap-3 sm:justify-self-center">
             <a href="#foundations" className={`${navLink} max-sm:text-xs`}>Foundations</a>
             <a href="#components" className={`${navLink} max-sm:text-xs`}>Components</a>
             <a href="#principles" className={`${navLink} max-sm:text-xs`}>Principles</a>
+          </div>
+          <div className="flex items-center gap-2 sm:justify-self-end">
+            <Icon
+              name="light_mode"
+              size={15}
+              className={`max-sm:hidden ${theme === "light" ? "text-[var(--ink)]" : "text-[var(--text-muted-color)]"}`}
+            />
             <Switch checked={theme === "dark"} onCheckedChange={toggleTheme} aria-label="Dusk mode" title="Dusk mode" />
+            <Icon
+              name="dark_mode"
+              size={15}
+              className={`max-sm:hidden ${theme === "dark" ? "text-[var(--ink)]" : "text-[var(--text-muted-color)]"}`}
+            />
           </div>
         </div>
       </nav>

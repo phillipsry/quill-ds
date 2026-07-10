@@ -288,6 +288,18 @@
   color: var(--ink-muted);
 }
 
+/* Anchor navigation glides instead of jumping — must live on the scroll
+   container (html), not a page wrapper. Honors reduced-motion. The padding
+   keeps anchored sections from tucking under the 72px sticky nav. */
+html {
+  scroll-padding-top: 72px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 /* Paper grain texture — add as fixed siblings inside the app shell.
    Skip on dense data-heavy pages where mix-blend-mode is costly. */
 .paper-grain {
