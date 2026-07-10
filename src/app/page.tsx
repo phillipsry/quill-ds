@@ -165,17 +165,19 @@ export default function Home() {
             <a href="#components" className={`${navLink} max-sm:text-xs`}>Components</a>
             <a href="#principles" className={`${navLink} max-sm:text-xs`}>Principles</a>
           </div>
+          {/* Inactive icons use ink-soft, not ink-muted: 6.5:1 light / 9.1:1
+              dark against the page — comfortably past WCAG 1.4.11's 3:1. */}
           <div className="flex items-center gap-2 sm:justify-self-end">
             <Icon
               name="light_mode"
-              size={15}
-              className={`max-sm:hidden ${theme === "light" ? "text-[var(--ink)]" : "text-[var(--text-muted-color)]"}`}
+              size={18}
+              className={`max-sm:hidden ${theme === "light" ? "text-[var(--ink)]" : "text-[var(--ink-soft)]"}`}
             />
             <Switch checked={theme === "dark"} onCheckedChange={toggleTheme} aria-label="Dusk mode" title="Dusk mode" />
             <Icon
               name="dark_mode"
-              size={15}
-              className={`max-sm:hidden ${theme === "dark" ? "text-[var(--ink)]" : "text-[var(--text-muted-color)]"}`}
+              size={18}
+              className={`max-sm:hidden ${theme === "dark" ? "text-[var(--ink)]" : "text-[var(--ink-soft)]"}`}
             />
           </div>
         </div>
