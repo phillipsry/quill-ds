@@ -36,13 +36,45 @@ test('renderCss reproduces primitive + dk + remap declarations', () => {
   assert.match(theme, /--text-xl:\s*1\.5rem;/)
 })
 
-test('registryBlock emits :root + dark, no @theme', () => {
+test('registryBlock emits :root + all theme blocks, no @theme', () => {
   const css = renderCss(tokens)
   const block = registryBlock(css)
   assert.match(block, /:root \{/)
   assert.match(block, /\[data-theme="dark"\] \{/)
   assert.equal(/@theme/.test(block), false)
   assert.match(block, /--terracotta-deep: #8A4530;/)
+  // classic themes ship to consumers too, with the right color-scheme
+  assert.match(block, /\[data-theme="classic-light"\] \{\n  color-scheme: light;/)
+  assert.match(block, /\[data-theme="classic-dark"\] \{\n  color-scheme: dark;/)
+})
+
+test('renderCss emits prefixed vars + remaps for the classic modes', () => {
+  const { root, modes } = renderCss(tokens)
+  assert.match(root, /--cl-paper:\s*#FFFFFF;/)
+  assert.match(root, /--cd-paper:\s*#000000;/)
+  assert.match(root, /--cl-terracotta:\s*#DE501B;/)
+  const byAttr = Object.fromEntries(modes.map((m) => [m.attr, m]))
+  assert.match(byAttr['classic-light'].body, /--paper:\s*var\(--cl-paper\);/)
+  assert.match(byAttr['classic-dark'].body, /--shadow-pop:\s*var\(--cd-shadow-pop\);/)
+  assert.equal(byAttr['dark'].body, renderCss(tokens).dark)
+})
+
+test('DTCG color tokens carry all four Figma modes', () => {
+  const d = renderDtcg(tokens)
+  const paper = d.Primitives.color.paper.base
+  assert.equal(paper.$extensions['com.figma'].modes['Classic Light'], '#FFFFFF')
+  assert.equal(paper.$extensions['com.figma'].modes['Classic Dark'], '#000000')
+})
+
+test('theme blocks re-declare aliases so nested data-theme islands re-resolve', () => {
+  // `--background: var(--paper)` resolves where declared — without these lines a
+  // scoped `<div data-theme="dark">` would remap primitives but keep :root-resolved
+  // alias values (light card colors on a dark island).
+  const { modes } = renderCss(tokens)
+  for (const m of modes) {
+    assert.match(m.body, /--background:\s*var\(--paper\);/, `${m.attr} missing shadcn alias re-declare`)
+    assert.match(m.body, /--surface-page:\s*var\(--paper\);/, `${m.attr} missing semantic alias re-declare`)
+  }
 })
 
 test('injectMarkers replaces only between markers and is idempotent', () => {

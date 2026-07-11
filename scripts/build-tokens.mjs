@@ -7,6 +7,16 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const START = '/* @quill-tokens:start */'
 const END = '/* @quill-tokens:end */'
 
+// Non-default theme modes. `light` (Dawn) is the default and lives directly in :root;
+// each mode here gets prefixed copies of every color/shadow token in :root plus a
+// [data-theme="<attr>"] block that remaps the base vars — so every alias downstream
+// (semantic, shadcn, Tailwind utilities) resolves per-theme for free.
+export const MODES = [
+  { key: 'dark', prefix: 'dk', attr: 'dark', colorScheme: 'dark', figmaMode: 'Dark' },
+  { key: 'classicLight', prefix: 'cl', attr: 'classic-light', colorScheme: 'light', figmaMode: 'Classic Light' },
+  { key: 'classicDark', prefix: 'cd', attr: 'classic-dark', colorScheme: 'dark', figmaMode: 'Classic Dark' },
+]
+
 // 'pigment' is a grouping namespace, not part of the CSS var name.
 // Trailing 'base' is the default leaf — also dropped.
 export function cssVarName(path) {
@@ -28,21 +38,21 @@ function walkModal(group, prefix, fn) {
 
 export function renderCss(t) {
   const rootLines = []
-  const dkLines = []
-  const darkLines = []
+  const prefixedLines = []
+  const modeLines = Object.fromEntries(MODES.map((m) => [m.key, []]))
 
-  // Primitive colors: --name (light), --dk-name (dark), remap under dark.
-  walkModal(t.color, [], (name, { light, dark }) => {
-    rootLines.push(`  ${name}: ${light};`)
-    dkLines.push(`  --dk-${name.slice(2)}: ${dark};`)
-    darkLines.push(`  ${name}: var(--dk-${name.slice(2)});`)
-  })
-  // Shadows: same pattern.
-  for (const [key, { light, dark }] of Object.entries(t.shadow)) {
-    const n = key === 'base' ? '--shadow' : `--shadow-${key}`
-    rootLines.push(`  ${n}: ${light};`)
-    dkLines.push(`  --dk-${n.slice(2)}: ${dark};`)
-    darkLines.push(`  ${n}: var(--dk-${n.slice(2)});`)
+  // Emit one leaf: --name (light) in :root, a prefixed copy per mode, and a
+  // remap line inside each mode's [data-theme] block.
+  const emitLeaf = (name, leaf) => {
+    rootLines.push(`  ${name}: ${leaf.light};`)
+    for (const m of MODES) {
+      prefixedLines.push(`  --${m.prefix}-${name.slice(2)}: ${leaf[m.key]};`)
+      modeLines[m.key].push(`  ${name}: var(--${m.prefix}-${name.slice(2)});`)
+    }
+  }
+  walkModal(t.color, [], emitLeaf)
+  for (const [key, leaf] of Object.entries(t.shadow)) {
+    emitLeaf(key === 'base' ? '--shadow' : `--shadow-${key}`, leaf)
   }
   // Motion + fraunces (mode-independent).
   const motion = {
@@ -52,8 +62,18 @@ export function renderCss(t) {
   }
   for (const [k, v] of Object.entries(motion)) rootLines.push(`  ${k}: ${v};`)
   for (const [k, v] of Object.entries(t.fraunces)) rootLines.push(`  --fraunces-${k}: ${v};`)
-  // Semantic + shadcn aliases + radius base.
-  for (const [k, v] of Object.entries(t.semantic)) rootLines.push(`  --${k}: ${v};`)
+  // Semantic + shadcn aliases + radius base. Alias lines are ALSO re-declared
+  // inside every [data-theme] block below: a custom property that references
+  // another (`--background: var(--paper)`) resolves where it is DECLARED, so an
+  // alias resolved at :root ignores a remap on a nested data-theme island.
+  // Re-declaring at the themed element makes scoped theming work — a
+  // `<div data-theme="dusk">` island inside a Dawn page — not just the
+  // <html>-level switch.
+  const aliasLines = [
+    ...Object.entries(t.semantic).map(([k, v]) => `  --${k}: ${v};`),
+    ...Object.entries(t.shadcn).map(([k, v]) => `  --${k}: ${v};`),
+  ]
+  rootLines.push(...Object.entries(t.semantic).map(([k, v]) => `  --${k}: ${v};`))
   rootLines.push(`  --radius: ${t.radiusBase};`)
   // Spacing + border-width (documented scales; kept in :root, not @theme, so they
   // don't collide with Tailwind's built-in numeric utilities).
@@ -91,7 +111,23 @@ export function renderCss(t) {
   }
   for (const [k, v] of Object.entries(shadowMap)) themeLines.push(`  --shadow-${k}: var(${v});`)
 
-  return { theme: themeLines.join('\n'), root: [...rootLines, ...dkLines].join('\n'), dark: darkLines.join('\n') }
+  // Aliases re-resolve against the remapped primitives on the themed element.
+  for (const m of MODES) modeLines[m.key].push(...aliasLines)
+
+  return {
+    theme: themeLines.join('\n'),
+    root: [...rootLines, ...prefixedLines].join('\n'),
+    // `dark` kept as a named field (first mode) for existing callers/tests.
+    dark: modeLines.dark.join('\n'),
+    modes: MODES.map((m) => ({ attr: m.attr, colorScheme: m.colorScheme, body: modeLines[m.key].join('\n') })),
+  }
+}
+
+// Every [data-theme="…"] block, in MODES order.
+function modeBlocks(css) {
+  return css.modes
+    .map((m) => `[data-theme="${m.attr}"] {\n  color-scheme: ${m.colorScheme};\n\n${m.body}\n}`)
+    .join('\n\n')
 }
 
 export function injectMarkers(source, block) {
@@ -102,7 +138,7 @@ export function injectMarkers(source, block) {
 }
 
 export function registryBlock(css) {
-  return `:root {\n${css.root}\n}\n\n[data-theme="dark"] {\n  color-scheme: dark;\n\n${css.dark}\n}`
+  return `:root {\n${css.root}\n}\n\n${modeBlocks(css)}`
 }
 
 export function renderManager(t) {
@@ -121,14 +157,18 @@ export function renderManager(t) {
 }
 
 // --- DTCG / Figma token export ---
-const colorToken = (light, dark) => ({
-  $type: 'color', $value: light,
-  $extensions: { 'com.figma': { modes: { Light: light, Dark: dark } } },
+const figmaModes = (mv) => ({
+  Light: mv.light,
+  ...Object.fromEntries(MODES.map((m) => [m.figmaMode, mv[m.key]])),
+})
+const colorToken = (mv) => ({
+  $type: 'color', $value: mv.light,
+  $extensions: { 'com.figma': { modes: figmaModes(mv) } },
 })
 const dim = (v) => ({ $type: 'dimension', $value: v })
 const shadow = (mv) => ({
   $type: 'shadow', $value: mv.light,
-  $extensions: { 'com.figma': { modes: { Light: mv.light, Dark: mv.dark } } },
+  $extensions: { 'com.figma': { modes: figmaModes(mv) } },
 })
 const other = (v) => ({ $type: 'other', $value: v, $description: 'CSS-only — not a Figma variable' })
 export function renderDtcg(t) {
@@ -158,7 +198,7 @@ export function renderDtcg(t) {
   const primColor = {}
   const emit = (obj, prefix, sink) => {
     for (const [k, v] of Object.entries(obj)) {
-      if (v && 'light' in v && 'dark' in v) sink[k] = colorToken(v.light, v.dark)
+      if (v && 'light' in v && 'dark' in v) sink[k] = colorToken(v)
       else { sink[k] = {}; emit(v, [...prefix, k], sink[k]) }
     }
   }
@@ -189,7 +229,7 @@ export function renderDtcg(t) {
 
 // --- main (not exercised by unit tests) ---
 function globalsBlock(css) {
-  return `@theme inline {\n${css.theme}\n}\n\n:root {\n${css.root}\n}\n\n[data-theme="dark"] {\n  color-scheme: dark;\n\n${css.dark}\n}`
+  return `@theme inline {\n${css.theme}\n}\n\n:root {\n${css.root}\n}\n\n${modeBlocks(css)}`
 }
 
 export function main() {

@@ -4,6 +4,14 @@ import quillTheme from './quill-theme'
 import { ThemeProvider } from 'next-themes'
 import { Toaster } from '../src/components/ui/sonner'
 
+// data-theme attribute value → preview canvas ground (paper token per theme)
+const THEME_BG: Record<string, string> = {
+  light: '#F5EDDD',
+  dark: '#20180E',
+  'classic-light': '#FFFFFF',
+  'classic-dark': '#000000',
+}
+
 export const globalTypes = {
   theme: {
     name: 'Theme',
@@ -11,8 +19,10 @@ export const globalTypes = {
     toolbar: {
       icon: 'circlehollow',
       items: [
-        { value: 'light', title: 'Light' },
-        { value: 'dark', title: 'Dark' },
+        { value: 'light', title: 'Dawn' },
+        { value: 'dark', title: 'Dusk' },
+        { value: 'classic-light', title: 'Classic Light' },
+        { value: 'classic-dark', title: 'Classic Dark' },
       ],
       dynamicTitle: true,
     },
@@ -22,11 +32,16 @@ export const globalTypes = {
 const withTheme: Decorator = (Story, context) => {
   const theme = context.globals['theme'] ?? 'light'
   return (
-    <ThemeProvider attribute="data-theme" defaultTheme={theme} forcedTheme={theme}>
+    <ThemeProvider
+      attribute="data-theme"
+      defaultTheme={theme}
+      forcedTheme={theme}
+      themes={['light', 'dark', 'classic-light', 'classic-dark']}
+    >
       <div
         data-theme={theme}
         style={{
-          background: theme === 'dark' ? '#20180E' : '#F5EDDD',
+          background: THEME_BG[theme] ?? THEME_BG.light,
           padding: 24,
           minHeight: '100vh',
         }}

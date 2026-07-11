@@ -24,6 +24,30 @@ test('the accent alias is fixed to terracotta-deep (a11y)', () => {
   assert.equal(tokens.shadcn.destructive, 'var(--terracotta-deep)')
 })
 
+test('classic themes: pure grounds, +50%-chroma pigments, AA control borders', () => {
+  assert.equal(tokens.color.paper.base.classicLight, '#FFFFFF')
+  assert.equal(tokens.color.paper.base.classicDark, '#000000')
+  // Chroma-boosted pigments (OKLCH ×1.5, gamut-clamped)
+  assert.equal(tokens.color.pigment.terracotta.base.classicLight, '#DE501B')
+  assert.equal(tokens.color.pigment.terracotta.base.classicDark, '#F57345')
+  // Solid control boundaries: 3.69:1 on white, 4.56:1 on black (WCAG 1.4.11)
+  assert.equal(tokens.color.line.control.classicLight, '#858585')
+  assert.equal(tokens.color.line.control.classicDark, '#757575')
+  // Every color leaf must carry all four modes — a missing mode would emit
+  // `undefined` into the generated CSS.
+  const assertLeaves = (obj, path) => {
+    for (const [k, v] of Object.entries(obj)) {
+      if (v && typeof v === 'object' && 'light' in v) {
+        for (const mode of ['light', 'dark', 'classicLight', 'classicDark']) {
+          assert.equal(typeof v[mode], 'string', `${path}.${k} missing mode '${mode}'`)
+        }
+      } else if (v && typeof v === 'object') assertLeaves(v, `${path}.${k}`)
+    }
+  }
+  assertLeaves(tokens.color, 'color')
+  assertLeaves(tokens.shadow, 'shadow')
+})
+
 test('manager search input border matches the DS field border (line-control)', () => {
   assert.equal(renderManager(tokens).inputBorder, tokens.color.line.control.light)
 })
