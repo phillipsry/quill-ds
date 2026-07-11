@@ -18,8 +18,22 @@ accessibility checks. Use them as starting points and adapt.
 - **Shells** — Dashboard · Page header · Tabs page · List + detail · Sidebar navigation · Mail inbox
 - **Nav** — Navbar · Command palette
 
+## Install any pattern
+
+Every pattern is published to the Quill registry as an installable block. Add one to
+your project with the shadcn CLI — its source lands in `components/quill/`, and the
+components it composes (plus the Quill `Icon`) install alongside it:
+
+```bash
+npx shadcn@latest add https://www.quilldesignsystem.com/r/checkout.json
+```
+
+Swap `checkout` for any block name — kebab-case of the pattern name, e.g.
+`sidebar-nav`, `login-split-panel`, `analytics-charts`, `mail-shell`.
+
 ## How they’re built
 
-Each pattern is a Storybook story under `src/stories/patterns/` that composes
-`@/components/ui/*`. Nothing is hardcoded — colors, spacing, radii, and type resolve
-through the token foundation, so a theme change propagates everywhere.
+Each pattern lives as real source in `registry/blocks/` and composes
+`@/components/ui/*`; the stories here render that exact shipped code. Nothing is
+hardcoded — colors, spacing, radii, and type resolve through the token foundation,
+so a theme change propagates everywhere.

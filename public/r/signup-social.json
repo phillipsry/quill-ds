@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "signup-social",
+  "title": "Signup — social first",
+  "description": "Signup card leading with GitHub and Google provider buttons, followed by an email and password fallback.",
+  "registryDependencies": [
+    "card",
+    "input",
+    "label",
+    "button",
+    "separator",
+    "https://www.quilldesignsystem.com/r/icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/blocks/signup-social.tsx",
+      "content": "import {\n  Card,\n  CardHeader,\n  CardTitle,\n  CardDescription,\n  CardContent,\n  CardFooter,\n} from '@/components/ui/card'\nimport { Input } from '@/components/ui/input'\nimport { Label } from '@/components/ui/label'\nimport { Button } from '@/components/ui/button'\nimport { Separator } from '@/components/ui/separator'\nimport { Icon } from '@/components/ui/icon'\n\nexport function SignupSocial() {\n  return (\n    <Card className=\"w-[380px]\">\n      <CardHeader className=\"text-center\">\n        <CardTitle>Create your account</CardTitle>\n        <CardDescription>Start with a provider, or use your email.</CardDescription>\n      </CardHeader>\n      <CardContent className=\"flex flex-col gap-4\">\n        <div className=\"flex flex-col gap-2\">\n          <Button variant=\"outline\" className=\"w-full\">\n            <Icon name=\"code\" size={16} /> Continue with GitHub\n          </Button>\n          <Button variant=\"outline\" className=\"w-full\">\n            <Icon name=\"public\" size={16} /> Continue with Google\n          </Button>\n        </div>\n        <div className=\"flex items-center gap-3\">\n          <Separator className=\"flex-1\" />\n          <span className=\"text-xs text-muted-foreground\">or with email</span>\n          <Separator className=\"flex-1\" />\n        </div>\n        <div className=\"flex flex-col gap-1.5\">\n          <Label htmlFor=\"social-email\">Email</Label>\n          <Input id=\"social-email\" type=\"email\" placeholder=\"you@example.com\" />\n        </div>\n        <div className=\"flex flex-col gap-1.5\">\n          <Label htmlFor=\"social-password\">Password</Label>\n          <Input id=\"social-password\" type=\"password\" placeholder=\"At least 12 characters\" />\n        </div>\n      </CardContent>\n      <CardFooter className=\"flex-col gap-3\">\n        <Button className=\"w-full\">Create account</Button>\n        <p className=\"text-center text-xs leading-relaxed text-muted-foreground\">\n          By continuing you agree to the studio terms and privacy note.\n        </p>\n      </CardFooter>\n    </Card>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/quill/signup-social.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

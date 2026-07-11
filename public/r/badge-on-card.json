@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge-on-card",
+  "title": "Badges on card",
+  "description": "Default, secondary, and destructive badges displayed on a card surface.",
+  "registryDependencies": [
+    "card",
+    "badge"
+  ],
+  "files": [
+    {
+      "path": "registry/blocks/badge-on-card.tsx",
+      "content": "import { Card, CardContent } from '@/components/ui/card'\nimport { Badge } from '@/components/ui/badge'\n\nexport function BadgeOnCard() {\n  return (\n    <Card className=\"w-[280px]\">\n      <CardContent className=\"flex gap-2 pt-6\">\n        <Badge>Default</Badge>\n        <Badge variant=\"secondary\">Secondary</Badge>\n        <Badge variant=\"destructive\">Destructive</Badge>\n      </CardContent>\n    </Card>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/quill/badge-on-card.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

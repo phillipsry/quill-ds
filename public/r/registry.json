@@ -16,6 +16,954 @@
           "target": "app/quill-theme.css"
         }
       ]
+    },
+    {
+      "name": "icon",
+      "type": "registry:ui",
+      "title": "Icon (Material Symbols)",
+      "description": "The Quill icon component — Material Symbols Outlined at weight 200, bundled as a self-contained core set covering every icon the Quill blocks use.",
+      "files": [
+        {
+          "path": "registry/lib/icon.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/icon.tsx"
+        },
+        {
+          "path": "src/components/ui/icons.core.mjs",
+          "type": "registry:ui",
+          "target": "components/ui/icons.core.mjs"
+        },
+        {
+          "path": "registry/lib/icons.core.d.mts",
+          "type": "registry:ui",
+          "target": "components/ui/icons.core.d.mts"
+        }
+      ]
+    },
+    {
+      "name": "activity-feed",
+      "type": "registry:block",
+      "title": "Activity feed",
+      "description": "Card with a vertical timeline of recent events, each with an avatar, action text, and timestamp.",
+      "registryDependencies": [
+        "card",
+        "avatar",
+        "badge",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/activity-feed.tsx",
+          "type": "registry:component",
+          "target": "components/quill/activity-feed.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alerts",
+      "type": "registry:block",
+      "title": "Alert stack",
+      "description": "A vertical stack of informational, success, and destructive alerts with icons.",
+      "registryDependencies": [
+        "alert",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/alerts.tsx",
+          "type": "registry:component",
+          "target": "components/quill/alerts.tsx"
+        }
+      ]
+    },
+    {
+      "name": "analytics-charts",
+      "type": "registry:block",
+      "title": "Analytics charts",
+      "description": "Dashboard pair of cards showing an area chart of audience growth and a bar chart of weekly sales.",
+      "registryDependencies": [
+        "card",
+        "chart",
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/analytics-charts.tsx",
+          "type": "registry:component",
+          "target": "components/quill/analytics-charts.tsx"
+        }
+      ],
+      "dependencies": [
+        "recharts"
+      ]
+    },
+    {
+      "name": "announcement-banner",
+      "type": "registry:block",
+      "title": "Announcement banners",
+      "description": "Two dismissible announcement banners: an inline bordered page banner and a full-bleed primary-color variant.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/announcement-banner.tsx",
+          "type": "registry:component",
+          "target": "components/quill/announcement-banner.tsx"
+        }
+      ]
+    },
+    {
+      "name": "badge-on-card",
+      "type": "registry:block",
+      "title": "Badges on card",
+      "description": "Default, secondary, and destructive badges displayed on a card surface.",
+      "registryDependencies": [
+        "card",
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/badge-on-card.tsx",
+          "type": "registry:component",
+          "target": "components/quill/badge-on-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "calendar-page",
+      "type": "registry:block",
+      "title": "Calendar page",
+      "description": "A studio schedule card pairing a single-date calendar with the selected day's session list.",
+      "registryDependencies": [
+        "card",
+        "calendar",
+        "badge",
+        "separator"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/calendar-page.tsx",
+          "type": "registry:component",
+          "target": "components/quill/calendar-page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "calendar-range",
+      "type": "registry:block",
+      "title": "Calendar range picker",
+      "description": "Stateful two-month range calendar in a card for booking a span of days, with clear and reserve actions.",
+      "registryDependencies": [
+        "card",
+        "calendar",
+        "button",
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/calendar-range.tsx",
+          "type": "registry:component",
+          "target": "components/quill/calendar-range.tsx"
+        }
+      ],
+      "dependencies": [
+        "react-day-picker"
+      ]
+    },
+    {
+      "name": "chat",
+      "type": "registry:block",
+      "title": "Chat panel",
+      "description": "A messaging panel with a contact header, message bubbles, and a composer input.",
+      "registryDependencies": [
+        "input",
+        "button",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/chat.tsx",
+          "type": "registry:component",
+          "target": "components/quill/chat.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkout",
+      "type": "registry:block",
+      "title": "Checkout",
+      "description": "Two-column checkout with payment method picker, card form, and an order summary sidebar.",
+      "registryDependencies": [
+        "card",
+        "input",
+        "label",
+        "button",
+        "radio-group",
+        "separator",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/checkout.tsx",
+          "type": "registry:component",
+          "target": "components/quill/checkout.tsx"
+        }
+      ]
+    },
+    {
+      "name": "command-palette",
+      "type": "registry:block",
+      "title": "Command palette",
+      "description": "A searchable command palette with grouped actions, recent items, and keyboard shortcuts.",
+      "registryDependencies": [
+        "command",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/command-palette.tsx",
+          "type": "registry:component",
+          "target": "components/quill/command-palette.tsx"
+        }
+      ]
+    },
+    {
+      "name": "contact-form",
+      "type": "registry:block",
+      "title": "Contact form",
+      "description": "A get-in-touch card with name, email, topic select, and message fields.",
+      "registryDependencies": [
+        "card",
+        "input",
+        "label",
+        "button",
+        "textarea",
+        "select"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/contact-form.tsx",
+          "type": "registry:component",
+          "target": "components/quill/contact-form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "cookie-consent",
+      "type": "registry:block",
+      "title": "Cookie consent",
+      "description": "A cookie consent banner with accept, reject, and preferences actions.",
+      "registryDependencies": [
+        "button",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/cookie-consent.tsx",
+          "type": "registry:component",
+          "target": "components/quill/cookie-consent.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dashboard",
+      "type": "registry:block",
+      "title": "Dashboard shell",
+      "description": "An app shell with sidebar navigation, a search header, and KPI stat cards.",
+      "registryDependencies": [
+        "button",
+        "input",
+        "badge",
+        "card",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/dashboard.tsx",
+          "type": "registry:component",
+          "target": "components/quill/dashboard.tsx"
+        }
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:block",
+      "title": "Data table",
+      "description": "A members table with filter toolbar, status badges, and per-row actions.",
+      "registryDependencies": [
+        "table",
+        "badge",
+        "button",
+        "input",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/data-table.tsx",
+          "type": "registry:component",
+          "target": "components/quill/data-table.tsx"
+        }
+      ]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:block",
+      "title": "Empty state",
+      "description": "A dashed-border empty state with an icon, explanatory text, and a primary action.",
+      "registryDependencies": [
+        "button",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/empty-state.tsx",
+          "type": "registry:component",
+          "target": "components/quill/empty-state.tsx"
+        }
+      ]
+    },
+    {
+      "name": "error-404",
+      "type": "registry:block",
+      "title": "404 page",
+      "description": "A full-page 404 error state with go-back and home actions.",
+      "registryDependencies": [
+        "button",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/error-404.tsx",
+          "type": "registry:component",
+          "target": "components/quill/error-404.tsx"
+        }
+      ]
+    },
+    {
+      "name": "faq",
+      "type": "registry:block",
+      "title": "FAQ section",
+      "description": "Centered FAQ section with an accordion of common questions and a contact call-to-action footer.",
+      "registryDependencies": [
+        "accordion",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/faq.tsx",
+          "type": "registry:component",
+          "target": "components/quill/faq.tsx"
+        }
+      ]
+    },
+    {
+      "name": "feature-section",
+      "type": "registry:block",
+      "title": "Feature section",
+      "description": "A marketing section with an editorial heading and a three-column feature grid.",
+      "registryDependencies": [
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/feature-section.tsx",
+          "type": "registry:component",
+          "target": "components/quill/feature-section.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-upload",
+      "type": "registry:block",
+      "title": "File upload",
+      "description": "An asset upload card with a drag-and-drop dropzone and a progress-tracked upload queue.",
+      "registryDependencies": [
+        "card",
+        "button",
+        "progress",
+        "separator",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/file-upload.tsx",
+          "type": "registry:component",
+          "target": "components/quill/file-upload.tsx"
+        }
+      ]
+    },
+    {
+      "name": "footer",
+      "type": "registry:block",
+      "title": "Site footer",
+      "description": "A marketing footer with brand blurb, link columns, and legal links.",
+      "registryDependencies": [
+        "separator"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/footer.tsx",
+          "type": "registry:component",
+          "target": "components/quill/footer.tsx"
+        }
+      ]
+    },
+    {
+      "name": "forgot-password",
+      "type": "registry:block",
+      "title": "Forgot password",
+      "description": "A password reset card with an email field, send-link action, and back-to-sign-in button.",
+      "registryDependencies": [
+        "card",
+        "input",
+        "label",
+        "button",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/forgot-password.tsx",
+          "type": "registry:component",
+          "target": "components/quill/forgot-password.tsx"
+        }
+      ]
+    },
+    {
+      "name": "hero",
+      "type": "registry:block",
+      "title": "Hero",
+      "description": "A centered marketing hero with a release badge, serif headline, supporting copy, and primary/secondary call-to-action buttons.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/hero.tsx",
+          "type": "registry:component",
+          "target": "components/quill/hero.tsx"
+        }
+      ]
+    },
+    {
+      "name": "invoice",
+      "type": "registry:block",
+      "title": "Invoice",
+      "description": "Invoice card with sender and recipient details, a line-item table with totals, and a download action.",
+      "registryDependencies": [
+        "card",
+        "table",
+        "badge",
+        "button",
+        "separator",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/invoice.tsx",
+          "type": "registry:component",
+          "target": "components/quill/invoice.tsx"
+        }
+      ]
+    },
+    {
+      "name": "kanban",
+      "type": "registry:block",
+      "title": "Kanban board",
+      "description": "A three-column kanban board with card counts, tagged task cards, avatars, and an add-card affordance per column.",
+      "registryDependencies": [
+        "badge",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/kanban.tsx",
+          "type": "registry:component",
+          "target": "components/quill/kanban.tsx"
+        }
+      ]
+    },
+    {
+      "name": "list-detail",
+      "type": "registry:block",
+      "title": "List + detail",
+      "description": "An inbox-style split view pairing a selectable message list with a detail pane that includes archive and delete actions.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "separator",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/list-detail.tsx",
+          "type": "registry:component",
+          "target": "components/quill/list-detail.tsx"
+        }
+      ]
+    },
+    {
+      "name": "login",
+      "type": "registry:block",
+      "title": "Login",
+      "description": "A sign-in card with email and password fields, a remember-me checkbox, and primary and forgot-password actions.",
+      "registryDependencies": [
+        "card",
+        "input",
+        "label",
+        "button",
+        "checkbox"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/login.tsx",
+          "type": "registry:component",
+          "target": "components/quill/login.tsx"
+        }
+      ]
+    },
+    {
+      "name": "login-minimal",
+      "type": "registry:block",
+      "title": "Minimal login",
+      "description": "Bare centered login form with a logo mark and a single email field for one-time-code sign-in.",
+      "registryDependencies": [
+        "input",
+        "label",
+        "button",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/login-minimal.tsx",
+          "type": "registry:component",
+          "target": "components/quill/login-minimal.tsx"
+        }
+      ]
+    },
+    {
+      "name": "login-split-panel",
+      "type": "registry:block",
+      "title": "Login with split panel",
+      "description": "Full-page login with a brand testimonial side panel and an email/password form with a magic-link option.",
+      "registryDependencies": [
+        "input",
+        "label",
+        "button",
+        "separator",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/login-split-panel.tsx",
+          "type": "registry:component",
+          "target": "components/quill/login-split-panel.tsx"
+        }
+      ]
+    },
+    {
+      "name": "mail-shell",
+      "type": "registry:block",
+      "title": "Mail inbox shell",
+      "description": "Two-pane mail client shell with a searchable message list and a reading pane with toolbar and inline reply.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "input",
+        "label",
+        "separator",
+        "avatar",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/mail-shell.tsx",
+          "type": "registry:component",
+          "target": "components/quill/mail-shell.tsx"
+        }
+      ]
+    },
+    {
+      "name": "navbar",
+      "type": "registry:block",
+      "title": "Navbar",
+      "description": "A top navigation bar with brand wordmark, responsive link list, and sign-in plus get-started actions.",
+      "registryDependencies": [
+        "button",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/navbar.tsx",
+          "type": "registry:component",
+          "target": "components/quill/navbar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "newsletter",
+      "type": "registry:block",
+      "title": "Newsletter signup",
+      "description": "A centered newsletter signup section with an email form and social proof.",
+      "registryDependencies": [
+        "input",
+        "label",
+        "button",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/newsletter.tsx",
+          "type": "registry:component",
+          "target": "components/quill/newsletter.tsx"
+        }
+      ]
+    },
+    {
+      "name": "notifications",
+      "type": "registry:block",
+      "title": "Notifications",
+      "description": "A notifications card listing recent events with icons, timestamps, unread indicators, and a mark-all-read action.",
+      "registryDependencies": [
+        "card",
+        "button",
+        "separator",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/notifications.tsx",
+          "type": "registry:component",
+          "target": "components/quill/notifications.tsx"
+        }
+      ]
+    },
+    {
+      "name": "onboarding",
+      "type": "registry:block",
+      "title": "Onboarding checklist",
+      "description": "A setup checklist card with a progress bar, completed and pending tasks, and start links for remaining steps.",
+      "registryDependencies": [
+        "card",
+        "button",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/onboarding.tsx",
+          "type": "registry:component",
+          "target": "components/quill/onboarding.tsx"
+        }
+      ]
+    },
+    {
+      "name": "order-summary",
+      "type": "registry:block",
+      "title": "Order summary",
+      "description": "A checkout order summary card with line items, a promo code input, a total, and a pay-now button.",
+      "registryDependencies": [
+        "card",
+        "button",
+        "input",
+        "separator",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/order-summary.tsx",
+          "type": "registry:component",
+          "target": "components/quill/order-summary.tsx"
+        }
+      ]
+    },
+    {
+      "name": "otp-verification",
+      "type": "registry:block",
+      "title": "OTP verification",
+      "description": "An email verification card with a six-digit one-time-passcode input and resend action.",
+      "registryDependencies": [
+        "card",
+        "input-otp",
+        "label",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/otp-verification.tsx",
+          "type": "registry:component",
+          "target": "components/quill/otp-verification.tsx"
+        }
+      ]
+    },
+    {
+      "name": "page-header",
+      "type": "registry:block",
+      "title": "Page header",
+      "description": "A page header with breadcrumb trail, title and description, and duplicate/new action buttons.",
+      "registryDependencies": [
+        "breadcrumb",
+        "button",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/page-header.tsx",
+          "type": "registry:component",
+          "target": "components/quill/page-header.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pricing",
+      "type": "registry:block",
+      "title": "Pricing",
+      "description": "A three-tier pricing grid with a highlighted popular plan, feature checklists, and per-plan calls to action.",
+      "registryDependencies": [
+        "card",
+        "button",
+        "badge",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/pricing.tsx",
+          "type": "registry:component",
+          "target": "components/quill/pricing.tsx"
+        }
+      ]
+    },
+    {
+      "name": "profile-card",
+      "type": "registry:block",
+      "title": "Profile card",
+      "description": "A centered profile card with avatar initials, role, follower stats, and follow and message actions.",
+      "registryDependencies": [
+        "card",
+        "button",
+        "badge",
+        "separator",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/profile-card.tsx",
+          "type": "registry:component",
+          "target": "components/quill/profile-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "search-results",
+      "type": "registry:block",
+      "title": "Search results",
+      "description": "A docs search panel with a query input, result count, and a linked result list showing breadcrumbs and type badges.",
+      "registryDependencies": [
+        "input",
+        "badge",
+        "separator",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/search-results.tsx",
+          "type": "registry:component",
+          "target": "components/quill/search-results.tsx"
+        }
+      ]
+    },
+    {
+      "name": "settings",
+      "type": "registry:block",
+      "title": "Settings form",
+      "description": "A profile settings card with name fields, bio textarea, and an email notification toggle.",
+      "registryDependencies": [
+        "card",
+        "input",
+        "textarea",
+        "label",
+        "button",
+        "switch",
+        "separator"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/settings.tsx",
+          "type": "registry:component",
+          "target": "components/quill/settings.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-nav",
+      "type": "registry:block",
+      "title": "Sidebar navigation shell",
+      "description": "Collapsible icon sidebar app shell with grouped menus, badges, a breadcrumb header, and a card grid main area.",
+      "registryDependencies": [
+        "sidebar",
+        "breadcrumb",
+        "avatar",
+        "separator",
+        "card",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/sidebar-nav.tsx",
+          "type": "registry:component",
+          "target": "components/quill/sidebar-nav.tsx"
+        }
+      ]
+    },
+    {
+      "name": "signup",
+      "type": "registry:block",
+      "title": "Sign up",
+      "description": "An account creation card with name, email, and password fields plus a sign-in link.",
+      "registryDependencies": [
+        "card",
+        "input",
+        "label",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/signup.tsx",
+          "type": "registry:component",
+          "target": "components/quill/signup.tsx"
+        }
+      ]
+    },
+    {
+      "name": "signup-social",
+      "type": "registry:block",
+      "title": "Signup — social first",
+      "description": "Signup card leading with GitHub and Google provider buttons, followed by an email and password fallback.",
+      "registryDependencies": [
+        "card",
+        "input",
+        "label",
+        "button",
+        "separator",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/signup-social.tsx",
+          "type": "registry:component",
+          "target": "components/quill/signup-social.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stat-cards",
+      "type": "registry:block",
+      "title": "Stat cards",
+      "description": "A responsive grid of KPI cards showing values with delta badges versus last month.",
+      "registryDependencies": [
+        "card",
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/stat-cards.tsx",
+          "type": "registry:component",
+          "target": "components/quill/stat-cards.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stats-band",
+      "type": "registry:block",
+      "title": "Stats band",
+      "description": "Marketing band of headline statistics separated by vertical dividers on a card background.",
+      "registryDependencies": [
+        "separator"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/stats-band.tsx",
+          "type": "registry:component",
+          "target": "components/quill/stats-band.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tabs-page",
+      "type": "registry:block",
+      "title": "Tabs page",
+      "description": "A tabbed settings page with account, notifications, and security panels.",
+      "registryDependencies": [
+        "tabs",
+        "card",
+        "input",
+        "label",
+        "switch"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/tabs-page.tsx",
+          "type": "registry:component",
+          "target": "components/quill/tabs-page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "team-section",
+      "type": "registry:block",
+      "title": "Team section",
+      "description": "Marketing team grid with avatar cards showing each member's name, role, specialty badge, and email action.",
+      "registryDependencies": [
+        "card",
+        "avatar",
+        "badge",
+        "button",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/team-section.tsx",
+          "type": "registry:component",
+          "target": "components/quill/team-section.tsx"
+        }
+      ]
+    },
+    {
+      "name": "testimonial",
+      "type": "registry:block",
+      "title": "Testimonial",
+      "description": "A customer quote card with a serif pull-quote, avatar initials, and attribution.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/testimonial.tsx",
+          "type": "registry:component",
+          "target": "components/quill/testimonial.tsx"
+        }
+      ]
+    },
+    {
+      "name": "wizard",
+      "type": "registry:block",
+      "title": "Setup wizard step",
+      "description": "A multi-step wizard card with a progress stepper, workspace fields, and back/continue actions.",
+      "registryDependencies": [
+        "card",
+        "input",
+        "label",
+        "button",
+        "https://www.quilldesignsystem.com/r/icon.json"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/wizard.tsx",
+          "type": "registry:component",
+          "target": "components/quill/wizard.tsx"
+        }
+      ]
     }
   ]
 }

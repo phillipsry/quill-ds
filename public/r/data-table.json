@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "data-table",
+  "title": "Data table",
+  "description": "A members table with filter toolbar, status badges, and per-row actions.",
+  "registryDependencies": [
+    "table",
+    "badge",
+    "button",
+    "input",
+    "https://www.quilldesignsystem.com/r/icon.json"
+  ],
+  "files": [
+    {
+      "path": "registry/blocks/data-table.tsx",
+      "content": "import {\n  Table,\n  TableHeader,\n  TableBody,\n  TableRow,\n  TableHead,\n  TableCell,\n} from '@/components/ui/table'\nimport { Badge } from '@/components/ui/badge'\nimport { Button } from '@/components/ui/button'\nimport { Input } from '@/components/ui/input'\nimport { Icon } from '@/components/ui/icon'\n\nconst rows = [\n  { name: 'Ada Lovelace', email: 'ada@example.com', role: 'Owner', status: 'Active' as const },\n  { name: 'Alan Turing', email: 'alan@example.com', role: 'Admin', status: 'Active' as const },\n  { name: 'Grace Hopper', email: 'grace@example.com', role: 'Editor', status: 'Invited' as const },\n  { name: 'Katherine Johnson', email: 'kat@example.com', role: 'Viewer', status: 'Active' as const },\n]\n\nexport function DataTable() {\n  return (\n    <div className=\"flex flex-col gap-3\">\n      <div className=\"flex items-center gap-2\">\n        <div className=\"max-w-xs flex-1\">\n          <Input placeholder=\"Filter members…\" />\n        </div>\n        <Button variant=\"outline\" size=\"sm\" className=\"ml-auto\">\n          <Icon name=\"filter_list\" size={16} /> Filter\n        </Button>\n        <Button size=\"sm\">\n          <Icon name=\"add\" size={16} /> Invite\n        </Button>\n      </div>\n      <div className=\"overflow-hidden rounded-lg border border-border\">\n        <Table>\n          <TableHeader>\n            <TableRow>\n              <TableHead>Name</TableHead>\n              <TableHead>Role</TableHead>\n              <TableHead>Status</TableHead>\n              <TableHead className=\"w-10\">\n                <span className=\"sr-only\">Actions</span>\n              </TableHead>\n            </TableRow>\n          </TableHeader>\n          <TableBody>\n            {rows.map((r) => (\n              <TableRow key={r.email}>\n                <TableCell>\n                  <div className=\"flex flex-col\">\n                    <span className=\"font-medium text-foreground\">{r.name}</span>\n                    <span className=\"text-xs text-muted-foreground\">{r.email}</span>\n                  </div>\n                </TableCell>\n                <TableCell className=\"text-muted-foreground\">{r.role}</TableCell>\n                <TableCell>\n                  <Badge variant={r.status === 'Active' ? 'secondary' : 'outline'}>{r.status}</Badge>\n                </TableCell>\n                <TableCell>\n                  <Button variant=\"ghost\" size=\"icon\" aria-label={`Actions for ${r.name}`}>\n                    <Icon name=\"more_horiz\" size={18} />\n                  </Button>\n                </TableCell>\n              </TableRow>\n            ))}\n          </TableBody>\n        </Table>\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/quill/data-table.tsx"
+    }
+  ],
+  "type": "registry:block"
+}
