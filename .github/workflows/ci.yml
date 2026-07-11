@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Lint · types · tests · build
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generated files in sync
+        # Tokens and the icon core set are generated from source-of-truth
+        # files and committed. If regenerating produces a diff, someone
+        # edited generated output by hand or forgot to rebuild.
+        run: |
+          npm run build:tokens
+          npm run build:icons
+          git diff --exit-code -- src/app/globals.css src/tokens/generated registry/themes tokens src/components/ui/icons.core.mjs
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Token tests
+        run: npm run test:tokens
+
+      - name: Install Playwright browser
+        run: npx playwright install chromium --with-deps
+
+      - name: Storybook a11y suite
+        run: npm run test-storybook
+
+      - name: Production build
+        run: npm run build

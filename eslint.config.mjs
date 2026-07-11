@@ -19,6 +19,9 @@ const eslintConfig = defineConfig([
     "public/storybook/**",
     "storybook-static/**",
     ".vercel/**",
+    // Vendored minified library + Figma plugin-sandbox scripts (not app code):
+    "public/axe.min.js",
+    "figma/**",
   ]),
   ...storybook.configs["flat/recommended"]
 ]);
