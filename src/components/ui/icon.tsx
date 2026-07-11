@@ -44,6 +44,9 @@ function Icon({
     if (core) return
     const cached = lazyCache.get(name)
     if (cached) {
+      // Cache hit on a changed name: sync setState avoids a one-frame empty
+      // icon; the module-level cache is external to React by design.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLazy({ name, data: cached })
       return
     }

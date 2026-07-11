@@ -76,11 +76,6 @@ export function IconGallery() {
   const visible = results.slice(0, count)
   const sentinelRef = React.useRef<HTMLDivElement>(null)
 
-  // Reset how many are shown whenever the search changes.
-  React.useEffect(() => {
-    setCount(PAGE)
-  }, [q])
-
   // Load the next page as the sentinel scrolls near the viewport (lazy on scroll).
   React.useEffect(() => {
     const el = sentinelRef.current
@@ -103,7 +98,10 @@ export function IconGallery() {
           aria-label="Search icons"
           placeholder={`Search ${NAMES.length.toLocaleString()} icons…`}
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            setQuery(e.target.value)
+            setCount(PAGE) // new search starts back at the first page
+          }}
           className="mb-3 w-full max-w-sm rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
         <p className="mb-3 text-xs text-muted-foreground">
