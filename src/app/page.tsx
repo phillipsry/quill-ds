@@ -453,8 +453,8 @@ export default function Home() {
         <div className="mx-auto flex max-w-[800px] flex-col items-center gap-7 px-12 pt-24 pb-[72px] text-center">
           <span className="font-display text-3xl leading-none text-terracotta">¶</span>
           <p className="m-0 font-display text-2xl font-normal leading-[1.45] tracking-[-0.02em] text-[var(--text-strong)] [font-variation-settings:var(--fraunces-display)] [text-wrap:pretty]">
-            &ldquo;People are at the core of our design system and how we thought of what good looks like.
-            Distinguishable yet familiar with a flair of style that makes it easy to come back to every day.&rdquo;
+            &ldquo;People sit at the core of our design system and shape what good looks like: distinctive yet
+            familiar, with a flair that makes it easy to come back to every day.&rdquo;
           </p>
         </div>
         <div className="mx-auto max-w-[1400px] px-12 pb-24">
