@@ -19,6 +19,13 @@
   .sbdocs code:not(pre code) {
     background: #EFE4CE; /* --paper-warm */
   }
+  /* Docs tables zebra-stripe in paper-warm, not Storybook's blue-grey
+     default (#F6F9FC). !important: the default is injected later with
+     equal specificity. Odd rows stay on paper, so rows alternate
+     lighter/darker within the palette. */
+  .sbdocs table tr:nth-of-type(2n) {
+    background-color: #EFE4CE !important; /* --paper-warm */
+  }
 </style>
 
 <!-- Pages always open at the very top, never at a restored scroll position. -->
