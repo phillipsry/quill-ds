@@ -378,7 +378,7 @@ export default function Home() {
                   </a>
                 </CardFooter>
               </Card>
-              <PlateLabel className="mt-3">Plate № 05 · Avatar</PlateLabel>
+              <PlateLabel className="mt-3">Plate № 02 · Avatar</PlateLabel>
               <Card>
                 <CardContent className="flex items-center gap-4 p-1 px-5">
                   <Avatar size="lg">
@@ -393,7 +393,7 @@ export default function Home() {
                   <span className="ml-auto text-xs text-muted-foreground">lg · default · sm</span>
                 </CardContent>
               </Card>
-              <PlateLabel className="mt-3">Plate № 06 · Switch</PlateLabel>
+              <PlateLabel className="mt-3">Plate № 03 · Switch</PlateLabel>
               <Card>
                 <CardContent className="flex items-center gap-6 p-1 px-5">
                   <Label className="cursor-pointer gap-2">
@@ -406,7 +406,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-3">
-                <PlateLabel>Plate № 02 · Button — all variants</PlateLabel>
+                <PlateLabel>Plate № 04 · Button — all variants</PlateLabel>
                 <Card>
                   <CardContent className="flex flex-wrap items-center gap-2 p-1 px-5">
                     <Button>default</Button>
@@ -419,7 +419,7 @@ export default function Home() {
                 </Card>
               </div>
               <div className="flex flex-col gap-3">
-                <PlateLabel>Plate № 03 · Badge — all variants</PlateLabel>
+                <PlateLabel>Plate № 05 · Badge — all variants</PlateLabel>
                 <Card>
                   <CardContent className="flex flex-wrap items-center gap-2 p-1 px-5">
                     <Badge>New</Badge>
@@ -432,7 +432,7 @@ export default function Home() {
                 </Card>
               </div>
               <div className="flex flex-col gap-3">
-                <PlateLabel>Plate № 04 · Field</PlateLabel>
+                <PlateLabel>Plate № 06 · Field</PlateLabel>
                 <Card>
                   <CardContent className="p-1 px-5">
                     <div className="flex max-w-[420px] flex-col gap-2">
