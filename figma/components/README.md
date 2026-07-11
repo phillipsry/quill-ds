@@ -32,6 +32,9 @@ all type binds to a Figma variable or text style (no literal values). Built via 
 - Variant names encode properties: `Variant=x`, `Size=y`, `Checked=on`, `Pressed=off`.
 - Fill opacity (e.g. destructive `/10`) must be applied via `fills.map(p => ({...p, opacity}))`.
 - Figma variable names can't contain `.` — fractional spacing keys are sanitized (`spacing/2_5`).
+- `createFrame`/`createAutoLayout` frames ship with a **default white fill** — clear
+  `fills = []` on every wrapper/group frame (and on `createNodeFromSvg` import frames), or
+  the card interior renders white over the cream surface. Only bind fills you actually want.
 
 ## Code Connect mapping (ready to publish on plan upgrade)
 
