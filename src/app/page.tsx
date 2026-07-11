@@ -13,6 +13,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -25,14 +32,31 @@ const storyUrl = (id: string) => `${STORYBOOK_URL}?path=/docs/${id}`;
 const QUILL_MARK_PATH =
   "M34.2316 6.45123L38.0722 6.93131C38.0722 6.93131 39.526 4.25133 40.9527 2.98399C42.3339 1.75709 45.06 0.636927 45.06 0.636927C45.06 0.636927 38.3389 -1.28292 29.8041 1.54375C23.4092 3.66173 20.8427 10.1319 20.8427 10.1319C20.8427 10.1319 21.3885 8.14176 21.9095 6.93178C22.4329 5.7161 23.5098 3.94415 23.5098 3.94415C23.5098 3.94415 21.056 4.21693 17.162 7.46474C13.7142 10.3404 10.921 17.1197 10.921 17.1197C10.921 17.1197 11.3578 15.0909 11.7211 13.8129C12.0868 12.5265 12.788 10.5586 12.788 10.5586C12.788 10.5586 10.0675 13.3862 9.00067 16.9063C8.13749 19.7544 7.7738 24.4276 7.7738 24.4276C7.59673 23.4584 7.32518 22.9457 7.13369 21.9743C6.8983 20.7801 6.97902 20.0772 6.76029 18.88C6.76029 18.88 5.12076 22.5861 5.26671 25.0677C5.42674 27.7886 7.93382 31.2025 7.93382 31.2025C7.93382 31.2025 12.2611 22.0211 16.1485 17.1197C21.056 10.9321 25.4834 8.74495 25.4834 8.74495C25.4834 8.74495 17.5354 14.4527 11.7211 25.9212C6.42144 36.3746 5 49.9252 5 49.9252L8.25388 44.8043C8.25388 44.8043 7.56043 44.0576 7.56043 41.9238C7.56043 38.0105 10.6009 32.3756 10.6009 32.3756C10.6009 32.3756 14.9298 30.0864 17.162 27.9482C19.1028 26.089 21.3761 22.5073 21.3761 22.5073L16.842 24.4276C16.842 24.4276 19.6691 23.0941 24.95 16.9064C27.9007 13.449 33.6448 9.59843 33.6448 9.59843C33.6448 9.59843 31.6373 9.70348 30.3909 9.97191C28.7194 10.3319 26.3369 11.4655 26.3369 11.4655C26.3369 11.4655 28.5877 10.0687 30.3909 9.38515C32.6964 8.51122 36.8987 7.83813 36.8987 7.83813L34.2316 6.45123Z";
 
-// Material Symbols Outlined light_mode / dark_mode at weight 500, verbatim from
+// Material Symbols Outlined glyphs at weight 500, verbatim from
 // @material-symbols/svg-500 (viewBox 0 -960 960 960). The design system's Icon
-// set is weight 200; the theme toggle uses this heavier cut so the tiny glyphs
+// set is weight 200; the theme selector uses this heavier cut so the tiny glyphs
 // keep their stroke presence at 14-18px.
 const SUN_500_PATH =
   "M573.26-386.89q38.61-38.51 38.61-93.14 0-54.62-38.64-93.23-38.63-38.61-93.26-38.61-54.62 0-93.11 38.64-38.49 38.63-38.49 93.26 0 54.62 38.52 93.11 38.51 38.49 93.14 38.49 54.62 0 93.23-38.52ZM338.5-338.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM204.07-445.93H35.93v-68.14h168.14v68.14Zm720 0H755.93v-68.14h168.14v68.14Zm-478.14-310v-168.14h68.14v168.14h-68.14Zm0 720v-168.14h68.14v168.14h-68.14ZM261.76-652.02l-105.5-102.74 48.5-49.98 102.22 105.26-45.22 47.46Zm494.48 495.76-104.22-105.5L699-308.74l104.74 103.26-47.5 49.22ZM651.26-699l103.5-104.74 49.98 47.5-104.26 104.22L651.26-699Zm-495 494.24 104.5-104.22L308.74-261 205.48-156.26l-49.22-48.5ZM480-480Z";
 const MOON_500_PATH =
   "M479.96-117.37q-151.24 0-256.92-105.67-105.67-105.68-105.67-256.92t105.69-257.07Q328.74-842.87 480-842.87q7.52 0 16.04.38 8.53.38 22.29 1.38-33.85 32.96-52.66 78.88-18.8 45.93-18.8 96.49 0 91.3 63.98 155.2 63.97 63.91 155.37 63.91 50.32 0 96.37-17.19 46.04-17.18 78.76-48.27.76 11.76 1.14 18.71.38 6.96.38 13.12 0 151.22-105.84 257.05Q631.2-117.37 479.96-117.37Zm.04-68.13q104.22 0 182.35-63.91 78.13-63.92 98.37-149.89-23.09 10.28-50.08 15.3-27 5.02-53.51 4.54-113.97-3.11-194.15-82.8-80.18-79.7-83.52-195.11-.24-21.93 4.16-47.59 4.4-25.67 16.68-58.76-92.73 27.48-153.77 107.11Q185.5-576.98 185.5-480q0 122.89 85.81 208.69Q357.11-185.5 480-185.5Zm-6.39-289.11Z";
+
+// radio_button_unchecked (ring) and circle-fill (disk) — the Classic pair's glyphs.
+const RING_500_PATH =
+  "M480.03-74.02q-83.46 0-157.54-31.88-74.07-31.88-129.39-87.2-55.32-55.32-87.2-129.36-31.88-74.04-31.88-157.51 0-84.46 31.88-158.54 31.88-74.07 87.16-128.9 55.28-54.84 129.34-86.82 74.06-31.99 157.55-31.99 84.48 0 158.59 31.97 74.1 31.97 128.91 86.77 54.82 54.8 86.79 128.88 31.98 74.08 31.98 158.6 0 83.5-31.99 157.57-31.98 74.07-86.82 129.36-54.83 55.29-128.87 87.17-74.04 31.88-158.51 31.88Zm-.03-68.13q141.04 0 239.45-98.75 98.4-98.76 98.4-239.1 0-141.04-98.4-239.45-98.41-98.4-239.57-98.4-140.16 0-238.95 98.4-98.78 98.41-98.78 239.57 0 140.16 98.75 238.95 98.76 98.78 239.1 98.78Z";
+const DISK_500_PATH =
+  "M480.03-74.02q-83.46 0-157.54-31.88-74.07-31.88-129.39-87.2-55.32-55.32-87.2-129.36-31.88-74.04-31.88-157.51 0-84.46 31.88-158.54 31.88-74.07 87.16-128.9 55.28-54.84 129.34-86.82 74.06-31.99 157.55-31.99 84.48 0 158.59 31.97 74.1 31.97 128.91 86.77 54.82 54.8 86.79 128.88 31.98 74.08 31.98 158.6 0 83.5-31.99 157.57-31.98 74.07-86.82 129.36-54.83 55.29-128.87 87.17-74.04 31.88-158.51 31.88Z";
+
+const CARET_500_PATH = "M480-338.26 234.26-584 283-632.74l197 197 197-197L725.74-584 480-338.26Z";
+
+const THEME_OPTIONS = [
+  { value: "light", label: "Dawn", path: SUN_500_PATH },
+  { value: "dark", label: "Dusk", path: MOON_500_PATH },
+  { value: "classic-light", label: "Classic Light", path: RING_500_PATH },
+  { value: "classic-dark", label: "Classic Dark", path: DISK_500_PATH },
+] as const;
+type ThemeValue = (typeof THEME_OPTIONS)[number]["value"];
+const isTheme = (v: unknown): v is ThemeValue => THEME_OPTIONS.some((t) => t.value === v);
 
 function ToggleGlyph({ path, className }: { path: string; className?: string }) {
   return (
@@ -124,7 +148,7 @@ function Swatch({ color, pill = false, bordered = false }: { color: string; pill
 }
 
 export default function Home() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<ThemeValue>("light");
   const [specimenOn, setSpecimenOn] = useState(true);
 
   useEffect(() => {
@@ -146,7 +170,7 @@ export default function Home() {
     try {
       stored = localStorage.getItem("quill-home-theme");
     } catch {}
-    if (stored === "dark" || stored === "light") {
+    if (isTheme(stored)) {
       document.documentElement.setAttribute("data-theme", stored);
       // Theme must be read post-hydration: the prerendered markup is always
       // "light", so reading localStorage during render would mismatch.
@@ -160,17 +184,12 @@ export default function Home() {
     };
   }, []);
 
-  function applyTheme(next: "light" | "dark") {
+  function selectTheme(next: ThemeValue) {
     document.documentElement.setAttribute("data-theme", next);
     setTheme(next);
-  }
-
-  function toggleTheme(checked: boolean) {
-    const next = checked ? "dark" : "light";
     try {
       localStorage.setItem("quill-home-theme", next);
     } catch {}
-    applyTheme(next);
   }
 
   const navLink =
@@ -200,18 +219,39 @@ export default function Home() {
             <a href="#components" className={`${navLink} max-sm:text-[0.7rem]`}>Components</a>
             <a href="#principles" className={`${navLink} max-sm:text-[0.7rem]`}>Principles</a>
           </div>
-          {/* Inactive icons use ink-soft, not ink-muted: 6.5:1 light / 9.1:1
-              dark against the page — comfortably past WCAG 1.4.11's 3:1. */}
-          <div className="flex items-center gap-2 max-sm:gap-1 sm:justify-self-end">
-            <ToggleGlyph
-              path={SUN_500_PATH}
-              className={`max-sm:size-3.5 ${theme === "light" ? "text-[var(--ink)]" : "text-[var(--ink-soft)]"}`}
-            />
-            <Switch checked={theme === "dark"} onCheckedChange={toggleTheme} aria-label="Dusk mode" title="Dusk mode" />
-            <ToggleGlyph
-              path={MOON_500_PATH}
-              className={`max-sm:size-3.5 ${theme === "dark" ? "text-[var(--ink)]" : "text-[var(--ink-soft)]"}`}
-            />
+          {/* Four themes need a menu, not a switch. The trigger shows the active
+              theme's glyph (label hides on mobile where the row is tight). */}
+          <div className="flex items-center sm:justify-self-end">
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                className="flex items-center gap-1.5 rounded-lg border border-[var(--line-soft)] bg-transparent px-2.5 py-1.5 text-sm font-medium text-[var(--ink)] transition-colors duration-200 hover:bg-[var(--surface-card)]"
+                aria-label={`Theme: ${THEME_OPTIONS.find((t) => t.value === theme)?.label}`}
+              >
+                <ToggleGlyph
+                  path={THEME_OPTIONS.find((t) => t.value === theme)?.path ?? SUN_500_PATH}
+                  className="size-4 max-sm:size-3.5"
+                />
+                <span className="max-sm:hidden">
+                  {THEME_OPTIONS.find((t) => t.value === theme)?.label}
+                </span>
+                <ToggleGlyph path={CARET_500_PATH} className="size-3 text-[var(--ink-soft)]" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-44">
+                <DropdownMenuRadioGroup
+                  value={theme}
+                  onValueChange={(next) => {
+                    if (isTheme(next)) selectTheme(next);
+                  }}
+                >
+                  {THEME_OPTIONS.map((t) => (
+                    <DropdownMenuRadioItem key={t.value} value={t.value}>
+                      <ToggleGlyph path={t.path} className="size-4" />
+                      {t.label}
+                    </DropdownMenuRadioItem>
+                  ))}
+                </DropdownMenuRadioGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </nav>

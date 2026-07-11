@@ -1,6 +1,10 @@
 /**
- * @typedef {{ light: string, dark: string }} ModeValue
+ * @typedef {{ light: string, dark: string, classicLight: string, classicDark: string }} ModeValue
  * Single source of truth for Quill tokens. Edit here, then run `npm run build:tokens`.
+ *
+ * Four themes: light (Dawn, the default), dark (Dusk), classicLight (Classic Light,
+ * pure white) and classicDark (Classic Dark, pure black). The classic pair runs the
+ * same pigment hues pushed +50% chroma in OKLCH (gamut-clamped) on neutral grounds.
  */
 export const tokens = {
   font: {
@@ -11,30 +15,43 @@ export const tokens = {
   },
   color: {
     paper: {
-      base: { light: '#F5EDDD', dark: '#20180E' },
-      warm: { light: '#EFE4CE', dark: '#2A2014' },
-      deep: { light: '#E8DCC0', dark: '#352A1A' },
+      base: { light: '#F5EDDD', dark: '#20180E', classicLight: '#FFFFFF', classicDark: '#000000' },
+      warm: { light: '#EFE4CE', dark: '#2A2014', classicLight: '#F7F7F7', classicDark: '#111111' },
+      deep: { light: '#E8DCC0', dark: '#352A1A', classicLight: '#EFEFEF', classicDark: '#1C1C1C' },
     },
     ink: {
-      base: { light: '#2A2622', dark: '#F1E7D3' },
-      soft: { light: '#5C524A', dark: '#C8B9A0' },
-      muted: { light: '#675F58', dark: '#A89880' },
+      base: { light: '#2A2622', dark: '#F1E7D3', classicLight: '#171717', classicDark: '#F5F5F5' },
+      soft: { light: '#5C524A', dark: '#C8B9A0', classicLight: '#454545', classicDark: '#C9C9C9' },
+      muted: { light: '#675F58', dark: '#A89880', classicLight: '#5E5E5E', classicDark: '#A0A0A0' },
     },
     pigment: {
-      terracotta: { base: { light: '#C4684B', dark: '#DB8568' }, deep: { light: '#8A4530', dark: '#E89A80' } },
-      moss: { base: { light: '#7A8C5C', dark: '#A2B57E' }, deep: { light: '#5E6E43', dark: '#B6C896' } },
-      indigo: { base: { light: '#5B6B8A', dark: '#92A2C2' }, deep: { light: '#44516D', dark: '#AAB8D4' } },
-      gold: { base: { light: '#B89968', dark: '#D6BA86' }, deep: { light: '#9A7D4E', dark: '#E2CA9E' } },
+      terracotta: {
+        base: { light: '#C4684B', dark: '#DB8568', classicLight: '#DE501B', classicDark: '#F57345' },
+        deep: { light: '#8A4530', dark: '#E89A80', classicLight: '#9D3209', classicDark: '#FE8D67' },
+      },
+      moss: {
+        base: { light: '#7A8C5C', dark: '#A2B57E', classicLight: '#758F43', classicDark: '#9DB962' },
+        deep: { light: '#5E6E43', dark: '#B6C896', classicLight: '#5A712B', classicDark: '#B1CC7E' },
+      },
+      indigo: {
+        base: { light: '#5B6B8A', dark: '#92A2C2', classicLight: '#536A99', classicDark: '#8AA2D2' },
+        deep: { light: '#44516D', dark: '#AAB8D4', classicLight: '#3D507A', classicDark: '#A3B8E2' },
+      },
+      gold: {
+        base: { light: '#B89968', dark: '#D6BA86', classicLight: '#C49544', classicDark: '#E2B764' },
+        deep: { light: '#9A7D4E', dark: '#E2CA9E', classicLight: '#A57928', classicDark: '#ECC883' },
+      },
     },
     line: {
-      faint: { light: 'rgba(42, 38, 34, 0.08)', dark: 'rgba(241, 231, 211, 0.07)' },
-      soft: { light: 'rgba(42, 38, 34, 0.12)', dark: 'rgba(241, 231, 211, 0.11)' },
-      base: { light: 'rgba(42, 38, 34, 0.15)', dark: 'rgba(241, 231, 211, 0.15)' },
-      strong: { light: 'rgba(42, 38, 34, 0.20)', dark: 'rgba(241, 231, 211, 0.22)' },
+      faint: { light: 'rgba(42, 38, 34, 0.08)', dark: 'rgba(241, 231, 211, 0.07)', classicLight: 'rgba(0, 0, 0, 0.07)', classicDark: 'rgba(255, 255, 255, 0.08)' },
+      soft: { light: 'rgba(42, 38, 34, 0.12)', dark: 'rgba(241, 231, 211, 0.11)', classicLight: 'rgba(0, 0, 0, 0.11)', classicDark: 'rgba(255, 255, 255, 0.12)' },
+      base: { light: 'rgba(42, 38, 34, 0.15)', dark: 'rgba(241, 231, 211, 0.15)', classicLight: 'rgba(0, 0, 0, 0.14)', classicDark: 'rgba(255, 255, 255, 0.16)' },
+      strong: { light: 'rgba(42, 38, 34, 0.20)', dark: 'rgba(241, 231, 211, 0.22)', classicLight: 'rgba(0, 0, 0, 0.20)', classicDark: 'rgba(255, 255, 255, 0.24)' },
       // Solid boundary for interactive controls (switch/slider tracks, field & checkbox/radio
       // borders). Alpha lines never reach WCAG 1.4.11 non-text 3:1 on paper; these solids do:
-      // 3.38:1 (light) / 3.34:1 (dark) against the page. Used by the shadcn `input` token.
-      control: { light: '#8A7F6E', dark: '#746B5D' },
+      // 3.38:1 (light) / 3.34:1 (dark) / 3.69:1 (classic light) / 4.56:1 (classic dark)
+      // against the page. Used by the shadcn `input` token.
+      control: { light: '#8A7F6E', dark: '#746B5D', classicLight: '#858585', classicDark: '#757575' },
     },
   },
   radius: {
@@ -54,25 +71,37 @@ export const tokens = {
     xl: '1.5rem', '2xl': '2rem', '3xl': '3rem', '4xl': '4rem', '5xl': '5.5rem',
   },
   shadow: {
+    // Classic pairs reuse the light/dark recipes with neutral black casts —
+    // no warm ink tint on the pure white/black grounds.
     xs: {
       light: '0 1px 2px -1px rgba(42, 38, 34, 0.12), 0 0 0 1px rgba(42, 38, 34, 0.05)',
       dark: '0 1px 2px -1px rgba(8, 5, 3, 0.40), 0 0 0 1px rgba(8, 5, 3, 0.18)',
+      classicLight: '0 1px 2px -1px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05)',
+      classicDark: '0 1px 2px -1px rgba(0, 0, 0, 0.50), 0 0 0 1px rgba(255, 255, 255, 0.06)',
     },
     sm: {
       light: '0 2px 4px -1px rgba(42, 38, 34, 0.14), 0 1px 2px -1px rgba(42, 38, 34, 0.08)',
       dark: '0 2px 4px -1px rgba(8, 5, 3, 0.48), 0 1px 2px -1px rgba(8, 5, 3, 0.30)',
+      classicLight: '0 2px 4px -1px rgba(0, 0, 0, 0.14), 0 1px 2px -1px rgba(0, 0, 0, 0.08)',
+      classicDark: '0 2px 4px -1px rgba(0, 0, 0, 0.55), 0 1px 2px -1px rgba(0, 0, 0, 0.35)',
     },
     base: {
       light: '0 4px 8px -2px rgba(42, 38, 34, 0.16), 0 2px 4px -2px rgba(42, 38, 34, 0.10)',
       dark: '0 4px 8px -2px rgba(8, 5, 3, 0.54), 0 2px 4px -2px rgba(8, 5, 3, 0.36)',
+      classicLight: '0 4px 8px -2px rgba(0, 0, 0, 0.16), 0 2px 4px -2px rgba(0, 0, 0, 0.10)',
+      classicDark: '0 4px 8px -2px rgba(0, 0, 0, 0.60), 0 2px 4px -2px rgba(0, 0, 0, 0.40)',
     },
     lg: {
       light: '0 12px 20px -4px rgba(42, 38, 34, 0.18), 0 4px 8px -4px rgba(42, 38, 34, 0.10)',
       dark: '0 12px 20px -4px rgba(8, 5, 3, 0.62), 0 4px 8px -4px rgba(8, 5, 3, 0.40)',
+      classicLight: '0 12px 20px -4px rgba(0, 0, 0, 0.18), 0 4px 8px -4px rgba(0, 0, 0, 0.10)',
+      classicDark: '0 12px 20px -4px rgba(0, 0, 0, 0.68), 0 4px 8px -4px rgba(0, 0, 0, 0.44)',
     },
     pop: {
       light: '0 20px 32px -6px rgba(42, 38, 34, 0.22), 0 8px 12px -6px rgba(42, 38, 34, 0.12)',
       dark: '0 20px 32px -6px rgba(8, 5, 3, 0.72), 0 8px 12px -6px rgba(8, 5, 3, 0.48)',
+      classicLight: '0 20px 32px -6px rgba(0, 0, 0, 0.22), 0 8px 12px -6px rgba(0, 0, 0, 0.12)',
+      classicDark: '0 20px 32px -6px rgba(0, 0, 0, 0.78), 0 8px 12px -6px rgba(0, 0, 0, 0.52)',
     },
   },
   motion: {

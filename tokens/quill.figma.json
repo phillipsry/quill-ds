@@ -10,7 +10,9 @@
             "com.figma": {
               "modes": {
                 "Light": "#F5EDDD",
-                "Dark": "#20180E"
+                "Dark": "#20180E",
+                "Classic Light": "#FFFFFF",
+                "Classic Dark": "#000000"
               }
             }
           }
@@ -22,7 +24,9 @@
             "com.figma": {
               "modes": {
                 "Light": "#EFE4CE",
-                "Dark": "#2A2014"
+                "Dark": "#2A2014",
+                "Classic Light": "#F7F7F7",
+                "Classic Dark": "#111111"
               }
             }
           }
@@ -34,7 +38,9 @@
             "com.figma": {
               "modes": {
                 "Light": "#E8DCC0",
-                "Dark": "#352A1A"
+                "Dark": "#352A1A",
+                "Classic Light": "#EFEFEF",
+                "Classic Dark": "#1C1C1C"
               }
             }
           }
@@ -48,7 +54,9 @@
             "com.figma": {
               "modes": {
                 "Light": "#2A2622",
-                "Dark": "#F1E7D3"
+                "Dark": "#F1E7D3",
+                "Classic Light": "#171717",
+                "Classic Dark": "#F5F5F5"
               }
             }
           }
@@ -60,7 +68,9 @@
             "com.figma": {
               "modes": {
                 "Light": "#5C524A",
-                "Dark": "#C8B9A0"
+                "Dark": "#C8B9A0",
+                "Classic Light": "#454545",
+                "Classic Dark": "#C9C9C9"
               }
             }
           }
@@ -72,7 +82,9 @@
             "com.figma": {
               "modes": {
                 "Light": "#675F58",
-                "Dark": "#A89880"
+                "Dark": "#A89880",
+                "Classic Light": "#5E5E5E",
+                "Classic Dark": "#A0A0A0"
               }
             }
           }
@@ -87,7 +99,9 @@
               "com.figma": {
                 "modes": {
                   "Light": "#C4684B",
-                  "Dark": "#DB8568"
+                  "Dark": "#DB8568",
+                  "Classic Light": "#DE501B",
+                  "Classic Dark": "#F57345"
                 }
               }
             }
@@ -99,7 +113,9 @@
               "com.figma": {
                 "modes": {
                   "Light": "#8A4530",
-                  "Dark": "#E89A80"
+                  "Dark": "#E89A80",
+                  "Classic Light": "#9D3209",
+                  "Classic Dark": "#FE8D67"
                 }
               }
             }
@@ -113,7 +129,9 @@
               "com.figma": {
                 "modes": {
                   "Light": "#7A8C5C",
-                  "Dark": "#A2B57E"
+                  "Dark": "#A2B57E",
+                  "Classic Light": "#758F43",
+                  "Classic Dark": "#9DB962"
                 }
               }
             }
@@ -125,7 +143,9 @@
               "com.figma": {
                 "modes": {
                   "Light": "#5E6E43",
-                  "Dark": "#B6C896"
+                  "Dark": "#B6C896",
+                  "Classic Light": "#5A712B",
+                  "Classic Dark": "#B1CC7E"
                 }
               }
             }
@@ -139,7 +159,9 @@
               "com.figma": {
                 "modes": {
                   "Light": "#5B6B8A",
-                  "Dark": "#92A2C2"
+                  "Dark": "#92A2C2",
+                  "Classic Light": "#536A99",
+                  "Classic Dark": "#8AA2D2"
                 }
               }
             }
@@ -151,7 +173,9 @@
               "com.figma": {
                 "modes": {
                   "Light": "#44516D",
-                  "Dark": "#AAB8D4"
+                  "Dark": "#AAB8D4",
+                  "Classic Light": "#3D507A",
+                  "Classic Dark": "#A3B8E2"
                 }
               }
             }
@@ -165,7 +189,9 @@
               "com.figma": {
                 "modes": {
                   "Light": "#B89968",
-                  "Dark": "#D6BA86"
+                  "Dark": "#D6BA86",
+                  "Classic Light": "#C49544",
+                  "Classic Dark": "#E2B764"
                 }
               }
             }
@@ -177,7 +203,9 @@
               "com.figma": {
                 "modes": {
                   "Light": "#9A7D4E",
-                  "Dark": "#E2CA9E"
+                  "Dark": "#E2CA9E",
+                  "Classic Light": "#A57928",
+                  "Classic Dark": "#ECC883"
                 }
               }
             }
@@ -192,7 +220,9 @@
             "com.figma": {
               "modes": {
                 "Light": "rgba(42, 38, 34, 0.08)",
-                "Dark": "rgba(241, 231, 211, 0.07)"
+                "Dark": "rgba(241, 231, 211, 0.07)",
+                "Classic Light": "rgba(0, 0, 0, 0.07)",
+                "Classic Dark": "rgba(255, 255, 255, 0.08)"
               }
             }
           }
@@ -204,7 +234,9 @@
             "com.figma": {
               "modes": {
                 "Light": "rgba(42, 38, 34, 0.12)",
-                "Dark": "rgba(241, 231, 211, 0.11)"
+                "Dark": "rgba(241, 231, 211, 0.11)",
+                "Classic Light": "rgba(0, 0, 0, 0.11)",
+                "Classic Dark": "rgba(255, 255, 255, 0.12)"
               }
             }
           }
@@ -216,7 +248,9 @@
             "com.figma": {
               "modes": {
                 "Light": "rgba(42, 38, 34, 0.15)",
-                "Dark": "rgba(241, 231, 211, 0.15)"
+                "Dark": "rgba(241, 231, 211, 0.15)",
+                "Classic Light": "rgba(0, 0, 0, 0.14)",
+                "Classic Dark": "rgba(255, 255, 255, 0.16)"
               }
             }
           }
@@ -228,7 +262,9 @@
             "com.figma": {
               "modes": {
                 "Light": "rgba(42, 38, 34, 0.20)",
-                "Dark": "rgba(241, 231, 211, 0.22)"
+                "Dark": "rgba(241, 231, 211, 0.22)",
+                "Classic Light": "rgba(0, 0, 0, 0.20)",
+                "Classic Dark": "rgba(255, 255, 255, 0.24)"
               }
             }
           }
@@ -240,7 +276,9 @@
             "com.figma": {
               "modes": {
                 "Light": "#8A7F6E",
-                "Dark": "#746B5D"
+                "Dark": "#746B5D",
+                "Classic Light": "#858585",
+                "Classic Dark": "#757575"
               }
             }
           }
@@ -441,7 +479,9 @@
           "com.figma": {
             "modes": {
               "Light": "0 1px 2px -1px rgba(42, 38, 34, 0.12), 0 0 0 1px rgba(42, 38, 34, 0.05)",
-              "Dark": "0 1px 2px -1px rgba(8, 5, 3, 0.40), 0 0 0 1px rgba(8, 5, 3, 0.18)"
+              "Dark": "0 1px 2px -1px rgba(8, 5, 3, 0.40), 0 0 0 1px rgba(8, 5, 3, 0.18)",
+              "Classic Light": "0 1px 2px -1px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05)",
+              "Classic Dark": "0 1px 2px -1px rgba(0, 0, 0, 0.50), 0 0 0 1px rgba(255, 255, 255, 0.06)"
             }
           }
         }
@@ -453,7 +493,9 @@
           "com.figma": {
             "modes": {
               "Light": "0 2px 4px -1px rgba(42, 38, 34, 0.14), 0 1px 2px -1px rgba(42, 38, 34, 0.08)",
-              "Dark": "0 2px 4px -1px rgba(8, 5, 3, 0.48), 0 1px 2px -1px rgba(8, 5, 3, 0.30)"
+              "Dark": "0 2px 4px -1px rgba(8, 5, 3, 0.48), 0 1px 2px -1px rgba(8, 5, 3, 0.30)",
+              "Classic Light": "0 2px 4px -1px rgba(0, 0, 0, 0.14), 0 1px 2px -1px rgba(0, 0, 0, 0.08)",
+              "Classic Dark": "0 2px 4px -1px rgba(0, 0, 0, 0.55), 0 1px 2px -1px rgba(0, 0, 0, 0.35)"
             }
           }
         }
@@ -465,7 +507,9 @@
           "com.figma": {
             "modes": {
               "Light": "0 4px 8px -2px rgba(42, 38, 34, 0.16), 0 2px 4px -2px rgba(42, 38, 34, 0.10)",
-              "Dark": "0 4px 8px -2px rgba(8, 5, 3, 0.54), 0 2px 4px -2px rgba(8, 5, 3, 0.36)"
+              "Dark": "0 4px 8px -2px rgba(8, 5, 3, 0.54), 0 2px 4px -2px rgba(8, 5, 3, 0.36)",
+              "Classic Light": "0 4px 8px -2px rgba(0, 0, 0, 0.16), 0 2px 4px -2px rgba(0, 0, 0, 0.10)",
+              "Classic Dark": "0 4px 8px -2px rgba(0, 0, 0, 0.60), 0 2px 4px -2px rgba(0, 0, 0, 0.40)"
             }
           }
         }
@@ -477,7 +521,9 @@
           "com.figma": {
             "modes": {
               "Light": "0 12px 20px -4px rgba(42, 38, 34, 0.18), 0 4px 8px -4px rgba(42, 38, 34, 0.10)",
-              "Dark": "0 12px 20px -4px rgba(8, 5, 3, 0.62), 0 4px 8px -4px rgba(8, 5, 3, 0.40)"
+              "Dark": "0 12px 20px -4px rgba(8, 5, 3, 0.62), 0 4px 8px -4px rgba(8, 5, 3, 0.40)",
+              "Classic Light": "0 12px 20px -4px rgba(0, 0, 0, 0.18), 0 4px 8px -4px rgba(0, 0, 0, 0.10)",
+              "Classic Dark": "0 12px 20px -4px rgba(0, 0, 0, 0.68), 0 4px 8px -4px rgba(0, 0, 0, 0.44)"
             }
           }
         }
@@ -489,7 +535,9 @@
           "com.figma": {
             "modes": {
               "Light": "0 20px 32px -6px rgba(42, 38, 34, 0.22), 0 8px 12px -6px rgba(42, 38, 34, 0.12)",
-              "Dark": "0 20px 32px -6px rgba(8, 5, 3, 0.72), 0 8px 12px -6px rgba(8, 5, 3, 0.48)"
+              "Dark": "0 20px 32px -6px rgba(8, 5, 3, 0.72), 0 8px 12px -6px rgba(8, 5, 3, 0.48)",
+              "Classic Light": "0 20px 32px -6px rgba(0, 0, 0, 0.22), 0 8px 12px -6px rgba(0, 0, 0, 0.12)",
+              "Classic Dark": "0 20px 32px -6px rgba(0, 0, 0, 0.78), 0 8px 12px -6px rgba(0, 0, 0, 0.52)"
             }
           }
         }

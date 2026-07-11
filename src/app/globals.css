@@ -2,7 +2,8 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is([data-theme="dark"] *));
+/* Classic Dark is a dark theme too — dark: utilities apply under both. */
+@custom-variant dark (&:is([data-theme="dark"] *, [data-theme="classic-dark"] *));
 
 /* @quill-tokens:start */
 @theme inline {
@@ -189,29 +190,77 @@
   --sidebar-border: var(--line-faint);
   --sidebar-ring: var(--ink);
   --dk-paper: #20180E;
+  --cl-paper: #FFFFFF;
+  --cd-paper: #000000;
   --dk-paper-warm: #2A2014;
+  --cl-paper-warm: #F7F7F7;
+  --cd-paper-warm: #111111;
   --dk-paper-deep: #352A1A;
+  --cl-paper-deep: #EFEFEF;
+  --cd-paper-deep: #1C1C1C;
   --dk-ink: #F1E7D3;
+  --cl-ink: #171717;
+  --cd-ink: #F5F5F5;
   --dk-ink-soft: #C8B9A0;
+  --cl-ink-soft: #454545;
+  --cd-ink-soft: #C9C9C9;
   --dk-ink-muted: #A89880;
+  --cl-ink-muted: #5E5E5E;
+  --cd-ink-muted: #A0A0A0;
   --dk-terracotta: #DB8568;
+  --cl-terracotta: #DE501B;
+  --cd-terracotta: #F57345;
   --dk-terracotta-deep: #E89A80;
+  --cl-terracotta-deep: #9D3209;
+  --cd-terracotta-deep: #FE8D67;
   --dk-moss: #A2B57E;
+  --cl-moss: #758F43;
+  --cd-moss: #9DB962;
   --dk-moss-deep: #B6C896;
+  --cl-moss-deep: #5A712B;
+  --cd-moss-deep: #B1CC7E;
   --dk-indigo: #92A2C2;
+  --cl-indigo: #536A99;
+  --cd-indigo: #8AA2D2;
   --dk-indigo-deep: #AAB8D4;
+  --cl-indigo-deep: #3D507A;
+  --cd-indigo-deep: #A3B8E2;
   --dk-gold: #D6BA86;
+  --cl-gold: #C49544;
+  --cd-gold: #E2B764;
   --dk-gold-deep: #E2CA9E;
+  --cl-gold-deep: #A57928;
+  --cd-gold-deep: #ECC883;
   --dk-line-faint: rgba(241, 231, 211, 0.07);
+  --cl-line-faint: rgba(0, 0, 0, 0.07);
+  --cd-line-faint: rgba(255, 255, 255, 0.08);
   --dk-line-soft: rgba(241, 231, 211, 0.11);
+  --cl-line-soft: rgba(0, 0, 0, 0.11);
+  --cd-line-soft: rgba(255, 255, 255, 0.12);
   --dk-line: rgba(241, 231, 211, 0.15);
+  --cl-line: rgba(0, 0, 0, 0.14);
+  --cd-line: rgba(255, 255, 255, 0.16);
   --dk-line-strong: rgba(241, 231, 211, 0.22);
+  --cl-line-strong: rgba(0, 0, 0, 0.20);
+  --cd-line-strong: rgba(255, 255, 255, 0.24);
   --dk-line-control: #746B5D;
+  --cl-line-control: #858585;
+  --cd-line-control: #757575;
   --dk-shadow-xs: 0 1px 2px -1px rgba(8, 5, 3, 0.40), 0 0 0 1px rgba(8, 5, 3, 0.18);
+  --cl-shadow-xs: 0 1px 2px -1px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  --cd-shadow-xs: 0 1px 2px -1px rgba(0, 0, 0, 0.50), 0 0 0 1px rgba(255, 255, 255, 0.06);
   --dk-shadow-sm: 0 2px 4px -1px rgba(8, 5, 3, 0.48), 0 1px 2px -1px rgba(8, 5, 3, 0.30);
+  --cl-shadow-sm: 0 2px 4px -1px rgba(0, 0, 0, 0.14), 0 1px 2px -1px rgba(0, 0, 0, 0.08);
+  --cd-shadow-sm: 0 2px 4px -1px rgba(0, 0, 0, 0.55), 0 1px 2px -1px rgba(0, 0, 0, 0.35);
   --dk-shadow: 0 4px 8px -2px rgba(8, 5, 3, 0.54), 0 2px 4px -2px rgba(8, 5, 3, 0.36);
+  --cl-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.16), 0 2px 4px -2px rgba(0, 0, 0, 0.10);
+  --cd-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.60), 0 2px 4px -2px rgba(0, 0, 0, 0.40);
   --dk-shadow-lg: 0 12px 20px -4px rgba(8, 5, 3, 0.62), 0 4px 8px -4px rgba(8, 5, 3, 0.40);
+  --cl-shadow-lg: 0 12px 20px -4px rgba(0, 0, 0, 0.18), 0 4px 8px -4px rgba(0, 0, 0, 0.10);
+  --cd-shadow-lg: 0 12px 20px -4px rgba(0, 0, 0, 0.68), 0 4px 8px -4px rgba(0, 0, 0, 0.44);
   --dk-shadow-pop: 0 20px 32px -6px rgba(8, 5, 3, 0.72), 0 8px 12px -6px rgba(8, 5, 3, 0.48);
+  --cl-shadow-pop: 0 20px 32px -6px rgba(0, 0, 0, 0.22), 0 8px 12px -6px rgba(0, 0, 0, 0.12);
+  --cd-shadow-pop: 0 20px 32px -6px rgba(0, 0, 0, 0.78), 0 8px 12px -6px rgba(0, 0, 0, 0.52);
 }
 
 [data-theme="dark"] {
@@ -241,6 +290,205 @@
   --shadow: var(--dk-shadow);
   --shadow-lg: var(--dk-shadow-lg);
   --shadow-pop: var(--dk-shadow-pop);
+  --surface-page: var(--paper);
+  --surface-card: var(--paper-warm);
+  --surface-well: var(--paper-deep);
+  --text-strong: var(--ink);
+  --text-body: var(--ink-soft);
+  --text-muted-color: var(--ink-muted);
+  --text-on-ink: var(--paper);
+  --text-accent-color: var(--terracotta-deep);
+  --link: var(--indigo);
+  --border-card: var(--line-soft);
+  --border-field: var(--line-control);
+  --border-divider: var(--line-faint);
+  --success: var(--moss-deep);
+  --warning: var(--gold-deep);
+  --danger: var(--terracotta-deep);
+  --info: var(--indigo);
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper-warm);
+  --card-foreground: var(--ink);
+  --popover: var(--paper-warm);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--paper-deep);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper-deep);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--paper-deep);
+  --accent-foreground: var(--ink);
+  --destructive: var(--terracotta-deep);
+  --border: var(--line-soft);
+  --input: var(--line-control);
+  --ring: var(--ink);
+  --chart-1: var(--terracotta);
+  --chart-2: var(--moss);
+  --chart-3: var(--indigo);
+  --chart-4: var(--gold-deep);
+  --chart-5: var(--ink-soft);
+  --sidebar: var(--paper-warm);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--paper);
+  --sidebar-accent: var(--paper-deep);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--line-faint);
+  --sidebar-ring: var(--ink);
+}
+
+[data-theme="classic-light"] {
+  color-scheme: light;
+
+  --paper: var(--cl-paper);
+  --paper-warm: var(--cl-paper-warm);
+  --paper-deep: var(--cl-paper-deep);
+  --ink: var(--cl-ink);
+  --ink-soft: var(--cl-ink-soft);
+  --ink-muted: var(--cl-ink-muted);
+  --terracotta: var(--cl-terracotta);
+  --terracotta-deep: var(--cl-terracotta-deep);
+  --moss: var(--cl-moss);
+  --moss-deep: var(--cl-moss-deep);
+  --indigo: var(--cl-indigo);
+  --indigo-deep: var(--cl-indigo-deep);
+  --gold: var(--cl-gold);
+  --gold-deep: var(--cl-gold-deep);
+  --line-faint: var(--cl-line-faint);
+  --line-soft: var(--cl-line-soft);
+  --line: var(--cl-line);
+  --line-strong: var(--cl-line-strong);
+  --line-control: var(--cl-line-control);
+  --shadow-xs: var(--cl-shadow-xs);
+  --shadow-sm: var(--cl-shadow-sm);
+  --shadow: var(--cl-shadow);
+  --shadow-lg: var(--cl-shadow-lg);
+  --shadow-pop: var(--cl-shadow-pop);
+  --surface-page: var(--paper);
+  --surface-card: var(--paper-warm);
+  --surface-well: var(--paper-deep);
+  --text-strong: var(--ink);
+  --text-body: var(--ink-soft);
+  --text-muted-color: var(--ink-muted);
+  --text-on-ink: var(--paper);
+  --text-accent-color: var(--terracotta-deep);
+  --link: var(--indigo);
+  --border-card: var(--line-soft);
+  --border-field: var(--line-control);
+  --border-divider: var(--line-faint);
+  --success: var(--moss-deep);
+  --warning: var(--gold-deep);
+  --danger: var(--terracotta-deep);
+  --info: var(--indigo);
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper-warm);
+  --card-foreground: var(--ink);
+  --popover: var(--paper-warm);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--paper-deep);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper-deep);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--paper-deep);
+  --accent-foreground: var(--ink);
+  --destructive: var(--terracotta-deep);
+  --border: var(--line-soft);
+  --input: var(--line-control);
+  --ring: var(--ink);
+  --chart-1: var(--terracotta);
+  --chart-2: var(--moss);
+  --chart-3: var(--indigo);
+  --chart-4: var(--gold-deep);
+  --chart-5: var(--ink-soft);
+  --sidebar: var(--paper-warm);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--paper);
+  --sidebar-accent: var(--paper-deep);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--line-faint);
+  --sidebar-ring: var(--ink);
+}
+
+[data-theme="classic-dark"] {
+  color-scheme: dark;
+
+  --paper: var(--cd-paper);
+  --paper-warm: var(--cd-paper-warm);
+  --paper-deep: var(--cd-paper-deep);
+  --ink: var(--cd-ink);
+  --ink-soft: var(--cd-ink-soft);
+  --ink-muted: var(--cd-ink-muted);
+  --terracotta: var(--cd-terracotta);
+  --terracotta-deep: var(--cd-terracotta-deep);
+  --moss: var(--cd-moss);
+  --moss-deep: var(--cd-moss-deep);
+  --indigo: var(--cd-indigo);
+  --indigo-deep: var(--cd-indigo-deep);
+  --gold: var(--cd-gold);
+  --gold-deep: var(--cd-gold-deep);
+  --line-faint: var(--cd-line-faint);
+  --line-soft: var(--cd-line-soft);
+  --line: var(--cd-line);
+  --line-strong: var(--cd-line-strong);
+  --line-control: var(--cd-line-control);
+  --shadow-xs: var(--cd-shadow-xs);
+  --shadow-sm: var(--cd-shadow-sm);
+  --shadow: var(--cd-shadow);
+  --shadow-lg: var(--cd-shadow-lg);
+  --shadow-pop: var(--cd-shadow-pop);
+  --surface-page: var(--paper);
+  --surface-card: var(--paper-warm);
+  --surface-well: var(--paper-deep);
+  --text-strong: var(--ink);
+  --text-body: var(--ink-soft);
+  --text-muted-color: var(--ink-muted);
+  --text-on-ink: var(--paper);
+  --text-accent-color: var(--terracotta-deep);
+  --link: var(--indigo);
+  --border-card: var(--line-soft);
+  --border-field: var(--line-control);
+  --border-divider: var(--line-faint);
+  --success: var(--moss-deep);
+  --warning: var(--gold-deep);
+  --danger: var(--terracotta-deep);
+  --info: var(--indigo);
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper-warm);
+  --card-foreground: var(--ink);
+  --popover: var(--paper-warm);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--paper-deep);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper-deep);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--paper-deep);
+  --accent-foreground: var(--ink);
+  --destructive: var(--terracotta-deep);
+  --border: var(--line-soft);
+  --input: var(--line-control);
+  --ring: var(--ink);
+  --chart-1: var(--terracotta);
+  --chart-2: var(--moss);
+  --chart-3: var(--indigo);
+  --chart-4: var(--gold-deep);
+  --chart-5: var(--ink-soft);
+  --sidebar: var(--paper-warm);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--paper);
+  --sidebar-accent: var(--paper-deep);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--line-faint);
+  --sidebar-ring: var(--ink);
 }
 /* @quill-tokens:end */
 
@@ -341,4 +589,12 @@ html {
 
 [data-theme="dark"] .paper-specks {
   opacity: 0.10;
+}
+
+/* ── Classic themes are clean-stock: no paper tooth on the pure white/black grounds. */
+[data-theme="classic-light"] .paper-grain,
+[data-theme="classic-light"] .paper-specks,
+[data-theme="classic-dark"] .paper-grain,
+[data-theme="classic-dark"] .paper-specks {
+  display: none;
 }
