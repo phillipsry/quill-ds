@@ -322,12 +322,17 @@ export default function Home() {
                   <span className="inline-flex rounded-sm border border-[var(--line-soft)] p-1.5">
                     <QuillMark size={64} />
                   </span>
+                  {/* Favicon tiles: paper fill in light, no fill in dark — the
+                      mark swaps to its cream cut so it stays visible on walnut. */}
                   <div className="flex items-end gap-2.5">
-                    {/* Favicon tiles sit on light paper in both themes. */}
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/home/quill-mark.svg" alt="32px favicon" width={32} height={32} className="block rounded-xs border border-[var(--line-soft)] bg-[#F5EDDD] p-[3px]" />
+                    <img src="/home/quill-mark.svg" alt="32px favicon" width={32} height={32} className="block rounded-xs border border-[var(--line-soft)] bg-[#F5EDDD] p-[3px] dark:hidden" />
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/home/quill-mark-16.svg" alt="16px favicon" width={16} height={16} className="block rounded-xs border border-[var(--line-soft)] bg-[#F5EDDD] p-px" />
+                    <img src="/home/quill-mark-cream.svg" alt="32px favicon" width={32} height={32} className="hidden rounded-xs border border-[var(--line-soft)] bg-transparent p-[3px] dark:block" />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/home/quill-mark-16.svg" alt="16px favicon" width={16} height={16} className="block rounded-xs border border-[var(--line-soft)] bg-[#F5EDDD] p-px dark:hidden" />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/home/quill-mark-cream.svg" alt="16px favicon" width={16} height={16} className="hidden rounded-xs border border-[var(--line-soft)] bg-transparent p-px dark:block" />
                   </div>
                 </div>
                 <p className="m-0 mt-auto text-sm leading-normal text-[var(--text-body)]">
