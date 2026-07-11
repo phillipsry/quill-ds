@@ -112,6 +112,20 @@ export default function Home() {
   const [specimenOn, setSpecimenOn] = useState(true);
 
   useEffect(() => {
+    // Always open at the very top — even after a reload or an anchor deep
+    // link. The router applies its own hash scroll and canonical URL right
+    // after hydration, so reset again on the next frame and shortly after,
+    // instantly (the smooth-scroll CSS must not animate this).
+    const resetScroll = () => {
+      if (window.location.hash) {
+        history.replaceState(null, "", window.location.pathname);
+      }
+      window.scrollTo({ top: 0, behavior: "instant" });
+    };
+    resetScroll();
+    const raf = requestAnimationFrame(resetScroll);
+    const timer = setTimeout(resetScroll, 80);
+
     let stored: string | null = null;
     try {
       stored = localStorage.getItem("quill-home-theme");
@@ -123,6 +137,11 @@ export default function Home() {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setTheme(stored);
     }
+
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
+    };
   }, []);
 
   function applyTheme(next: "light" | "dark") {
@@ -151,7 +170,7 @@ export default function Home() {
         {/* Three zones: logo left, links centered, theme toggle right. On mobile
             the middle zone sits between the other two (true centering and the
             sun/moon pair don't fit a 390px row). */}
-        <div className="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between gap-4 px-4 sm:grid sm:grid-cols-[1fr_auto_1fr] sm:gap-8 sm:px-12">
+        <div className="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between gap-4 px-3 sm:grid sm:grid-cols-[1fr_auto_1fr] sm:gap-8 sm:px-12">
           <a href="#top" className="flex items-center gap-3 no-underline sm:justify-self-start">
             <Logo />
             {/* On mobile only the feather + Quill wordmark stays. */}
@@ -160,24 +179,24 @@ export default function Home() {
               Design system
             </span>
           </a>
-          <div className="flex items-center gap-7 max-sm:gap-3 sm:justify-self-center">
-            <a href="#foundations" className={`${navLink} max-sm:text-xs`}>Foundations</a>
-            <a href="#components" className={`${navLink} max-sm:text-xs`}>Components</a>
-            <a href="#principles" className={`${navLink} max-sm:text-xs`}>Principles</a>
+          <div className="flex items-center gap-7 max-sm:gap-2 sm:justify-self-center">
+            <a href="#foundations" className={`${navLink} max-sm:text-[0.7rem]`}>Foundations</a>
+            <a href="#components" className={`${navLink} max-sm:text-[0.7rem]`}>Components</a>
+            <a href="#principles" className={`${navLink} max-sm:text-[0.7rem]`}>Principles</a>
           </div>
           {/* Inactive icons use ink-soft, not ink-muted: 6.5:1 light / 9.1:1
               dark against the page — comfortably past WCAG 1.4.11's 3:1. */}
-          <div className="flex items-center gap-2 sm:justify-self-end">
+          <div className="flex items-center gap-2 max-sm:gap-1 sm:justify-self-end">
             <Icon
               name="light_mode"
               size={18}
-              className={`max-sm:hidden ${theme === "light" ? "text-[var(--ink)]" : "text-[var(--ink-soft)]"}`}
+              className={`max-sm:size-3.5 ${theme === "light" ? "text-[var(--ink)]" : "text-[var(--ink-soft)]"}`}
             />
             <Switch checked={theme === "dark"} onCheckedChange={toggleTheme} aria-label="Dusk mode" title="Dusk mode" />
             <Icon
               name="dark_mode"
               size={18}
-              className={`max-sm:hidden ${theme === "dark" ? "text-[var(--ink)]" : "text-[var(--ink-soft)]"}`}
+              className={`max-sm:size-3.5 ${theme === "dark" ? "text-[var(--ink)]" : "text-[var(--ink-soft)]"}`}
             />
           </div>
         </div>
@@ -190,7 +209,7 @@ export default function Home() {
           className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-[0.07]"
           style={{ backgroundImage: "url('/home/declaration.webp')" }}
         />
-        <div className="relative mx-auto grid max-w-[1400px] grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] items-center gap-16 px-12 pt-24 pb-[104px] max-lg:grid-cols-1">
+        <div className="relative mx-auto grid max-w-[1400px] grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] items-center gap-16 px-12 pt-12 pb-[104px] max-lg:grid-cols-1">
           <div className="flex flex-col items-start gap-7">
             <Eyebrow dash>The Quill design system · Issue № 001</Eyebrow>
             <h1 className="m-0 font-display text-5xl font-normal leading-[1.05] tracking-[-0.03em] text-[var(--text-strong)] [font-variation-settings:var(--fraunces-display)] [text-wrap:balance]">
@@ -286,7 +305,9 @@ export default function Home() {
               <CardContent className="flex h-full flex-col gap-[18px]">
                 <PlateLabel>The mark</PlateLabel>
                 <div className="flex items-center gap-[18px]">
-                  <QuillMark size={64} />
+                  <span className="inline-flex rounded-sm border border-[var(--line-soft)] p-1.5">
+                    <QuillMark size={64} />
+                  </span>
                   <div className="flex items-end gap-2.5">
                     {/* Favicon tiles sit on light paper in both themes. */}
                     {/* eslint-disable-next-line @next/next/no-img-element */}

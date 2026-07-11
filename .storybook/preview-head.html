@@ -10,9 +10,21 @@
 >
 
 <!-- Docs inline-code chips: use paper-warm instead of Storybook's default grey.
-     Scoped to :not(pre *) so fenced code blocks keep their own panel styling. -->
+     Scoped to :not(pre *) so fenced code blocks keep their own panel styling.
+     The html/body background stops the white flash while a page loads. -->
 <style>
+  html, body {
+    background: #F5EDDD; /* --paper */
+  }
   .sbdocs code:not(pre code) {
     background: #EFE4CE; /* --paper-warm */
   }
 </style>
+
+<!-- Pages always open at the very top, never at a restored scroll position. -->
+<script>
+  history.scrollRestoration = 'manual'
+  addEventListener('load', function () {
+    scrollTo({ top: 0, behavior: 'instant' })
+  })
+</script>

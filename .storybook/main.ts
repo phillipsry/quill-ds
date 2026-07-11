@@ -26,10 +26,12 @@ const config: StorybookConfig = {
   framework: '@storybook/nextjs-vite',
   staticDirs: ['../src/stories/assets'],
   // Brand favicon (the quill feather) in the manager tab, served from staticDirs root.
+  // The early background style stops the white flash before the manager theme loads.
   managerHead: (head) => `
     ${head}
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <style>html, body { background: #F5EDDD; }</style>
   `,
   docs: {
     autodocs: 'tag',
