@@ -454,7 +454,7 @@ export default function Home() {
           <span className="font-display text-3xl leading-none text-terracotta">¶</span>
           <p className="m-0 font-display text-2xl font-normal leading-[1.45] tracking-[-0.02em] text-[var(--text-strong)] [font-variation-settings:var(--fraunces-display)] [text-wrap:pretty]">
             &ldquo;People sit at the core of our design system and shape what good looks like: distinctive yet
-            familiar, with a flair that makes it easy to come back to every day.&rdquo;
+            familiar, with a flair of style that makes it easy to come back to every day.&rdquo;
           </p>
         </div>
         <div className="mx-auto max-w-[1400px] px-12 pb-24">
