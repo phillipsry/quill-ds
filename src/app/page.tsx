@@ -88,10 +88,10 @@ function SectionHeader({
   caption: string;
 }) {
   return (
-    <div className="mb-14 flex items-baseline justify-between gap-8">
+    <div className="mb-14 flex items-baseline justify-between gap-8 max-sm:mb-9">
       <div className="flex flex-col gap-4">
         <span className="font-sans text-xs font-medium tracking-[0.15em] uppercase text-ink-muted">{eyebrow}</span>
-        <h2 className="m-0 font-display text-3xl font-normal leading-[1.2] tracking-[-0.03em] text-[var(--text-strong)] [font-variation-settings:var(--fraunces-display)]">
+        <h2 className="m-0 font-display text-3xl font-normal leading-[1.2] tracking-[-0.03em] text-[var(--text-strong)] [font-variation-settings:var(--fraunces-display)] max-sm:text-2xl">
           {title}
         </h2>
       </div>
@@ -257,7 +257,7 @@ export default function Home() {
 
       {/* ── Foundations ─────────────────────────────────────────────────── */}
       <section id="foundations" className="border-y border-[var(--border-divider)] bg-paper-warm">
-        <div className="mx-auto max-w-[1400px] px-12 py-24">
+        <div className="mx-auto max-w-[1400px] px-12 py-24 max-sm:px-6 max-sm:py-14">
           <SectionHeader
             eyebrow="Foundations"
             title={<>Paper, ink, and four <Accent>pigments</Accent>.</>}
@@ -349,7 +349,7 @@ export default function Home() {
 
       {/* ── Components ──────────────────────────────────────────────────── */}
       <section id="components" className="bg-[var(--surface-page)]">
-        <div className="mx-auto max-w-[1400px] px-12 py-24">
+        <div className="mx-auto max-w-[1400px] px-12 py-24 max-sm:px-6 max-sm:py-14">
           <SectionHeader
             eyebrow="The collection"
             title={<>Every component, a <Accent>specimen</Accent>.</>}
@@ -455,15 +455,15 @@ export default function Home() {
 
       {/* ── Principles ──────────────────────────────────────────────────── */}
       <section id="principles" className="border-y border-[var(--border-divider)] bg-paper-warm">
-        <div className="mx-auto flex max-w-[800px] flex-col items-center gap-7 px-12 pt-24 pb-[72px] text-center">
+        <div className="mx-auto flex max-w-[800px] flex-col items-center gap-7 px-12 pt-24 pb-[72px] text-center max-sm:px-6 max-sm:pt-14 max-sm:pb-10">
           <span className="font-display text-3xl leading-none text-terracotta">¶</span>
-          <p className="m-0 font-display text-2xl font-normal leading-[1.45] tracking-[-0.02em] text-[var(--text-strong)] [font-variation-settings:var(--fraunces-display)] [text-wrap:pretty]">
+          <p className="m-0 font-display text-2xl font-normal leading-[1.45] tracking-[-0.02em] text-[var(--text-strong)] [font-variation-settings:var(--fraunces-display)] [text-wrap:pretty] max-sm:text-xl">
             &ldquo;People sit at the core of our design system and shape what good looks like: distinctive yet
             familiar, with a flair of style that makes it easy to come back to every day.&rdquo;
           </p>
         </div>
-        <div className="mx-auto max-w-[1400px] px-12 pb-24">
-          <div className="grid grid-cols-3 gap-12 border-t border-[var(--line-soft)] pt-12 max-md:grid-cols-1">
+        <div className="mx-auto max-w-[1400px] px-12 pb-24 max-sm:px-6 max-sm:pb-14">
+          <div className="grid grid-cols-3 gap-12 border-t border-[var(--line-soft)] pt-12 max-md:grid-cols-1 max-sm:gap-8 max-sm:pt-8">
             {[
               ["№ 01", "Paper first", "No pure white, no pure black. Every surface is pressed cream; every shadow is warm ink, never a hard drop."],
               ["№ 02", "One italic word", "Emphasis is earned. A single accented italic per headline — never two, never shouted."],
@@ -481,10 +481,10 @@ export default function Home() {
 
       {/* ── Getting started ─────────────────────────────────────────────── */}
       <section id="start" className="bg-[var(--surface-page)]">
-        <div className="mx-auto grid max-w-[1400px] grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] items-center gap-16 px-12 py-24 max-lg:grid-cols-1">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] items-center gap-16 px-12 py-24 max-lg:grid-cols-1 max-sm:gap-8 max-sm:px-6 max-sm:py-14">
           <div className="flex flex-col items-start gap-6">
             <span className="font-sans text-xs font-medium tracking-[0.15em] uppercase text-ink-muted">Getting started</span>
-            <h2 className="m-0 font-display text-3xl font-normal leading-[1.2] tracking-[-0.03em] text-[var(--text-strong)] [font-variation-settings:var(--fraunces-display)]">
+            <h2 className="m-0 font-display text-3xl font-normal leading-[1.2] tracking-[-0.03em] text-[var(--text-strong)] [font-variation-settings:var(--fraunces-display)] max-sm:text-2xl">
               Begin with a single <Accent>command</Accent>.
             </h2>
             <p className="m-0 max-w-[460px] text-[1rem] leading-[1.7] text-[var(--text-body)]">
@@ -496,7 +496,7 @@ export default function Home() {
             </Button>
           </div>
           {/* The code card stays dark in both themes. */}
-          <div className="overflow-x-auto rounded-lg bg-[#2A2622] p-7 px-8 font-mono text-sm leading-loose text-[#F5EDDD] shadow-md">
+          <div className="overflow-x-auto rounded-lg bg-[#2A2622] p-7 px-8 font-mono text-sm leading-loose text-[#F5EDDD] shadow-md max-sm:p-4 max-sm:text-xs">
             <div className="text-[rgba(245,237,221,0.55)]"># add the quill theme</div>
             <div>
               npx shadcn add <span className="text-[#D6BA86]">https://www.quilldesignsystem.com/r/quill.json</span>
@@ -518,7 +518,7 @@ export default function Home() {
       {/* ── Footer ──────────────────────────────────────────────────────── */}
       <footer className="bg-[var(--surface-page)]">
         <div className="h-px bg-[linear-gradient(90deg,transparent,var(--line-strong),transparent)]" />
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-8 px-12 pt-12 pb-14 max-md:flex-col">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-8 px-12 pt-12 pb-14 max-md:flex-col max-sm:gap-6 max-sm:px-6 max-sm:pt-8 max-sm:pb-10">
           <div className="flex items-center gap-3.5">
             <Logo />
             <span className="text-sm text-[var(--text-body)]">— A design system, made for people.</span>
