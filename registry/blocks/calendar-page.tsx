@@ -7,7 +7,7 @@ import { Separator } from '@/components/ui/separator'
 
 const sessions = [
   { time: '9:00', title: 'Sketchbook review', kind: 'Studio' },
-  { time: '11:30', title: 'Token sync with SkillDecks', kind: 'Call' },
+  { time: '11:30', title: 'Token sync with Inkwell Press', kind: 'Call' },
   { time: '15:00', title: 'Letterpress workshop', kind: 'Workshop' },
 ]
 

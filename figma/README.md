@@ -1,7 +1,7 @@
 # Quill → Figma sync
 
 **Target file:** Quill Design System — `Dcf8lEB7Ash71iNl7WN4Jq`
-(<https://www.figma.com/design/Dcf8lEB7Ash71iNl7WN4Jq>) · team: RP Designs (Pro) · project 98994984
+(<https://www.figma.com/design/Dcf8lEB7Ash71iNl7WN4Jq>) · Figma Pro team, project 98994984
 
 **Source of truth:** code. `src/tokens/quill.tokens.mjs` → `npm run build:tokens` → `tokens/quill.figma.json` (DTCG) → this sync. Figma is a generated mirror.
 

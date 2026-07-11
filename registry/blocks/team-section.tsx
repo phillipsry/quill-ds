@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Icon } from '@/components/ui/icon'
 
 const team = [
-  { initials: 'RP', name: 'Ryan Phillips', role: 'Founder & Principal', badge: 'Studio' },
+  { initials: 'JD', name: 'John Doe', role: 'Founder & Principal', badge: 'Studio' },
   { initials: 'AL', name: 'Ada Lovelace', role: 'Engineering', badge: 'Systems' },
   { initials: 'WM', name: 'William Morris', role: 'Pattern Design', badge: 'Print' },
   { initials: 'BP', name: 'Beatrix Potter', role: 'Illustration', badge: 'Botanical' },

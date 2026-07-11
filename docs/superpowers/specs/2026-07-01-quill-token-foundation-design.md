@@ -9,11 +9,11 @@
 Quill's token *values* currently live in **four hand-maintained places** that drift apart:
 
 1. `src/app/globals.css` — the real tokens used by Storybook + the app
-2. `registry/themes/quill.css` — the theme shipped to consumers (SkillDecks) via the shadcn registry (`public/r/quill.json`, installed as `app/quill-theme.css`)
+2. `registry/themes/quill.css` — the theme shipped to consumers (Craftwell apps) via the shadcn registry (`public/r/quill.json`, installed as `app/quill-theme.css`)
 3. `.storybook/manager.ts` / `quill-theme.ts` — hardcoded copies for Storybook's own chrome
 4. The Docs MDX pages (`Colors.mdx`, etc.) — hardcoded hex
 
-This drift is already causing a real bug: `registry/themes/quill.css:173` still ships `a { color: var(--terracotta) }` (#C4684B, 3.32:1 — fails WCAG AA), even though `globals.css` was fixed this session to use `--terracotta-deep`. **SkillDecks is on track to receive the stale, inaccessible link color** on its next registry sync.
+This drift is already causing a real bug: `registry/themes/quill.css:173` still ships `a { color: var(--terracotta) }` (#C4684B, 3.32:1 — fails WCAG AA), even though `globals.css` was fixed this session to use `--terracotta-deep`. **Consumers are on track to receive the stale, inaccessible link color** on their next registry sync.
 
 The design system also needs to interface cleanly with **Figma** — the near-term goal is pushing tokens into Figma variables via the Figma MCP to establish a visual source of truth there (components & patterns follow in a later phase, and depend on tokens existing in Figma first).
 
@@ -101,7 +101,7 @@ Placement: add `'Tokens'` after `'Elevation'` in the `storySort` order in `.stor
 
 ## Data flow
 
-Edit `quill.tokens.ts` → run `npm run build:tokens` → CSS token blocks, manager theme, and DTCG JSON regenerate → Storybook page reflects the source automatically (direct import) → commit. Consumers (SkillDecks) pick up the synced `registry/themes/quill.css` on their next `shadcn add`.
+Edit `quill.tokens.ts` → run `npm run build:tokens` → CSS token blocks, manager theme, and DTCG JSON regenerate → Storybook page reflects the source automatically (direct import) → commit. Consumers pick up the synced `registry/themes/quill.css` on their next `shadcn add`.
 
 ## Verification & downstream safety
 
@@ -110,7 +110,7 @@ Edit `quill.tokens.ts` → run `npm run build:tokens` → CSS token blocks, mana
 - A value-diff check confirms no token value shifted unintentionally.
 - Confirm `globals.css` and `registry/themes/quill.css` token blocks now match, and that the shipped theme's base-layer link/accent color is corrected (per "Fixing the stale link color").
 - Validate `tokens/quill.figma.json` against the DTCG shape the Figma MCP expects.
-- Because `registry/themes/quill.css` changes, note in the PR that SkillDecks will receive the corrected (accessible) theme on its next registry sync.
+- Because `registry/themes/quill.css` changes, note in the PR that consumers will receive the corrected (accessible) theme on its next registry sync.
 
 ## File manifest
 

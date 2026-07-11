@@ -57,7 +57,7 @@ export const Disabled: Story = {
   render: () => (
     <Field>
       <FieldLabel htmlFor="username">Username</FieldLabel>
-      <Input id="username" disabled defaultValue="ryanphillips" />
+      <Input id="username" disabled defaultValue="johndoe" />
       <FieldDescription>Your username cannot be changed.</FieldDescription>
     </Field>
   ),
@@ -88,7 +88,7 @@ export const AllVariants: Story = {
       </Field>
       <Field>
         <FieldLabel htmlFor="all-disabled">Disabled</FieldLabel>
-        <Input id="all-disabled" disabled defaultValue="ryanphillips" />
+        <Input id="all-disabled" disabled defaultValue="johndoe" />
         <FieldDescription>This field cannot be edited.</FieldDescription>
       </Field>
     </div>

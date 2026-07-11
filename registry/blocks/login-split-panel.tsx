@@ -15,7 +15,7 @@ export function SplitPanel() {
             &ldquo;The most crafted-feeling system we&rsquo;ve ever shipped on. It reads like a
             notebook, not a dashboard.&rdquo;
           </p>
-          <footer className="text-sm opacity-80">Sofia Almeida — Head of Product, SkillDecks</footer>
+          <footer className="text-sm opacity-80">Sofia Almeida — Head of Product, Inkwell Press</footer>
         </blockquote>
       </div>
       <div className="flex items-center justify-center p-8">

@@ -116,10 +116,10 @@ export const Default: Story = {
           <SidebarFooter className="px-4 py-3">
             <div className="flex items-center gap-2">
               <Avatar className="h-7 w-7">
-                <AvatarFallback className="text-xs">RP</AvatarFallback>
+                <AvatarFallback className="text-xs">JD</AvatarFallback>
               </Avatar>
               <div className="flex flex-col">
-                <span className="text-xs font-medium text-ink">Ryan Phillips</span>
+                <span className="text-xs font-medium text-ink">John Doe</span>
                 <span className="text-xs text-ink-muted">Free plan</span>
               </div>
             </div>
@@ -308,10 +308,10 @@ export const WithNotifications: Story = {
           <SidebarFooter className="px-4 py-3">
             <div className="flex items-center gap-2">
               <Avatar className="h-7 w-7">
-                <AvatarFallback className="text-xs">RP</AvatarFallback>
+                <AvatarFallback className="text-xs">JD</AvatarFallback>
               </Avatar>
               <div className="flex flex-col">
-                <span className="text-xs font-medium text-ink">Ryan Phillips</span>
+                <span className="text-xs font-medium text-ink">John Doe</span>
                 <span className="text-xs text-ink-muted">Free plan</span>
               </div>
             </div>

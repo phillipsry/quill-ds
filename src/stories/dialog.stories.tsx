@@ -53,7 +53,7 @@ export const Default: Story = {
         <div className="flex flex-col gap-4 py-2">
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="name">Name</Label>
-            <Input id="name" defaultValue="Ryan Phillips" />
+            <Input id="name" defaultValue="John Doe" />
           </div>
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="bio">Bio</Label>

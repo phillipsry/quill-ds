@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "quill",
   "title": "Quill Design System",
-  "author": "Ryan Phillips <ryanwesphillips@gmail.com> (https://www.quilldesignsystem.com)",
+  "author": "Craftwell (https://www.quilldesignsystem.com)",
   "description": "Warm parchment surfaces, terracotta accents, Fraunces display type, and rich ink tones. A handcrafted theme for editorial and creative applications.",
   "files": [
     {
