@@ -6,7 +6,7 @@
 
 ## Goal
 
-Give consumers ready-to-use, Quill-styled compositions for the situations they hit repeatedly — auth, app shells, data views, forms, marketing, empty/error states — so a SkillDeck can assemble screens fast without redesigning primitives.
+Give consumers ready-to-use, Quill-styled compositions for the situations they hit repeatedly — auth, app shells, data views, forms, marketing, empty/error states — so a consuming app can assemble screens fast without redesigning primitives.
 
 ## Principles
 

@@ -13,8 +13,8 @@ const events = [
     icon: 'ink_pen',
   },
   {
-    who: 'RP',
-    name: 'Ryan Phillips',
+    who: 'JD',
+    name: 'John Doe',
     action: 'commented on',
     what: 'Botanical pigment studies',
     when: 'Yesterday',

@@ -92,10 +92,10 @@ export function SidebarNav() {
           <SidebarFooter className="px-4 py-3">
             <div className="flex items-center gap-2">
               <Avatar size="sm">
-                <AvatarFallback>RP</AvatarFallback>
+                <AvatarFallback>JD</AvatarFallback>
               </Avatar>
               <div className="flex flex-col group-data-[collapsible=icon]:hidden">
-                <span className="text-xs font-medium text-foreground">Ryan Phillips</span>
+                <span className="text-xs font-medium text-foreground">John Doe</span>
                 <span className="text-xs text-muted-foreground">Studio plan</span>
               </div>
             </div>

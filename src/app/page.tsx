@@ -385,7 +385,7 @@ export default function Home() {
                     <AvatarFallback>AL</AvatarFallback>
                   </Avatar>
                   <Avatar>
-                    <AvatarFallback>RP</AvatarFallback>
+                    <AvatarFallback>JD</AvatarFallback>
                   </Avatar>
                   <Avatar size="sm">
                     <AvatarFallback>Q</AvatarFallback>

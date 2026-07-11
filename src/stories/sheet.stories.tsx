@@ -50,11 +50,11 @@ export const Default: Story = {
         <div className="flex flex-col gap-4 p-4">
           <div className="flex flex-col gap-2">
             <Label htmlFor="name">Display name</Label>
-            <Input id="name" defaultValue="Ryan Phillips" />
+            <Input id="name" defaultValue="John Doe" />
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" defaultValue="ryan@example.com" />
+            <Input id="email" type="email" defaultValue="john@example.com" />
           </div>
         </div>
         <SheetFooter>

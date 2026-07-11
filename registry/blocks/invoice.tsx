@@ -39,8 +39,8 @@ export function Invoice() {
           </div>
           <div className="flex flex-col gap-0.5">
             <span className="text-xs tracking-[0.1em] uppercase text-muted-foreground">Billed to</span>
-            <span className="font-medium text-foreground">SkillDecks Inc.</span>
-            <span className="text-muted-foreground">accounts@skilldecks.com</span>
+            <span className="font-medium text-foreground">Inkwell Press Ltd.</span>
+            <span className="text-muted-foreground">accounts@inkwellpress.com</span>
           </div>
         </div>
       </CardHeader>

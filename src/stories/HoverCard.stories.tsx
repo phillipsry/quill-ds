@@ -37,16 +37,16 @@ export const Default: Story = {
         href="#"
         className="text-sm underline-offset-4 hover:underline"
       >
-        @ryanphillips
+        @johndoe
       </HoverCardTrigger>
       <HoverCardContent>
         <div className="flex gap-3">
           <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" alt="Ryan Phillips avatar" />
+            <AvatarImage src="https://github.com/shadcn.png" alt="John Doe avatar" />
             <AvatarFallback>RP</AvatarFallback>
           </Avatar>
           <div>
-            <p className="font-heading text-sm font-medium text-ink">Ryan Phillips</p>
+            <p className="font-heading text-sm font-medium text-ink">John Doe</p>
             <p className="text-xs text-ink-muted">Founder, Quill Design System</p>
             <p className="mt-2 text-xs text-ink-soft">Building tools for makers and teachers.</p>
           </div>
