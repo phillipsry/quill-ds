@@ -1,0 +1,144 @@
+'use client'
+import type { Meta, StoryObj } from '@storybook/nextjs-vite'
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuBadge,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+  SidebarRail,
+  SidebarTrigger,
+} from '@/components/ui/sidebar'
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import { Separator } from '@/components/ui/separator'
+import { Icon } from '@/components/ui/icon'
+import { Card, CardContent } from '@/components/ui/card'
+
+const workspace = [
+  { icon: 'space_dashboard', label: 'Overview', badge: '', active: true },
+  { icon: 'ink_pen', label: 'Issues', badge: '4', active: false },
+  { icon: 'palette', label: 'Pigments', badge: '', active: false },
+  { icon: 'photo_library', label: 'Plates', badge: '12', active: false },
+] as const
+
+const studio = [
+  { icon: 'group', label: 'Collaborators' },
+  { icon: 'settings', label: 'Settings' },
+] as const
+
+const meta = {
+  title: 'Patterns / Shells / Sidebar navigation',
+  parameters: { layout: 'fullscreen' },
+} satisfies Meta
+export default meta
+type Story = StoryObj
+
+export const SidebarNav: Story = {
+  render: () => (
+    <SidebarProvider>
+      <div className="flex h-[560px] w-full">
+        <Sidebar collapsible="icon">
+          <SidebarHeader className="px-4 py-3">
+            <div className="flex items-center gap-2">
+              <span className="flex size-7 items-center justify-center rounded-md bg-primary text-xs font-medium text-primary-foreground">
+                Q
+              </span>
+              <span className="font-heading text-sm font-medium text-foreground group-data-[collapsible=icon]:hidden">
+                Quill Studio
+              </span>
+            </div>
+          </SidebarHeader>
+          <Separator />
+          <SidebarContent>
+            <SidebarGroup>
+              <SidebarGroupLabel>Workspace</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {workspace.map((item) => (
+                    <SidebarMenuItem key={item.label}>
+                      <SidebarMenuButton isActive={item.active} tooltip={item.label}>
+                        <Icon name={item.icon as never} />
+                        <span>{item.label}</span>
+                      </SidebarMenuButton>
+                      {item.badge && <SidebarMenuBadge>{item.badge}</SidebarMenuBadge>}
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+            <SidebarGroup>
+              <SidebarGroupLabel>Studio</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {studio.map((item) => (
+                    <SidebarMenuItem key={item.label}>
+                      <SidebarMenuButton tooltip={item.label}>
+                        <Icon name={item.icon as never} />
+                        <span>{item.label}</span>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </SidebarContent>
+          <Separator />
+          <SidebarFooter className="px-4 py-3">
+            <div className="flex items-center gap-2">
+              <Avatar size="sm">
+                <AvatarFallback>RP</AvatarFallback>
+              </Avatar>
+              <div className="flex flex-col group-data-[collapsible=icon]:hidden">
+                <span className="text-xs font-medium text-foreground">Ryan Phillips</span>
+                <span className="text-xs text-muted-foreground">Studio plan</span>
+              </div>
+            </div>
+          </SidebarFooter>
+          <SidebarRail />
+        </Sidebar>
+        <div className="flex min-w-0 flex-1 flex-col">
+          <header className="flex items-center gap-3 border-b border-border px-4 py-3">
+            <SidebarTrigger />
+            <Separator orientation="vertical" className="h-4" />
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="#">Workspace</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Overview</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </header>
+          <main className="grid flex-1 grid-cols-3 gap-4 overflow-auto p-4 max-lg:grid-cols-1">
+            {['Morning proofs', 'Pigment queue', 'Reader notes'].map((title) => (
+              <Card key={title} size="sm">
+                <CardContent className="flex h-32 flex-col gap-1">
+                  <span className="text-sm font-medium text-foreground">{title}</span>
+                  <span className="text-xs text-muted-foreground">Nothing pressing.</span>
+                </CardContent>
+              </Card>
+            ))}
+          </main>
+        </div>
+      </div>
+    </SidebarProvider>
+  ),
+}
