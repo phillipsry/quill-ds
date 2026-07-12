@@ -25,6 +25,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+// Footer version stamp reads the real version so it can never drift.
+import packageJson from "../../package.json";
 
 const STORYBOOK_URL = "/storybook/";
 const storyUrl = (id: string) => `${STORYBOOK_URL}?path=/docs/${id}`;
@@ -622,7 +624,7 @@ export default function Home() {
             <a href="#foundations" className={navLink}>Foundations</a>
           </div>
           <span className="font-display text-sm italic text-[var(--text-muted-color)] [font-variation-settings:var(--fraunces-caption)]">
-            Official design system of Craftwell
+            Quill v{packageJson.version}
           </span>
         </div>
       </footer>
