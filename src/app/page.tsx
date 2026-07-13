@@ -362,26 +362,28 @@ export default function Home() {
             <Card className="bg-paper">
               <CardContent className="flex h-full flex-col gap-[18px]">
                 <PlateLabel>Color</PlateLabel>
+                {/* Vars, not hexes, so the plate re-cuts with the active theme
+                    (same convention as the accent dropdown swatches). */}
                 <div className="flex flex-col gap-2.5">
                   <div className="flex gap-2">
-                    <Swatch color="#F5EDDD" bordered />
-                    <Swatch color="#EFE4CE" bordered />
-                    <Swatch color="#E8DCC0" bordered />
+                    <Swatch color="var(--paper)" bordered />
+                    <Swatch color="var(--paper-warm)" bordered />
+                    <Swatch color="var(--paper-deep)" bordered />
                   </div>
                   <div className="flex gap-2">
-                    <Swatch color="#2A2622" />
-                    <Swatch color="#5C524A" />
-                    <Swatch color="#675F58" />
+                    <Swatch color="var(--ink)" />
+                    <Swatch color="var(--ink-soft)" />
+                    <Swatch color="var(--ink-muted)" />
                   </div>
                   <div className="flex gap-2">
-                    <Swatch color="#C4684B" pill />
-                    <Swatch color="#7A8C5C" pill />
-                    <Swatch color="#5B6B8A" pill />
-                    <Swatch color="#B89968" pill />
+                    <Swatch color="var(--terracotta)" pill />
+                    <Swatch color="var(--moss)" pill />
+                    <Swatch color="var(--indigo)" pill />
+                    <Swatch color="var(--gold)" pill />
                   </div>
                 </div>
                 <p className="m-0 mt-auto text-sm leading-normal text-[var(--text-body)]">
-                  Three papers tones, three inks, four pigments. No pure white, no pure black.
+                  Three paper tones, three inks, four pigments — re-cut for every theme.
                 </p>
               </CardContent>
             </Card>
