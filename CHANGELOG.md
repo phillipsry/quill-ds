@@ -9,6 +9,14 @@ entry here, and after merge tag the commit (`git tag vX.Y.Z && git push --tags`)
 publish a GitHub release. The homepage footer reads `package.json` directly, so the
 displayed version updates with the bump.
 
+## [0.2.7] — 2026-07-13
+
+### Changed
+- Foundations color plate swatches use theme vars (`var(--paper)`,
+  `var(--ink)`, `var(--terracotta)`, …) instead of hardcoded Dawn hexes, so
+  the plate re-cuts with the active theme. Caption drops the contradicted
+  "no pure white, no pure black" claim and fixes the "papers tones" typo.
+
 ## [0.2.6] — 2026-07-13
 
 ### Changed
